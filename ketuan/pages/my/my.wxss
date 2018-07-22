@@ -1,0 +1,169 @@
+.container1{
+  margin: 10rpx;
+  position: relative;
+}
+
+.userinfo,.order-item,.address-item,.count-item{
+  width: 730rpx;
+  height: 250rpx;
+  margin-top: 10rpx;
+  position: relative;
+  border: 1px #ccc solid;
+}
+.count-item{
+  font-size: 10pt;
+}
+
+.userinfo-avatar{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 30rpx;
+  margin-top: -75rpx;
+}
+
+.userinfo-nickname{
+  position: absolute;
+  left: 200rpx;
+  top: 100rpx;
+}
+
+.userinfo-manage{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  font-size: 10pt;
+}
+.order-item image{
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  top: 10rpx;
+ 
+}
+
+.order-item text{
+  font-size: 10pt;
+  position: absolute;
+  top: 100rpx;
+}
+
+.iconimg0,.iconimg1,.iconimg2,.iconimg3,.iconimg4 {
+  width: 120rpx;
+  height: 150rpx;
+  
+  position: absolute;
+  top: 80rpx;
+} 
+
+.iconimg0 {
+  left: 20rpx;
+}
+
+.iconimg1{
+  left: 160rpx;
+}
+
+.iconimg2{
+  left: 305rpx;
+}
+
+.iconimg3{
+  left: 450rpx;
+}
+
+.iconimg4{
+  right: 20rpx;
+}
+
+
+
+.order-item .order-sub {
+  position:absolute;
+  top: 30rpx;
+  left: 20rpx; 
+}
+
+.order-item .order-more{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+}
+
+.sub-myaddress{
+  position: absolute;
+  top: 30rpx;
+  left: 20rpx;
+}
+.sub-address-manage{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  font-size: 10pt;
+}
+
+.sub-address{
+  width: 500rpx;
+  height: 120rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 90rpx;
+  border: 1px solid #000;
+}
+
+.sub-mycount{
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+}
+
+.subitem-count{
+  position: absolute;
+  top: 60rpx;
+  left: 10rpx;
+}
+
+.subitem-back{
+  width: 730rpx;
+  position: absolute;
+  top: 110rpx;
+  left: 10rpx;
+}
+
+.sub-back{
+  position: absolute;
+  top: 0rpx;
+  right: 130rpx;
+}
+.sub-back-more{
+  position: absolute;
+  top: 0rpx;
+  right: 30rpx;
+}
+
+.subitem-recommend{
+  width: 730rpx;
+  position: absolute;
+  top: 160rpx;
+  left: 10rpx;
+}
+
+.sub-rec{
+  position: absolute;
+  top: 0;
+  right: 130rpx;
+}
+.sub-rec-more{
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+}
+
+.sub-share{
+  position: absolute;
+  top: 200rpx;
+  left: 260rpx;
+  color: #ccc;
+}

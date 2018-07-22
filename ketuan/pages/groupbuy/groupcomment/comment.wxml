@@ -1,0 +1,19 @@
+<view class='container1'>
+  <view class='topbar'>
+      <text class='goods' bindtap='ongoods'>{{goods}}</text>
+      <text class='detail' bindtap='ondetail'>{{detail}}</text>
+      <text class='comment' bindtap='oncomment'>{{comment}}</text>
+  </view>
+  <view class='totoalcomment'>
+     <text class='commentnum'>{{commentnum}}</text>
+     <text class='goodcomment'>{{goodcomment}}{{rate}}</text>
+  </view>
+  <view class='usercomment' wx:for="{{shuju}}">
+     <image class='Avatar' src='{{item.images}}'></image>
+     <text>{{item.title}}</text>
+     <text>{{item.ga_prefix}}</text>
+     <image src='{{item.images}}'></image>
+     <text>{{item.id}}</text>
+     <text>{{item.ga_prefix}}</text>
+  </view>
+</view>

@@ -1,0 +1,42 @@
+<view class='container1'>
+  <view class='topbar'>
+      <text class='goods'>{{goods}}</text>
+      <text class='detail' bindtap='ondetail'>{{detail}}</text>
+      <text class='comment' bindtap='oncomment'>{{comment}}</text>
+  </view>
+  <swiper class='goods-swp' indicator-dots='true' >
+      <swiper-item wx:for="{{goodsbanner}}">
+         <image class="goodsbanner" src='{{item}}'></image>
+      </swiper-item>
+  </swiper>
+  <view class='group-info'>
+      <text>动态团</text>
+      <text>动态团</text>
+      <text>动态团</text>
+      <text>动态团</text>
+  </view>
+  <view class='group-price'>
+      <text>{{groupprice}}</text> <text class='nowprice'>{{groupPrice}}</text> 
+      <text class='originalprice'>{{originalprice}}</text> <text>{{originalPrice}}\n</text> 
+      <text>{{tmprice}}</text> <text>{{tmPrice}}\n</text> 
+      <text>{{jdprice}}</text> <text>{{jdPrice}}\n</text> 
+  </view>
+  <view class='maininfo'>
+      <view>
+     <text>{{maininfo}}</text>
+     </view>
+     <image src='{{shareicon}}'></image>
+  </view>
+  <view class='chose'>
+     <text class='chosen'>{{chosen}}</text>
+     <text class='chosenstyle' >{{chosenstyle}}</text>
+  </view>
+  <view class='cash'>
+     <text class='cashback'>{{cashback}}</text>
+     <text class='cashbackratio'>{{cashbackratio}}</text>
+     <text class='cashrule'>{{cashrule}}</text>
+  </view>
+  <view class='goodsshow' wx:for="{{goodsShow}}">
+      <image src='{{item}}' mode="widthFix"></image>
+  </view>
+</view>
