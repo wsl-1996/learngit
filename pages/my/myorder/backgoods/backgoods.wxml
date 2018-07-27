@@ -1,0 +1,4 @@
+<view class='container'>
+  <image class='container-image' src='../../../../images/getbackgoods.png'></image>
+  <text class='container-text'>暂无任何退换货信息</text>
+</view>

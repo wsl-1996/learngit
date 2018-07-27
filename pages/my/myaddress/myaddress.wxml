@@ -1,0 +1,67 @@
+<view class='container1'>
+  <radio-group class="radio-group" bindchange="setdefault">
+    <view class='sub-content' wx:for="{{addresslist}}" wx:key="">
+      <view class='sub-content-item1'>
+        <text class='username'>{{item.sendName}}</text>
+        <text class='usertele'>{{item.sendPhone}}</text>
+        <text class='useraddress'>{{item.country}}{{item.province}}{{item.city}}{{item.districts}}{{item.street}}</text>
+      </view>
+      <view class='sub-content-item2'>
+        <radio class='default-img' value="{{item.id}}" checked="{{item.defaultAddress==0?true:flase}}" />
+        <text class='default-text'>设为默认</text>
+        <view class='edit-view' bindtap="showDialogBtn" data-sendname='{{item.sendName}}' data-sendphone='{{item.sendPhone}}' data-province='{{item.province}}' data-city='{{item.city}}' data-districts='{{item.districts}}' data-street='{{item.street}}'>
+          <image class='edit-img' src='../../../images/icon/edit-icon.png'></image>
+          <text class='edit-text'>编辑</text>
+        </view>
+        <view class='delete-view' bindtap='deladdress' data-id='{{item.id}}'>
+          <image class='delete-img' src='../../../images/icon/delete-icon.png'></image>
+          <text class='delete-text'>删除</text>
+        </view>
+      </view>
+    </view>
+  </radio-group>
+
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">编辑地址</view>
+    <view class="modal-content">
+      <view class='modal-content-item'>
+        <text class='modal-content-text'>联系人</text>
+        <view class="modal-input">
+          <input placeholder-class="input-holder" value='{{sendname}}' type="text" maxlength="10" bindinput="inputChange1" class="input"></input>
+        </view>
+      </view>
+      <view class='modal-content-item'>
+        <text class='modal-content-text'>手机号码</text>
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="number" value="{{sendphone}}" maxlength="10" bindinput="inputChange2" class="input"></input>
+        </view>
+      </view>
+      <view class='modal-content-item'>
+        <text class='modal-content-text'>选择地址</text>
+        <view class="modal-input">
+          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">
+              {{region[0]}} {{region[1]}} {{region[2]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class='modal-content-item'>
+        <text class='modal-content-text'>详细地址</text>
+        <view class="modal-input">
+          <input placeholder-class="input-holder" type="number" value='{{sendstreet}}' maxlength="10" bindinput="inputChange3" class="input"></input>
+        </view>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">保存</view>
+    </view>
+  </view>
+
+  <view class='sub-content-item3' bindtap='addaddress'>
+    <image src='../../../images/add.png'></image>
+    <text>添加收货地址</text>
+  </view>
+</view>

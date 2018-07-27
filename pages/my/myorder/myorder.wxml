@@ -1,0 +1,43 @@
+<view class='container1'>
+  <view class="search-content">
+    <icon type='search' class="search-icon"></icon>
+    <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索" bindinput='listenerSearchInput' bindconfirm='toSearch'>
+    </input>
+    <button class='search-btn' bindtap="toSearch">搜索
+    </button>
+  </view>
+
+  <view class="status-box">
+    <view bindtap="statusTap" class="status-label {{index == currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
+      {{item}}
+      <view class="{{tabClass[index]}}"></view>
+    </view>
+  </view>
+
+   <view class='noorder-item' wx:if="{{orderlist.length==0}}">
+      <image class='noorder-item-img' src='../../../images/order.png'></image>
+      <text class='noorder-item-text'>您还没有相关订单</text>
+    </view>
+    <view wx:else class='sub-all-item'>
+      <block wx:for="{{orderlist}}">
+        <view class='seller-info-item'>
+          <text class="seller-info-item-name">{{item.shopName}}></text>
+          <text class="seller-info-item-state">{{item.orderState}}</text>
+        </view>
+        <view class='goods-info-item'  bindtap='orderdetail' data-orderid='{{item.orderId}}'>
+          <image class='goods-info-item-img' src='{{item.productImg}}'></image>
+          <text class='goods-info-item-title'>{{item.descript}}</text>
+          <text class='goods-info-item-price'>{{item.productPrice}}</text>
+          <text class='goods-info-item-num'>x{{item.sums}}</text>
+          <text class='goods-info-item-model'>{{item.typeSpecification}}</text>
+        </view>
+        <view class='pay-info-item'>
+          <text class='pay-info-item-price'>实付：￥{{item.sumPrice}}</text>
+        </view>
+        <view class='detail-info-item'>
+          <view class='detail-info-item-delete' bindtap='deleteorder'>删除订单</view>
+          <view class='detail-info-item-more' bindtap='orderdetail' data-orderid='{{item.orderId}}'>售后详情</view>
+        </view>
+      </block>
+    </view>
+</view> 

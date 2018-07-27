@@ -1,0 +1,138 @@
+/* pages/my/myorder/orderdetail/orderdetail.wxss */
+
+.container1 {
+  background-color: #eee;
+  width: 750rpx;
+  font-size: 28rpx;
+}
+
+.top-content {
+  width: 750rpx;
+  height: 200rpx;
+  background-color: #c39;
+  overflow: hidden;
+  position: relative;
+}
+
+.top-content-text {
+  position: absolute;
+  top: 60rpx;
+  left: 50rpx;
+  color: #fff;
+  font-size: 50rpx;
+}
+
+.top-content-img {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 50rpx;
+  right: 50rpx;
+}
+
+.address-content {
+  background-color: #fff;
+  width: 750rpx;
+  height: 90px;
+  position: relative;
+}
+
+.address-content-img {
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 50rpx;
+}
+
+.address-content-name {
+  position: absolute;
+  top: 30rpx;
+  left: 200rpx;
+}
+
+.address-content-tele {
+  position: absolute;
+  top: 30rpx;
+  left: 400rpx;
+}
+
+.address-content-add {
+  position: absolute;
+  top: 90rpx;
+  left: 200rpx;
+}
+
+.goods-content {
+  background-color: #fff;
+  width: 750rpx;
+  height: 220rpx;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.goods-info-item-img{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 10rpx 0 0 10rpx;
+}
+
+.goods-info-item-title{
+  width: 350rpx;
+  position: absolute;
+  left: 240rpx;
+  top: 10rpx;
+}
+
+.goods-info-item-price{
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+}
+
+.goods-info-item-num{
+  position: absolute;
+  top: 60rpx;
+  right: 30rpx;
+  color: #CCC;
+}
+
+.goods-info-item-model{
+  position: absolute;
+  bottom: 30rpx;
+  left: 240rpx;
+  color: #CCC;
+}
+
+.price-content{
+  background-color: #fff;
+  width: 750rpx;
+  height: 140rpx;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.price-content-box{
+  margin: 10rpx 0 0 20rpx;
+}
+
+.price-content-price{
+  float: right;
+  margin-right: 30rpx;
+}
+.detail-content {
+  background-color: #fff;
+  width: 750rpx;
+  height: 140rpx;
+  margin-top: 10rpx;
+  position: relative;
+
+}
+
+.detail-content-box{
+  margin: 10rpx 0 0 20rpx;
+}
+
+.detail-content-num{
+  margin-left: 30rpx;
+}

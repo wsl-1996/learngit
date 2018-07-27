@@ -1,0 +1,14 @@
+/* pages/my/myorder/backgoods/backgoods.wxss */
+page{
+  background-color: rgb(233, 227, 227);
+}
+
+.container-image{
+  width: 200rpx;
+  height: 160rpx;
+}
+
+.container-text{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+}

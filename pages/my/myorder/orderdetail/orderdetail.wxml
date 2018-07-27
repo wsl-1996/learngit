@@ -1,0 +1,50 @@
+<!--pages/my/myorder/orderdetail/orderdetail.wxml-->
+<view class='container1'>
+  <block wx:for="{{orderdetails}}">
+    <view class='top-content'>
+      <text class='top-content-text'>{{item.orderState}}</text>
+      <image class='top-content-img' src='../../../../images/order-completed1.png'></image>
+    </view>
+    <view class='address-content'>
+      <image class='address-content-img' src='../../../../images/order-address.png'></image>
+      <text class='address-content-name'>{{item.sendName}}</text>
+      <text class='address-content-tele'>{{item.sendTel}}</text>
+      <text class='address-content-add'>{{item.sendAddress}}</text>
+    </view>
+    <view class='goods-content'>
+      <image class='goods-info-item-img' src='{{item.productImg}}'></image>
+      <text class='goods-info-item-title'>{{item.productTitle}}</text>
+      <text class='goods-info-item-price'>{{item.productPrice}}</text>
+      <text class='goods-info-item-num'>{{item.sums}}</text>
+      <text class='goods-info-item-model'>{{item.typeSpecification}}</text>
+    </view>
+    <view class='price-content'>
+      <view class='price-content-box'>
+        <text class='price-content-text'>商品总价</text>
+        <text class='price-content-price'>{{item.productPrice}}</text>
+      </view>
+      <view class='price-content-box'>
+        <text class='price-content-text'>运费</text>
+        <text class='price-content-price'>{{item.productPrice}}</text>
+      </view>
+      <view class='price-content-box'>
+        <text class='price-content-text'>总价</text>
+        <text class='price-content-price'>{{item.sumPrice}}</text>
+      </view>
+    </view>
+    <view class='detail-content'>
+      <view class='detail-content-box'>
+        <text class='detail-content-text'>订单编号：</text>
+        <text class='detail-content-num'>{{item.payTime}}</text>
+      </view>
+      <view class='detail-content-box'>
+        <text class='detail-content-text'>付款时间：</text>
+        <text class='detail-content-num'>{{item.payTime}}</text>
+      </view>
+      <view class='detail-content-box'>
+        <text class='detail-content-text'>发货时间：</text>
+        <text class='detail-content-num'>{{item.deliverTime}}</text>
+      </view>
+    </view>
+  </block>
+</view>

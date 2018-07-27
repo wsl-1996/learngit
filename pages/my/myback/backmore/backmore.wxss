@@ -1,0 +1,52 @@
+/* pages/my/myback/backmore/backmore.wxss */
+page{
+  background: #eee;
+}
+.container1{
+  width: 750rpx;
+  
+}
+
+.sub-text{
+  background-color: orangered;
+  align-items: center;
+  width: 750rpx;
+  height: 100rpx;
+  position: relative;
+}
+
+.sub-text text{
+position: absolute;
+top: 25rpx;
+left: 300rpx;
+}
+
+.sub-cashback{
+  width: 750rpx;
+}
+
+.mouth-text{
+  margin-left: 250rpx
+}
+
+.cash-text{
+  float: right;
+  margin-right: 250rpx;
+}
+
+.sub-footer{
+  width: 180rpx;
+  margin: 50rpx 0 0 300rpx;
+  font-size: 28rpx;
+  color: #ccc;
+  border-bottom: 1px solid #ccc
+}
+
+.sub-detail{
+  width: 750rpx;
+  margin-top: 50rpx;
+}
+
+.sub-detail text{
+  margin-left: 50rpx;
+}

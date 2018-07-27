@@ -1,0 +1,145 @@
+.container1{
+  width: 730rpx;
+  margin: 10rpx;
+}
+
+.topbar{
+  width: 730rpx;
+  height: 50rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  font-size: 13pt;
+  color: #ccc;
+}
+
+.goods{
+  width: 70rpx;
+  position: absolute;
+  left: 130rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.detail{
+  width: 70rpx;
+  position: absolute;
+  left: 350rpx;
+}
+
+.comment{
+  width: 70rpx;
+  position: absolute;
+  left: 550rpx;
+}
+.goods-swp{
+  width: 730rpx;
+  height: 450rpx;
+  margin-top: 50rpx;
+}
+
+.goodsbanner{
+  width: 730rpx;
+  height: 450rpx;
+
+}
+
+.group-info{
+  width: 722rpx;
+  height: 60rpx;
+  border: 1px #000 solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.group-info text{
+  font-size: 13pt;
+  border-right: 1px #000 solid;
+  margin-right: 30rpx;
+}
+
+.group-price{
+  font-size: 11pt;
+  color: #ccc;
+}
+
+.nowprice{
+  font-size: 20pt;
+  color: #f00;
+}
+
+.originalprice{
+  margin-left: 40rpx;
+}
+
+.maininfo{
+  width: 730rpx; 
+  position: relative;
+}
+
+.maininfo view{
+  width: 650rpx;
+}
+
+.maininfo image{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+}
+
+.chose{
+  width: 730rpx;
+  height: 60rpx;
+  border: 1px #ccc solid;
+  position: relative;
+}
+
+.chosen{
+  width: 100rpx;
+  position: absolute;
+  left: 50rpx;
+}
+.chosenstyle{
+   position: absolute;
+   left: 150rpx;
+}
+
+.cash{
+  height: 60rpx;
+  width: 730rpx;
+  border: 1px #ccc solid;
+  padding-top: 15rpx;
+  position: relative;
+}
+
+.cashback{
+  margin-left: 150rpx;
+}
+
+.cashbackratio{
+  margin-left: 30rpx;
+}
+
+.cashrule{
+ position: absolute;
+ right: 20rpx;
+
+ font-size: 11pt;
+ color: #ccc;
+}
+
+.goodsshow{
+  width: 730rpx;
+}
+
+.goodsshow image{
+  width: 730rpx;
+  height: 1200rpx;
+  
+}

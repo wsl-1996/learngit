@@ -1,0 +1,110 @@
+    
+    .container1{
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 10px;
+    }
+    .search{
+      width: 80%;
+    }
+    .search_arr {
+      border: 1px solid #d0d0d0;
+      border-radius: 10rpx;
+      margin-left: 20rpx;
+    }
+    .search_arr input{
+      margin-left: 60rpx;
+      height: 60rpx;
+      border-radius: 5px;
+    }
+    .bc_text {
+      line-height: 68rpx;
+      height: 68rpx;
+      margin-top: 34rpx;
+    }
+     
+    .sousuo {
+      margin-left: 15rpx;
+      width: 15%;
+      line-height: 150%;
+      text-align: center;
+      border: 1px solid #d0d0d0;
+      border-radius: 10rpx;
+    }
+    .page_row{
+      display: flex;
+      flex-direction: row
+    }
+    .searchcion {
+      margin: 10rpx 10rpx 10rpx 10rpx;
+      position: absolute;
+      left:25rpx;
+      z-index: 2;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
+
+    .shop-container{
+      width: 680rpx;
+      height: 250rpx;
+      display: flex;
+      flex-direction: row;
+      margin: 10px;
+      border: 1px solid #888888;
+      position: relative;
+      
+    }
+
+    .shop-img{
+      width: 250rpx;
+      height: 250rpx;
+    }
+
+    .shop-text{
+      font-size: 13pt;
+    }
+
+    .shop-time{
+      position: absolute;
+      right: 30rpx;
+      bottom: 50rpx;
+      border: 1px solid #0f0;
+      color:  #0f0;
+      font-size: 10pt; 
+    }
+
+    .shop-timeout{
+      position: absolute;
+      right: 30rpx;
+      bottom: 8rpx;
+      border: 1px solid #0f0;
+      color:  #0f0;
+      font-size: 10pt;
+    }
+
+    .shop-type{
+      position: absolute;
+      left: 260rpx;
+      bottom: 8rpx;
+      border: 1px solid #f00;
+      color:  #f00;
+      font-size: 10pt;
+    }
+    .shop-comment{
+      position: absolute;
+      left: 350rpx;
+      bottom: 8rpx;
+      border: 1px solid #ccc;
+      color:  #ccc;
+      font-size: 10pt;
+    }
+
+    .shop-price{
+       position: absolute;
+      left: 270rpx;
+      bottom: 60rpx; 
+      font-size: 10pt;
+    
+    }

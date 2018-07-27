@@ -1,0 +1,11 @@
+<view class='container1'>
+  <view class='sub-text'><text>当前返现：</text></view>
+  <view  class='sub-cashback' wx:for='{{cashback}}'>
+    <text class='mouth-text'>{{item.cashbackmonth}}月</text>
+    <text class='cash-text'>￥{{item.cashbackmoney}}</text>
+  </view>
+  <view class='sub-footer' bindtap='checkdetail'>查看返现规则</view>
+  <view hidden='{{hidenview}}' class='sub-detail'>
+    <text>具体返现规则</text>
+  </view>
+</view>
