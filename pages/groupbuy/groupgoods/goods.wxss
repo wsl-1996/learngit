@@ -143,3 +143,146 @@
   height: 1200rpx;
   
 }
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: fixed;
+  bottom: 30rpx;
+  width: 750rpx;
+  font-size:36rpx;
+}
+
+.talk-btn{
+   width: 150rpx;
+  color:#fff;
+  background-color: red;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 30rpx;
+}
+
+.join-btn{
+  width: 150rpx;
+  color:#fff;
+  background-color: red;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.modal-dialog {
+  width:750rpx;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+}
+
+.modal-title {
+  position: relative;
+}
+
+.modal-title-img{
+  margin:0 0 10rpx 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.modal-title-price{
+  position: absolute;
+  top: 60rpx;
+  left: 250rpx;
+}
+
+.modal-title-styletext{
+  position: absolute;
+  top: 140rpx;
+  left: 250rpx;
+}
+
+.model-cancel{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  padding-left: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px #ccc solid;
+  padding-top: 20rpx;
+  border-top: 1px #ccc solid;
+}
+
+.modal-content text{
+  line-height: 50rpx;
+}
+
+.model-num-item{
+  padding:30rpx 0;
+}
+
+.model-num-item-text{
+  padding-left: 30rpx
+}
+
+.model-minus-img{
+  margin-left: 500rpx;
+}
+
+.model-num-item-num{
+  padding: 0 20rpx
+}
+
+.model-num-item image{
+   width: 30rpx;
+  height: 30rpx;
+}
+
+.modal-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.btn-confirm {
+  width: 400rpx;
+  height: 80rpx;
+  background-color: red;
+  color:#fff;
+  text-align: center;
+  border-radius: 36rpx;
+  line-height: 80rpx;
+}
+
+.is_checked{
+  border: 1px red solid;
+  border-radius: 5rpx;
+  color: red;
+  width: auto;
+}

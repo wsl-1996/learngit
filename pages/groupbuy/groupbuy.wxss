@@ -96,7 +96,6 @@
       position: absolute;
       left: 350rpx;
       bottom: 8rpx;
-      border: 1px solid #ccc;
       color:  #ccc;
       font-size: 10pt;
     }

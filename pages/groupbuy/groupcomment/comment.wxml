@@ -8,12 +8,12 @@
      <text class='commentnum'>{{commentnum}}</text>
      <text class='goodcomment'>{{goodcomment}}{{rate}}</text>
   </view>
-  <view class='usercomment' wx:for="{{shuju}}">
-     <image class='Avatar' src='{{item.images}}'></image>
-     <text>{{item.title}}</text>
-     <text>{{item.ga_prefix}}</text>
-     <image src='{{item.images}}'></image>
-     <text>{{item.id}}</text>
-     <text>{{item.ga_prefix}}</text>
+  <view class='usercomment' wx:for="{{commentlist}}" wx:key="">
+     <image class='Avatar' src='{{item.headImg}}'></image>
+     <text>{{item.userName}}</text>
+     <text>{{item.commentTime}}</text>
+     <text>{{item.commentContent}}</text>
+     <image src='{{item.commentImg}}'></image>
+
   </view>
 </view>

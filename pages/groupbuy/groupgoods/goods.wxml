@@ -4,10 +4,9 @@
     <text class='detail' bindtap='ondetail'>{{detail}}</text>
     <text class='comment' bindtap='oncomment'>{{comment}}</text>
   </view>
-  <block wx:for="{{productdetails}}">
     <swiper class='goods-swp' indicator-dots='true'>
-      <swiper-item wx:for="{{goodsbanner}}">
-        <image class="goodsbanner" src='{{item}}'></image>
+      <swiper-item wx:for="{{productdetails.ImageAddress}}" wx:for-item="swiperitem">
+        <image class="goodsbanner" src='{{swiperitem}}'></image>
       </swiper-item>
     </swiper>
     <view class='group-info'>
@@ -16,33 +15,66 @@
       <text>动态团</text>
       <text>动态团</text>
     </view>
-    <view class='group-price'>
+  <block wx:for='{{productdetails.ProductDetails}}'>
+    <view class='group-price' >
       <text>{{groupprice}}</text>
-      <text class='nowprice'>{{groupPrice}}</text>
+      <text class='nowprice' >{{item.groupprice}}</text>
       <text class='originalprice'>{{originalprice}}</text>
-      <text>{{originalPrice}}\n</text>
+      <text>{{item.originalprice}}\n</text>
       <text>{{tmprice}}</text>
-      <text>{{tmPrice}}\n</text>
+      <text>{{item.tmprice}}\n</text>
       <text>{{jdprice}}</text>
-      <text>{{jdPrice}}\n</text>
+      <text>{{item.jdprice}}\n</text>
     </view>
     <view class='maininfo'>
       <view>
-        <text>{{item.productInfo}}</text>
+        <text>{{item.maininfo}}</text>
       </view>
       <image src='{{shareicon}}'></image>
     </view>
     <view class='chose'>
       <text class='chosen'>{{chosen}}</text>
-      <text class='chosenstyle'>{{chosenstyle}}</text>
+      <text class='chosenstyle'>{{item.chosenstyle}}</text>
     </view>
     <view class='cash'>
       <text class='cashback'>{{cashback}}</text>
-      <text class='cashbackratio'>{{cashbackratio}}</text>
+      <text class='cashbackratio'>{{item.cashback}}</text>
       <text class='cashrule'>{{cashrule}}</text>
-     </view>
-      <!-- <view class='goodsshow' wx:for="{{goodsShow}}">
-      <image src='{{item}}' mode="widthFix"></image>  
-    </view>  -->
-  </block>
+    </view>
+</block>
+    <view class='goodsshow' wx:for="{{productdetails.SlideImage}}" wx:for-item="goodshowitem">
+      <image src='{{goodshowitem}}' mode="widthFix"></image>  
+    </view> 
+
+  <view class='footer'>
+    <view class='talk-btn'>
+      <text>客服</text>
+    </view>
+    <view class='join-btn' bindtap='joingroup'>
+      <text>参团</text>
+    </view>
+  </view>
+
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">
+    <image class="modal-title-img" src='{{firstimg}}' bindload='onfirstimg' data-goodsimg='/images/ad3.jpg'></image>
+    <text class='modal-title-price'>￥{{pricenow}}</text>
+    <text class='modal-title-styletext'>请选择  款式</text>
+    <image class='model-cancel' bindtap='onCancel' src='/images/cancel.png'></image>
+  </view>
+  <view class='modal-content' wx:for="{{productStyle}}">
+    <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}}" data-idx='{{index}}' data-style='{{item}}'>{{index}}{{item}}</text>
+
+  </view>
+  <view class='model-num-item'>
+    <text class='model-num-item-text'>数量</text>
+      <image class='model-minus-img' bindtap='onminus' src='/images/minus.png'></image>
+      <text class="model-num-item-num">{{num}}</text>
+      <image class='model-plus-img' bindtap='onplus' src='/images/plus.png'></image>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view>
 </view>

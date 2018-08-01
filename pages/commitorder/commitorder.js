@@ -1,4 +1,4 @@
-// pages/message/messages.js
+// pages/commitorder/commitorder.js
 Page({
 
   /**
@@ -14,16 +14,42 @@ Page({
   onLoad: function (options) {
     var that=this
     wx.request({
-      url: 'http://172.16.2.85:8080/ketuan/applet/products/getproductinfo?productid=01&sessionid=001',
-      success: function (res) {
+      url: 'http://172.16.2.85:8080/ketuan/applet/sendaddress/getdefaultaddress?userid=01',
+      success:function(res){
         that.setData({
-          productdetails: res.data
+              addressinfo:res.data.data.addressinfo
         })
-        console.log(res.data)
       }
     })
+    this.setData({
+      num:options.num,
+      style:options.style,
+      firstimg:options.firstimg,
+      productinfo: options.productinfo,
+      pricenow:options.pricenow
+    })
+    console.log("this is thsada0")
+    console.log(this.data.style)
+    console.log(this.data.productinfo)
+    this.data.totalprice=this.data.num*this.data.pricenow
+  },
+  onplus: function (res) {
+    var num = this.data.num
+    this.setData({
+      num: num + 1
+    })
+    console.log(this.data.num)
   },
 
+  onminus: function (res) {
+    var num = this.data.num
+    if (num > 1) {
+      this.setData({
+        num: num - 1
+      })
+      console.log(this.data.num)
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

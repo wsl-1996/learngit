@@ -6,10 +6,10 @@
     <view class="search">
       <view class="df search_arr">
         <icon class="searchcion" size='20' type='search'></icon>
-        <input bindblur="onbindblur" placeholder="请输入关键字" confirm-type="search" value="{{searchValue}}" />
+        <input bindblur="onbindblur" placeholder="请输入关键字"/>
       </view>
     </view>
-    <view class='sousuo'>搜索</view>
+    <view class='sousuo' bindtap='onsearch'>搜索</view>
   </view>
 
   <view class="shop-container" wx:for="{{testshuju}}" bindtap='tapgoods' data-productid="{{item.product_id}}">
@@ -34,9 +34,4 @@
     </view>
   </view>
 
-  <view wx:for="{{zhihu}}">
-    {{id}}{{item.id}} {{images}}
-    <image src='{{item.images}}'></image>
-    {{title}}{{item.title}}
-  </view>
 </view>

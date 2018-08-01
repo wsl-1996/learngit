@@ -1,0 +1,162 @@
+/* pages/commitorder/commitorder.wxss */
+
+.title-content {
+  position: relative;
+  width: 750rpx;
+  height: 200rpx;
+  border: 1px solid rebeccapurple;
+}
+
+.title-content image {
+  width: 100rpx;
+  height: 100rpx;
+  border: 1px solid rebeccapurple;
+  position: absolute;
+  top: 50rpx;
+  left: 30rpx;
+}
+
+.title-content-text {
+  position: absolute;
+  top: 50rpx;
+  left: 160rpx;
+}
+
+.title-content-name {
+  position: absolute;
+  top: 50rpx;
+  left: 280rpx;
+}
+
+.title-content-tele {
+  position: absolute;
+  top: 50rpx;
+  right: 40rpx;
+}
+
+.title-content-text1 {
+  position: absolute;
+  top: 90rpx;
+  left: 160rpx;
+}
+
+.title-content-address {
+  position: absolute;
+  top: 90rpx;
+  left: 310rpx;
+}
+
+.body-content-goods {
+  position: relative;
+  background-color: #fff;
+  width: 750rpx;
+  height: 220rpx;
+  margin-top: 10rpx;
+  border: 1px solid red;
+}
+
+.body-content-goods image {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 10rpx 0 0 10rpx;
+}
+
+.body-content-detail {
+  height: 80rpx;
+  border: 1px solid red;
+  position: absolute;
+  left: 240rpx;
+  top: 10rpx;
+}
+
+.body-content-style {
+  position: absolute;
+  left: 240rpx;
+  top: 100rpx;
+  color: #bbb;
+}
+
+.body-content-price {
+  position: absolute;
+  left: 240rpx;
+  top: 150rpx;
+}
+
+.model-num-item-text{
+  padding-left: 30rpx
+}
+
+.model-minus-img{
+  margin-left: 500rpx;
+}
+
+.model-num-item-num{
+  padding: 0 20rpx
+}
+
+.body-content-num image{
+   width: 30rpx;
+  height: 30rpx;
+}
+
+.body-content-num{
+  padding-left:20rpx;
+}
+
+.payment{
+  display: flex;
+  flex-flow: row;
+  margin: 20rpx 0 20rpx 20rpx;
+}
+
+.payment-img{
+  width:80rpx;
+  height: 80rpx;
+}
+
+.payment-text{
+  margin-top: 22rpx;
+  margin-left: 20rpx;
+}
+
+.footer-content{
+  position: fixed;
+  bottom: 10rpx;
+  width: 750rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #ccc;
+}
+
+.footer-content-text{
+  font-size: 32rpx;
+  letter-spacing: 5rpx;
+  position: absolute;
+  left: 240rpx;
+}
+.footer-content-payment{
+  color: red;
+  font-size: 32rpx;
+  letter-spacing: 2rpx;
+}
+
+.footer-content-commit{
+  position: absolute;
+  right: 0;
+  width: 200rpx;
+  height: 100rpx;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.footer-content-commit text{
+
+}

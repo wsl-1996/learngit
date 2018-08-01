@@ -1,0 +1,54 @@
+/* pages/my/myaccount/myaccount.wxss */
+.input-content{
+     background: white;
+   width:650rpx;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding-top: auto;
+   padding-left: 20rpx;
+   padding-bottom: auto;
+   margin: auto;
+   height: 70rpx;
+   border-radius:5px 5px;
+   margin-top: 20rpx;
+   margin-left: 50rpx;
+
+}
+
+.title{
+  font-size: 36rpx;
+
+}
+
+.input-text{
+  border-radius:5px 5px;
+  border: 1px #ccc solid
+}
+
+.send-text1{
+  width: 160rpx;
+  height: 70rpx;
+  background-color: #00cc33;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.send-text2{
+  width: 160rpx;
+  height: 70rpx;
+  background-color: #00cc33;
+  color: #fff;
+   border-radius: 5px;
+  margin-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

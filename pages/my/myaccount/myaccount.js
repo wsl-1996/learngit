@@ -1,4 +1,4 @@
-// pages/message/messages.js
+// pages/my/myaccount/myaccount.js
 Page({
 
   /**
@@ -12,16 +12,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  
+  },
+
+  listenerinput:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      inputphone: e.detail.value
+    })
+  },
+
+  sendphonecode:function(e){
     var that=this
     wx.request({
-      url: 'http://172.16.2.85:8080/ketuan/applet/products/getproductinfo?productid=01&sessionid=001',
-      success: function (res) {
-        that.setData({
-          productdetails: res.data
-        })
-        console.log(res.data)
+      url: 'http://172.16.2.79:8080/ketuan/applet/users/sendverficationcode?phone='+this.data.inputphone+'&sessionid=001',
+      success:function(){
+        console.log('ok')
+        console.log(that.data.inputphone)
       }
     })
+  },
+
+  lintenercode:function(e){
+    this.setData({
+      inputcode:e.detail.value
+    })
+  },
+
+  checkphonecode:function(e){
+    console.log('this is 校验按钮')
+    var that=this
+    wx.request({
+      url: 'http://172.16.2.79:8080/ketuan/applet/users/checkverficationcode?verficationcode='+this.data.inputcode+'&sessionid=001',
+      success: function (res) {
+          console.log('绑定ok')
+          wx.showToast({
+            title: '绑定成功',
+          })
+      }
+    })
+    
   },
 
   /**

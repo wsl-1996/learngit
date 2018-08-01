@@ -1,3 +1,4 @@
+var app=getApp()
 Page({
 
   /**
@@ -15,7 +16,6 @@ Page({
     buyyingtime: "2018/7/16",
     rate:"97%",
     Avatar:"../../../images/avatar/1.png"
-    
   },
 
   /**
@@ -23,19 +23,16 @@ Page({
    */
   onLoad: function (options) {
     var that=this
-    wx.request({
-      url: 'http://news-at.zhihu.com/api/4/news/latest',
-      method:"get",
-      header:{
-        "Content-Type":"application/xml"
-      },
-      success:function(res){
-        that.setData({
-          shuju:res.data.stories
-        })
-        console.log(res.data)
-      }
-    })
+   wx.request({
+     url: 'http://localhost:8080/ketuan/applet/comments/getcommentlist?page=1&productid=03',
+     success:function(res){
+       that.setData({
+         commentlist:res.data.data.commentList
+       })
+       console.log(res.data.data.commentList)
+       console.log(that.data.commentlist)
+     }
+   })
     
 
   },

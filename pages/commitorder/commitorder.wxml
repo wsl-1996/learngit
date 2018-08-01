@@ -1,0 +1,37 @@
+<view class='container1'>
+  <view class='title-content' wx:for="{{addressinfo}}">
+    <image src='/images/location.png'></image>
+    <text class='title-content-text'>收货人：</text>
+    <text class='title-content-name'>{{item.sendName}}</text>
+    <text class='title-content-tele'>{{item.sendPhone}}</text>
+    <text class='title-content-text1'>收货地址：</text>
+    <text class='title-content-address'>{{item.userProvince}}{{item.userCity}}{{item.userDistricts}}{{item.userAddressDetails}}</text>
+  </view>
+  <view class='body-content'>
+    <view class='body-content-shopname'>
+      <text>文斯数码</text>
+    </view>
+    <view class='body-content-goods'>
+      <image src='{{firstimg}}'></image>
+      <text class='body-content-detail'>{{productinfo}}</text>
+      <text class='body-content-style'>{{style}}</text>
+      <text class='body-content-price'>￥{{pricenow}}/件</text>
+    </view>
+  </view>
+  <view class='body-content-num'>
+    <text>购买数量</text>
+    <image class='model-minus-img' bindtap='onminus' src='/images/minus.png'></image>
+    <text class="model-num-item-num">{{num}}</text>
+    <image class='model-plus-img' bindtap='onplus' src='/images/plus.png'></image>
+  </view>
+  <view class='payment'>
+    <image class='payment-img' src='/images/payment.png'></image>
+    <text class='payment-text'>微信支付</text>
+  </view>
+  <view class='footer-content'>
+    <text class='footer-content-text'>付款</text>
+    <text class='footer-content-payment'>{{totalprice}}</text>
+    <view class='footer-content-commit'><text>提交订单</text></view>
+  </view>
+
+</view>

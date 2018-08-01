@@ -1,21 +1,32 @@
 {
   "pages": [
+    "pages/groupbuy/groupbuy",
+    "pages/groupbuy/groupgoods/goods",
+   
     "pages/my/my",
+    "pages/messages/messages",
+
+    "pages/my/myaccount/myaccount",
+    
+    "pages/commitorder/commitorder",
+    
+    "pages/groupbuy/groupcomment/comment",
+    
+   
+    
     "pages/my/myback/recmore/recmore",
     "pages/my/myback/backmore/backmore",
-   
     "pages/my/myaddress/myaddress",
     "pages/my/myorder/myorder",
     "pages/my/myorder/orderdetail/orderdetail",
-    "pages/groupbuy/groupbuy",
-    "pages/groupbuy/groupcomment/comment",
-    "pages/groupbuy/groupgoods/goods",
+    
+    
     "pages/start/start",
     "pages/retail/retail",
     "pages/groupbuy/groupdetail/detail",
-    "pages/messages/messages",
-    "pages/my/myorder/backgoods/backgoods"
     
+    "pages/my/myorder/backgoods/backgoods"
+   
   ],
   "window": {
     "navigationBarTextStyle": "white",

@@ -13,7 +13,7 @@ Page({
     searchInput:[],
     orderlist:[]
   },
-  statusTap: function (e) {
+  statusTap: function (e) {    //状态切换
     var curType = e.currentTarget.dataset.index;
     this.data.currentType = curType
     this.setData({
