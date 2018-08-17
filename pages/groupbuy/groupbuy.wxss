@@ -14,6 +14,7 @@
       margin-left: 20rpx;
     }
     .search_arr input{
+      background-color: #fff;
       margin-left: 60rpx;
       height: 60rpx;
       border-radius: 5px;
@@ -25,8 +26,10 @@
     }
      
     .sousuo {
+      background-color: #fff;
       margin-left: 15rpx;
       width: 15%;
+      height: 60rpx;
       line-height: 150%;
       text-align: center;
       border: 1px solid #d0d0d0;
@@ -34,9 +37,11 @@
     }
     .page_row{
       display: flex;
-      flex-direction: row
+      flex-direction: row;
+      align-items: center;
     }
     .searchcion {
+
       margin: 10rpx 10rpx 10rpx 10rpx;
       position: absolute;
       left:25rpx;
@@ -47,11 +52,12 @@
     }
 
     .shop-container{
-      width: 680rpx;
+      background-color: #fff;
+      width: 710rpx;
       height: 250rpx;
       display: flex;
+      margin: 10rpx 0;
       flex-direction: row;
-      margin: 10px;
       border: 1px solid #888888;
       position: relative;
       

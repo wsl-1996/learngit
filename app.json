@@ -1,32 +1,25 @@
 {
   "pages": [
-    "pages/groupbuy/groupbuy",
-    "pages/groupbuy/groupgoods/goods",
-   
+    
     "pages/my/my",
+    "pages/my/express/express",
+    "pages/groupbuy/groupbuy",
+    "pages/messages/customservice/customservice",
+    "pages/groupbuy/groupgoods/goods",
     "pages/messages/messages",
-
+    "pages/groupbuy/groupcomment/comment",   
     "pages/my/myaccount/myaccount",
-    
     "pages/commitorder/commitorder",
-    
-    "pages/groupbuy/groupcomment/comment",
-    
-   
-    
     "pages/my/myback/recmore/recmore",
     "pages/my/myback/backmore/backmore",
     "pages/my/myaddress/myaddress",
     "pages/my/myorder/myorder",
     "pages/my/myorder/orderdetail/orderdetail",
-    
-    
     "pages/start/start",
     "pages/retail/retail",
     "pages/groupbuy/groupdetail/detail",
-    
     "pages/my/myorder/backgoods/backgoods"
-   
+    
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -56,8 +49,8 @@
       },
       {
         "pagePath": "pages/messages/messages",
-        "iconPath": "/images/mytb.png",
-        "selectedIconPath": "/images/mytb_hover.png",
+        "iconPath": "/images/msg.png",
+        "selectedIconPath": "/images/msg_hover.png",
         "text": "消息"
       },
       {

@@ -1,3 +1,4 @@
+@import '/pages/stars/stars-template.wxss';
 .container1{
   margin: 10rpx;
   width: 730rpx;
@@ -7,53 +8,61 @@
 }
  .topbar{
   width: 730rpx;
-  height: 50rpx;
+  height: 55rpx;
   background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: center;
   position: fixed;
   top: 0;
-  z-index: 1;
   font-size: 13pt;
   color: #ccc;
 }
 
 .goods{
   width: 70rpx;
+  height: 50rpx;
   position: absolute;
   left: 130rpx;
-
+  z-index: 99
 }
 
 .detail{
   width: 70rpx;
+  height: 50rpx;
   position: absolute;
   left: 350rpx;
 }
 
 .comment{
   width: 70rpx;
+  height: 50rpx;
   position: absolute;
   left: 550rpx;
   border-bottom: 1px solid #ccc;
 } 
 
 .totoalcomment{
+  display: flex;
+  flex: row;
+  align-items: center;
+  min-height: 50rpx;
+  margin-top: 10rpx;
+  background-color: #fff;
   width: 730rpx;
   border: 1px solid #ccc;
-   position: absolute;
+  position: absolute;
   top: 45rpx
 }
 .commentnum{
-  font-size: 13pt;
+  margin-left: 20rpx;
   color: #ccc;
+
 }
 .goodcomment{
-  font-size: 15pt;
   color: #f00;
   position: absolute;
-  right: 0;
+  right: 20rpx;
 
 }
 
@@ -64,8 +73,42 @@
   top: 200rpx;
   left: 0rpx; */
   margin:120rpx 0 -100rpx 0;
+  background-color: #fff;
+}
+
+.usercomment-title{
+  width: 730rpx;
+
+  display: flex;
+  flex-direction: row
 }
 .Avatar{
   width: 60rpx;
   height: 60rpx;
+  border-radius: 50%;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+
+.userName{
+  margin-top: 30rpx;
+  margin-left: 10rpx
+}
+
+.commentTime{
+  margin-top: 30rpx;
+  margin-left: 200rpx;
+}
+
+.commentContent{
+  margin: 10rpx 0 0 20rpx;
+}
+.img-container{
+  width: 730rpx;
+  height: auto;
+}
+
+.img-container image{
+  width: 730rpx;
+  height: 700rpx;
 }

@@ -1,7 +1,0 @@
-<view>
-  <view class='topbar'>
-      <text class='goods'>{{goods}}</text>
-      <text class='detail' bindtap='ondetail'>{{detail}}111</text>
-      <text class='comment' bindtap='oncomment'>{{comment}}</text>
-  </view>
-</view>

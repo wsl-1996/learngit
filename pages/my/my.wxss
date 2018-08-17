@@ -1,9 +1,11 @@
 .container1{
+  
   margin: 10rpx;
   position: relative;
 }
 
 .userinfo,.order-item,.address-item,.count-item{
+  background-color: #fff;
   width: 730rpx;
   height: 250rpx;
   margin-top: 10rpx;
@@ -170,4 +172,18 @@
   top: 200rpx;
   left: 260rpx;
   color: #ccc;
+}
+
+.hidden{
+  display: none
+}
+
+.clearstorage{
+  width: 180rpx;
+  height: 75rpx;
+  position: absolute;
+  top:100rpx;
+  right: 30rpx;
+  font-size: 28rpx;
+  vertical-align: middle;
 }

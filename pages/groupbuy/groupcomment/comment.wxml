@@ -1,19 +1,25 @@
+<import src='/pages/stars/stars-template.wxml'/>
 <view class='container1'>
   <view class='topbar'>
-      <text class='goods' bindtap='ongoods'>{{goods}}</text>
-      <text class='detail' bindtap='ondetail'>{{detail}}</text>
-      <text class='comment' bindtap='oncomment'>{{comment}}</text>
+    <text class='goods' bindtap='ongoods'>商品</text>
+    <text class='detail' bindtap='ondetail'>详情</text>
+    <text class='comment' bindtap='oncomment'>评价</text>
   </view>
   <view class='totoalcomment'>
-     <text class='commentnum'>{{commentnum}}</text>
-     <text class='goodcomment'>{{goodcomment}}{{rate}}</text>
+    <text class='commentnum'>已评价{{commentnum}}份</text>
+    <text class='goodcomment'>好评率{{rate}}97%</text>
   </view>
-  <view class='usercomment' wx:for="{{commentlist}}" wx:key="">
-     <image class='Avatar' src='{{item.headImg}}'></image>
-     <text>{{item.userName}}</text>
-     <text>{{item.commentTime}}</text>
-     <text>{{item.commentContent}}</text>
-     <image src='{{item.commentImg}}'></image>
+  <view class='usercomment' wx:for="{{comments}}" wx:key="">
+    <view class='usercomment-title'>
+      <image class='Avatar' src='{{item.headImg}}'></image>
+      <text class='userName'>{{item.userName}}</text>
+      <text class='commentTime'>{{item.commentTime}}</text>
+    </view>
+    <template is='stars-template' data="{{starLevel:item.starLevel}}"/>
+     <view class='commentContent'><text>{{item.commentContent}}</text></view>
+    <view bindtap='imgYu' data-list='{{item.commentImg}}' class='img-container' wx:for='{{item.commentImg}}' wx:for-item='itemimg'>
+      <image  src='{{itemimg}}'></image>
+    </view>
+  </view>
 
-  </view>
 </view>

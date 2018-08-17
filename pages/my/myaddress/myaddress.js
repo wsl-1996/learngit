@@ -13,30 +13,37 @@ Page({
   /**
    * 弹窗
    */
-  showDialogBtn: function(e) {
+  reviseaddress: function(e) {
     this.setData({
+      is_add:false,
       showModal: true,
+      addressDetail: e.currentTarget.dataset.addressdetail,
+      addressid: e.currentTarget.dataset.addressid,
       sendname: e.currentTarget.dataset.sendname,
-      sendphone: e.currentTarget.dataset.sendphone,
       sendphone: e.currentTarget.dataset.sendphone,
       region: [e.currentTarget.dataset.province,
         e.currentTarget.dataset.city,
         e.currentTarget.dataset.districts
       ],
-      sendstreet: e.currentTarget.dataset.street
+      province: e.currentTarget.dataset.province,
+      city:e.currentTarget.dataset.city,
+      districts:e.currentTarget.dataset.districts
+      
     })
-    console.log(e.currentTarget.dataset.sendphone)
+    console.log('this is addressDetail'+e.currentTarget.dataset.addressDetail)
+    console.log('this is addressid' + e.currentTarget.dataset.addressid)
   },
 
   addaddress: function(e) {
     this.setData({
+      is_add:true,
       showModal: true,
       sendname: '',
       sendphone: '',
       sendphone: '',
       region: ['', '', ''],
-      sendstreet: '',
-      urlabc :'http://localhost:8080/ketuan/applet/users/addaddress?userid=01'
+      addressDetail: '',
+      urlabc: app.globalData.g_ip + '/ketuan/applet/sendaddress/addaddress?sessionid=' + app.globalData.g_sessionid
     })
     
   
@@ -58,37 +65,58 @@ Page({
    * 对话框取消按钮点击事件
    */
   onCancel: function() {
+
     this.hideModal();
   },
   /**
    * 对话框确认按钮点击事件
    */
-  onConfirm: function() { //单下保存按钮时，提交修改
-    console.log('ok' + this.data.urlabc)
-    console.log(this.data.sendPhone_edit,)
+  onConfirmadd: function() { //单下保存按钮时，提交修改
+    var that = this
     wx.request({
-      url: 'http://localhost:8080/ketuan/applet/users/addaddress?userid=01',
+      
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/addaddress?sessionid=' + app.globalData.g_sessionid,
       data: {
-        sendName: this.data.sendName_edit,
-        sendPhone: this.data.sendPhone_edit,
-        userstreet: this.data.street_edit,
-        userprovince: this.data.province_edit,
-        usercity: this.data.city_edit,
-        userdistricts: this.data.districts_edit
+        sendname: this.data.sendname,
+        sendphone: this.data.sendphone,
+        useraddressdetails: this.data.addressDetail,
+        userprovince: this.data.province,
+        usercity: this.data.city,
+        userdistricts: this.data.districts
       },
       success: function (res) {
+        console.log('添加地址：')
         console.log(res)
-        console.log('this is ok')
+        that.hideModal()
+        that.onLoad()
       },
-      complete: function (res) {
-        console.log('not ok')
-      }
 
     })
     
 
   },
+  onConfirmrevise:function(e){
+    var that=this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/updateaddress',
+      data: {
+        addressid: this.data.addressid,
+        sendname: this.data.sendname ,
+        sendphone: this.data.sendphone,
+        useraddressdetails: this.data.addressDetail,
+        userprovince: this.data.province,
+        usercity: this.data.city,
+        userdistricts: this.data.districts
+      },
+      success: function (res) {
+        console.log('修改地址：')
+        console.log(res)
+        that.hideModal()
+        that.onLoad()
+      },
 
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -96,7 +124,7 @@ Page({
   onLoad: function(options) {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/ketuan/applet/users/getalladdress?userid=01',
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getalladdress?sessionid='+app.globalData.g_sessionid,
       success: function(res) {
         console.log(res.data)
         that.setData({
@@ -105,13 +133,16 @@ Page({
       }
     })
   },
+  
   setdefault: function(e) { //设默认地址
-    console.log(e.detail.value)
+    console.log('这是默认地址'+e.detail.value)
     wx.request({
-      url: 'http://localhost:8080/ketuan/applet/users/setdefaultaddress?userid=01&fdid=' + e.detail.value,
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/setdefaultaddress?sessionid=' + app.globalData.g_sessionid+'&fdid=' + e.detail.value,
     })
   },
+
   deladdress: function(e) {
+    var that =this 
     wx.showModal({
       title: '提示',
       content: '确定要删除此收货地址么？',
@@ -119,7 +150,11 @@ Page({
         if (res.confirm) {
           console.log('用户点击确定' + e.currentTarget.dataset.id)
           wx.request({
-            url: 'http://localhost:8080/ketuan/applet/users/deleteaddress?userid=01&fdid='+e.currentTarget.dataset.id,
+            url: app.globalData.g_ip + '/ketuan/applet/sendaddress/deleteaddress?sessionid=' + app.globalData.g_sessionid+'&fdid='+e.currentTarget.dataset.id,
+            success:function(){
+              that.hideModal()
+              that.onLoad()
+            }
           })
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -131,30 +166,31 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value[0])
     this.setData({
       region_edit: e.detail.value,
-      province_edit: e.detail.value[0],
-      city_edit: e.detail.value[1],
-      districts_edit: e.detail.value[2],
+      province: e.detail.value[0],
+      city: e.detail.value[1],
+      districts: e.detail.value[2],
       region: [e.detail.value[0], e.detail.value[1], e.detail.value[2], ]
     })
   },
   inputChange1: function(e) { //第一个input值改变时数据绑定在data中
     console.log(e.detail.value)
     this.setData({
-      sendName_edit: e.detail.value
+      sendname: e.detail.value
     })
   },
 
   inputChange2: function(e) {
     console.log(e.detail.value)
     this.setData({
-      sendPhone_edit: e.detail.value
+      sendphone: e.detail.value
     })
   },
 
   inputChange3: function(e) {
     console.log(e.detail.value)
+    // if (e.detail.value)
     this.setData({
-      street_edit: e.detail.value
+      addressDetail: e.detail.value
     })
   },
   /**

@@ -4,13 +4,11 @@
   position: relative;
   width: 750rpx;
   height: 200rpx;
-  border: 1px solid rebeccapurple;
 }
 
 .title-content image {
   width: 100rpx;
   height: 100rpx;
-  border: 1px solid rebeccapurple;
   position: absolute;
   top: 50rpx;
   left: 30rpx;
@@ -52,7 +50,6 @@
   width: 750rpx;
   height: 220rpx;
   margin-top: 10rpx;
-  border: 1px solid red;
 }
 
 .body-content-goods image {
@@ -63,7 +60,6 @@
 
 .body-content-detail {
   height: 80rpx;
-  border: 1px solid red;
   position: absolute;
   left: 240rpx;
   top: 10rpx;
@@ -87,7 +83,7 @@
 }
 
 .model-minus-img{
-  margin-left: 500rpx;
+  margin-left: 450rpx;
 }
 
 .model-num-item-num{
@@ -101,6 +97,16 @@
 
 .body-content-num{
   padding-left:20rpx;
+}
+
+.remarks{
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx;
+}
+
+.remarks-text{
+  margin-top: 8rpx;
 }
 
 .payment{

@@ -1,8 +1,5 @@
 <view class='container1'>
-  <view>
-    <text>客团精品团购</text>
-  </view>
-  <view class='page_row' bindtap="suo">
+  <view class='page_row'>
     <view class="search">
       <view class="df search_arr">
         <icon class="searchcion" size='20' type='search'></icon>
@@ -12,7 +9,7 @@
     <view class='sousuo' bindtap='onsearch'>搜索</view>
   </view>
 
-  <view class="shop-container" wx:for="{{testshuju}}" bindtap='tapgoods' data-productid="{{item.product_id}}">
+  <view class="shop-container" wx:for="{{testshuju}}" bindtap='tapgoods' data-groupid='{{item.group_id}}' data-productid="{{item.product_id}}" wx:key=''>
     <image class="shop-img" src='{{item.product_first_image}}'></image>
     <view class='shop-text'>
       <text class='shop-item'>{{item.product_name}}</text>
@@ -24,14 +21,14 @@
       <text>剩余时间</text>
     </view>
     <view class='shop-timeout'>
-      <text>{{item.last_time}}</text>
+      <text>{{item.last_time[0]}}天{{item.last_time[1]}}：{{item.last_time[2]}}</text>
     </view>
-    <view class='shop-type'>
+    <view class="{{item.product_state?'shop-type':''}}">
       <text>{{item.product_state}}</text>
     </view>
     <view class='shop-comment'>
       <text>{{item.degree_of_praise}}</text>
     </view>
   </view>
-
+  <button open-type='share'>转发</button>
 </view>

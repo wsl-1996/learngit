@@ -1,94 +1,124 @@
-var app=getApp()
+var app = getApp()
+var util = require('../../../utils/util.js')
 Page({
 
   /**
-   * 页面的初始数据
+   * 页面的 初始数据
    */
   data: {
-    goods: '商品',
-    detail: '详情',
-    comment: '评价',
-    goodcomment:"好评度",
-    commentnum:"商品评价92份",
-    username:"我想改个名",
-    commentdate: "2018/7/18",
-    goodsstyle: "红白横条",
-    buyyingtime: "2018/7/16",
-    rate:"97%",
-    Avatar:"../../../images/avatar/1.png"
+    comments: {}
   },
 
-  /**
+  /**gg
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var that=this
-   wx.request({
-     url: 'http://localhost:8080/ketuan/applet/comments/getcommentlist?page=1&productid=03',
-     success:function(res){
-       that.setData({
-         commentlist:res.data.data.commentList
-       })
-       console.log(res.data.data.commentList)
-       console.log(that.data.commentlist)
-     }
-   })
-    
-
+  onLoad: function(options) {
+    this.setData({
+      productid: options.proid
+    })
+    console.log('conment页面pid'+this.data.productid)
+    this.getcommentlist()
   },
-  ongoods:function(){
-    wx.navigateTo({
-      url: '../groupgoods/goods',
+
+  getcommentlist: function() {
+    var that = this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/comments/getcommentlist?page=1&productid=' + this.data.productid,
+      success: function(res) {
+        that.setData({
+          commentlist: res.data.data.commentList
+        })
+        that.processcommentData(res.data.data)
+        // console.log(res.data.data)
+      }
+    })
+  },
+
+  processcommentData: function(commentdata) {
+    var comments = []
+    for (var idx in commentdata.commentList) {
+      var onecomment = commentdata.commentList[idx]
+      // console.log(onecomment)
+      var temp = {
+        headImg: onecomment.headImg,
+        userName: onecomment.userName,
+        commentTime: onecomment.commentTime,
+        commentContent: onecomment.commentContent,
+        starLevel: util.convertToStarsArray(onecomment.starLevel),
+        productStyle: onecomment.productStyle,
+        commentImg: onecomment.commentImg
+      }
+      comments.push(temp)
+      console.log('this is comments')
+      console.log(comments)
+      console.log('this is stars' + comments[0].starLevel)
+
+    }
+    console.log('this is comments')
+    this.setData({
+      comments: comments
     })
 
+  },
+  ongoods: function() {
+    wx.navigateTo({
+      url: '../groupgoods/goods?productid='+this.data.productid,
+    })
+  },
 
+  imgYu: function(event) {
+    var imgList = event.currentTarget.dataset.list; //获取data-list
+    //图片预览
+    wx.previewImage({
+      urls: imgList // 需要预览的图片http链接列表
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function() {
+
   }
 })

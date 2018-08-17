@@ -152,7 +152,7 @@ sub-content-item1{
   color: #333;
 }
 .picker{
-  width: 100%;
+  width: 400rpx;
   height: 82rpx;
   font-size: 28rpx;
   line-height: 28rpx;

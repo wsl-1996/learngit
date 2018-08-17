@@ -4,12 +4,13 @@
       <view class='sub-content-item1'>
         <text class='username'>{{item.sendName}}</text>
         <text class='usertele'>{{item.sendPhone}}</text>
-        <text class='useraddress'>{{item.country}}{{item.province}}{{item.city}}{{item.districts}}{{item.street}}</text>
+        <text class='useraddress'>{{item.province}}{{item.city}}{{item.districts}}{{item.addressDetail}}</text>
       </view>
       <view class='sub-content-item2'>
         <radio class='default-img' value="{{item.id}}" checked="{{item.defaultAddress==0?true:flase}}" />
         <text class='default-text'>设为默认</text>
-        <view class='edit-view' bindtap="showDialogBtn" data-sendname='{{item.sendName}}' data-sendphone='{{item.sendPhone}}' data-province='{{item.province}}' data-city='{{item.city}}' data-districts='{{item.districts}}' data-street='{{item.street}}'>
+        <view class='edit-view' bindtap="reviseaddress" data-sendname='{{item.sendName}}' data-sendphone='{{item.sendPhone}}' data-province='{{item.province}}' data-city='{{item.city}}' data-districts='{{item.districts}}' data-addressdetail='{{item.addressDetail}}'
+          data-addressid='{{item.id}}'>
           <image class='edit-img' src='../../../images/icon/edit-icon.png'></image>
           <text class='edit-text'>编辑</text>
         </view>
@@ -28,13 +29,13 @@
       <view class='modal-content-item'>
         <text class='modal-content-text'>联系人</text>
         <view class="modal-input">
-          <input placeholder-class="input-holder" value='{{sendname}}' type="text" maxlength="10" bindinput="inputChange1" class="input"></input>
+          <input placeholder-class="input-holder" value='{{sendname}}' type="text" maxlength="10" bindblur="inputChange1" class="input"></input>
         </view>
       </view>
       <view class='modal-content-item'>
         <text class='modal-content-text'>手机号码</text>
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" value="{{sendphone}}" maxlength="10" bindinput="inputChange2" class="input"></input>
+          <input placeholder-class="input-holder" type="number" value="{{sendphone}}" maxlength="10" bindblur="inputChange2" class="input"></input>
         </view>
       </view>
       <view class='modal-content-item'>
@@ -50,13 +51,14 @@
       <view class='modal-content-item'>
         <text class='modal-content-text'>详细地址</text>
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" value='{{sendstreet}}' maxlength="10" bindinput="inputChange3" class="input"></input>
+          <input placeholder-class="input-holder" value='{{addressDetail}}' maxlength="10" bindblur="inputChange3" class="input"></input>
         </view>
       </view>
     </view>
     <view class="modal-footer">
       <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">保存</view>
+      <view wx:if='{{is_add==true}}' class="btn-confirm" bindtap="onConfirmadd" data-status="confirm">保存</view>
+      <view wx:else class="btn-confirm" bindtap="onConfirmrevise" data-status="confirm">修改</view>
     </view>
   </view>
 

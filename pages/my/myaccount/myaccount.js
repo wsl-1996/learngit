@@ -25,7 +25,7 @@ Page({
   sendphonecode:function(e){
     var that=this
     wx.request({
-      url: 'http://172.16.2.79:8080/ketuan/applet/users/sendverficationcode?phone='+this.data.inputphone+'&sessionid=001',
+      url: app.globalData.g_ip + '/ketuan/applet/users/sendverficationcode?phone='+this.data.inputphone+'&sessionid=001',
       success:function(){
         console.log('ok')
         console.log(that.data.inputphone)
@@ -43,7 +43,7 @@ Page({
     console.log('this is 校验按钮')
     var that=this
     wx.request({
-      url: 'http://172.16.2.79:8080/ketuan/applet/users/checkverficationcode?verficationcode='+this.data.inputcode+'&sessionid=001',
+      url: app.globalData.g_ip + '/ketuan/applet/users/checkverficationcode?verficationcode='+this.data.inputcode+'&sessionid=001',
       success: function (res) {
           console.log('绑定ok')
           wx.showToast({

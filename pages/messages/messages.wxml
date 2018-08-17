@@ -1,3 +1,9 @@
 <!--pages/message/messages.wxml-->
-<text>pages/message/messages.wxml</text>
-<button open-type='contact'>客服按钮</button>
+<button  bindtap='customser' >客服按钮</button>
+<view>
+  <view class='list-container' wx:for="{{msglist}}" bindtap='gototalk' data-userid='{{item.userid}}'>
+   <image class='avater' src='{{item.avatar}}'  ></image>
+   <text class='nickname' bindtap='express'>{{item.nickname}}</text>
+   <text class='message'>{{item.message}}</text>
+  </view>
+</view>

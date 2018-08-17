@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     var that=this
     wx.request({
-      url: 'http://172.16.2.33:8080/ketuan/applet/bills/getcashback?userid=01',
+      url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback?sessionid=' + app.globalData.g_sessionid,
       success: function (res) {
         console.log(res.data.data.cashback)
 

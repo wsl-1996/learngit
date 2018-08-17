@@ -10,12 +10,13 @@
       </swiper-item>
     </swiper>
     <view class='group-info'>
-      <text>动态团</text>
-      <text>动态团</text>
-      <text>动态团</text>
-      <text>动态团</text>
+      <image src='/images/groupbuy.png'></image>
+      <text class='group-info-grouptype'>固定团</text>
+      <text class='group-info-groupnum'>2人团</text>
+      <text class='group-info-time'>距团购结束还剩</text>
+      <text class='group-info-grouptime'>2天12:34:11</text>
     </view>
-  <block wx:for='{{productdetails.ProductDetails}}'>
+  <block wx:for='{{productdetails.Details}}'>
     <view class='group-price' >
       <text>{{groupprice}}</text>
       <text class='nowprice' >{{item.groupprice}}</text>
@@ -47,7 +48,7 @@
     </view> 
 
   <view class='footer'>
-    <view class='talk-btn'>
+    <view class='talk-btn' bindtap='ontalk'>
       <text>客服</text>
     </view>
     <view class='join-btn' bindtap='joingroup'>
@@ -64,7 +65,7 @@
     <image class='model-cancel' bindtap='onCancel' src='/images/cancel.png'></image>
   </view>
   <view class='modal-content' wx:for="{{productStyle}}">
-    <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}}" data-idx='{{index}}' data-style='{{item}}'>{{index}}{{item}}</text>
+    <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}} style-item" data-idx='{{index}}' data-style='{{item}}'>{{item}}</text>
 
   </view>
   <view class='model-num-item'>

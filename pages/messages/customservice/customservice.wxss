@@ -1,0 +1,140 @@
+/* pages/index/to_news/to_news.wxss */
+
+page {
+  background-color: #f7f7f7;
+}
+
+.jia_img {
+  height: 80rpx;
+  width: 90rpx;
+}
+
+.new_imgtent {
+  height: 180rpx;
+  width: 190rpx;
+}
+
+
+
+
+
+/* 聊天 */
+
+.my_right {
+  float: right;
+  position: relative;
+  right: 40rpx;
+}
+
+.you_left {
+  float: left;
+  position: relative;
+  left: 5rpx;
+}
+
+
+
+.new_img{
+ width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.new_txt {
+  
+  min-width: 100rpx;
+  border-radius: 7px;
+  background-color: #95d4ff;
+  margin-right: 29rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
+}
+
+.leftnew_txt{
+  margin-left: 25rpx;
+}
+
+.page_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  min-height: 100rpx;
+}
+
+.sanjiao {
+  bottom: 27rpx;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-width: 10px;
+  border-style: solid;
+}
+
+.my {
+  border-color: transparent transparent transparent #95d4ff;
+  right: 75rpx;
+}
+
+.you {
+  border-color: transparent #95d4ff transparent transparent;
+  left: 70rpx;
+}
+
+.sendmessage {
+  background-color: white;
+  width: 100%;
+  position: fixed;
+  bottom: 0rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.sendmessage input {
+  width: 80%;
+  height: 40px;
+  background-color: white;
+  line-height: 40px;
+  font-size: 14px;
+  border: 1px solid #d0d0d0;
+  padding-left: 10px;
+}
+
+.sendmessage button {
+  border: 1px solid white;
+  width: 18%;
+  height: 40px;
+  background: #fff;
+  color: #000;
+  line-height: 40px;
+  font-size: 14px;
+}
+
+.historycon {
+  height:1100rpx;
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  border-top: 0px;
+  margin-bottom: 85rpx;
+}
+
+.history-item {
+  /* height: 100%; */
+  min-height: 100rpx;
+  margin-top: 15px;
+  margin: 10px;
+  font-size: 14px;
+  line-height: 40px;
+  word-break: break-all;
+}
+
+.time {
+
+  margin-left: 275rpx;
+  text-align: center;
+  padding: 5rpx 20rpx 5rpx 20rpx;
+  width: 200rpx;
+  font-size: 26rpx;
+  background-color: #e8e8e8;
+}
+

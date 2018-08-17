@@ -1,0 +1,34 @@
+<view class='container1'>
+  <view class='title'>
+    <image class='title-img' src='/images/ad3.jpg'></image>
+    <view class='text-container'>
+      <view class='sub-title'>
+        <text class='sub-title-text'>物流公司：</text>
+        <text class='sub-title-text-name'>申通快递</text>
+      </view>
+      <view class='sub-title'>
+        <text class='sub-title-text'>物流单号：</text>
+        <text>112435355</text>
+      </view>
+      <view class='sub-title'>
+        <text class='sub-title-text'>物流电话：</text>
+        <text class='sub-title-text-tele'>96662</text>
+      </view>
+    </view>
+  </view>
+  <view class='body-container'>
+    <text class='body-text'>物流状态</text>
+    <view class='row-line'></view>
+    <view class='sub-body'>
+      <view class='clomn-line'></view>
+      <view class='body-detail-container'>
+      <view  wx:for='{{expressDetail}}' class="body-detail {{item.is_now==true?'is_now':''}}">
+        <view>{{item.AcceptStation}}</view>
+        <view>{{item.AcceptTime}}</view>
+      </view>
+      </view>
+      
+    </view>
+
+  </view>
+</view>

@@ -10,21 +10,30 @@ Page({
 
   onLoad: function(event) {
     this.getgrouplist()
+   
 
   },
-
-  getgrouplist:function(){
+  getgrouplist: function () {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/ketuan/applet/groups/getgroup?page=1&state=1',
-      success: function (res1) {
+      url: app.globalData.g_ip + '/ketuan/applet/groups/getgroup?page=1&state=1',
+      success: function (res) {
         that.setData({
-          testshuju: res1.data.data.groups
+          grouplist: res.data.data.groups
         })
-        console.log(res1.data.data.groups)
+        that.showgrouplist()
+        console.log(res.data.data.groups)
       }
     })
   },
+  showgrouplist:function(){
+    this.setData({
+      testshuju: this.data.grouplist
+    })
+    console.log('this is showgrouplist')
+    console.log(this.data.testshuju)
+  },
+  
   onbindblur: function(event) {
     this.setData({
       text: event.detail.value
@@ -35,23 +44,26 @@ Page({
   onsearch: function(e) {
     var that = this
     wx.request({
-      url: 'url',
+      url: app.globalData.g_ip + '/ketuan/applet/groups/search',
       data: {
-        sessionid: '001',
-        key: this.data.text
+        keyword: this.data.text
       },
       success: function(res) {
         that.setData({
-          grouplist: res.data.data
+          testshuju: res.data.data.groups,
+          grouplist: res.data.data.groups
         })
+        console.log(res.data)
       }
     })
   },
 
   tapgoods: function(e) {
     wx.navigateTo({
-      url: 'groupgoods/goods?productid=' + e.currentTarget.dataset.productid
+      url: 'groupgoods/goods?productid=' + e.currentTarget.dataset.productid + '&groupid=' + e.currentTarget.dataset.groupid
     })
+  },
+  onShareAppMessage: function () {
+    console.log('+++++++转发++++++++++')
   }
-
 })

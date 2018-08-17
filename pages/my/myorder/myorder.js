@@ -30,7 +30,7 @@ Page({
     var that = this
     console.log(that.data.currentType)
     wx.request({
-      url: 'http://localhost:8080/ketuan/applet/orders/getorder?userid=01&orderstate=' + this.data.currentType,
+      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?sessionid=' + app.globalData.g_sessionid+'&orderstate=' + this.data.currentType,
       success: function (res) {
         console.log(res.data)
         that.setData({
@@ -96,7 +96,7 @@ Page({
   toSearch: function () {
     var that=this
     wx.request({
-      url: 'http://localhost:8080/ketuan/applet/orders/searchorders?userid=01&key=%E8%A1%AC%E8%A1%AB',
+      url: app.globalData.g_ip + '/ketuan/applet/orders/searchorders?sessionid=' + app.globalData.g_sessionid+'&key=%E8%A1%AC%E8%A1%AB',
       data: {
         userid: "01",
         key: this.data.searchInput

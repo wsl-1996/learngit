@@ -20,7 +20,7 @@ Page({
     console.log(this.data.orderid)
     var that=this
   wx.request({
-    url: 'http://localhost:8080/ketuan/applet/orders/getorderdetails?orderid=' + this.data.orderid,
+    url: app.globalData.g_ip + '/ketuan/applet/orders/getorderdetails?orderid=' + this.data.orderid,
     success:function(res){
       console.log(res.data.data.orderDetails)
       that.setData({

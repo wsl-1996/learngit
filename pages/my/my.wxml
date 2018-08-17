@@ -1,8 +1,10 @@
 <view class="container1">
+  <button open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo' class="{{is_hidden==false? '':'hidden'}}">点击授权</button>
   <view class="userinfo">
     <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
     <open-data class="userinfo-nickname" type="userNickName"></open-data>
     <text class='userinfo-manage' bindtap='accountmanger'>账号管理>></text>
+    <button class='clearstorage' bindtap='clearstorage'>清除缓存</button>
   </view>
 
   <view class='order-item'>
@@ -37,7 +39,6 @@
     <text class='sub-myaddress'>我的地址</text>
     <text class='sub-address-manage' bindtap='addressmanage'>管理>></text>
     <view class='sub-address' wx:for="{{defaultaddress}}" wx:key="">
-      <text>{{item[0].userCountry}}</text>
       <text>{{item[0].userProvince}}</text>
       <text>{{item[0].userCity}}</text>
       <text>{{item[0].userDistricts}}</text>
@@ -53,12 +54,12 @@
     </view>
     <view class='subitem-back'>
       <text class='sub-backtext'>上月返现</text>
-      <text class='sub-back' wx:for='{{cashback}}'>{{index==0? '￥'+item.cashbackmoney:""}}</text>
+      <text class='sub-back' wx:for='{{cashback}}' wx:key=''>{{index==0? '￥'+item.cashbackmoney:""}}</text>
       <text class='sub-back-more' bindtap='gotobackmore'>更多</text>
     </view>
     <view class='subitem-recommend'>
       <text class='sub-rectext'>我的推荐</text>
-      <view class='sub-rec' wx:for="{{}}">
+      <view class='sub-rec' wx:for="{{}}" wx:key=''>
         <image src='{{}}'></image>
       </view>
       <text class='sub-rec-more' bindtap='gotorecmore'>更多</text>

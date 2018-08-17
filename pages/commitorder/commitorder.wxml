@@ -24,6 +24,10 @@
     <text class="model-num-item-num">{{num}}</text>
     <image class='model-plus-img' bindtap='onplus' src='/images/plus.png'></image>
   </view>
+  <view class='remarks'>
+  <text class='remarks-text'>买家备注：</text>
+  <input placeholder='选填：请先和卖家协商' maxlength='50' bindblur='remarkvalue'></input>
+  </view>
   <view class='payment'>
     <image class='payment-img' src='/images/payment.png'></image>
     <text class='payment-text'>微信支付</text>
@@ -31,7 +35,7 @@
   <view class='footer-content'>
     <text class='footer-content-text'>付款</text>
     <text class='footer-content-payment'>{{totalprice}}</text>
-    <view class='footer-content-commit'><text>提交订单</text></view>
+    <view class='footer-content-commit' bindtap='commitorder'><text>提交订单</text></view>
   </view>
 
 </view>
