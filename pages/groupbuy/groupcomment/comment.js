@@ -66,6 +66,12 @@ Page({
     })
   },
 
+  ondetail:function(){
+    wx.navigateTo({
+      url: '../groupdetail/detail?productid=' + this.data.productid,
+    })
+  },
+
   imgYu: function(event) {
     var imgList = event.currentTarget.dataset.list; //获取data-list
     //图片预览

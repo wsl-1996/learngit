@@ -35,7 +35,7 @@
       <view class='modal-content-item'>
         <text class='modal-content-text'>手机号码</text>
         <view class="modal-input">
-          <input placeholder-class="input-holder" type="number" value="{{sendphone}}" maxlength="10" bindblur="inputChange2" class="input"></input>
+          <input placeholder-class="input-holder" type="number" value="{{sendphone}}" maxlength="11" bindblur="inputChange2" class="input"></input>
         </view>
       </view>
       <view class='modal-content-item'>
@@ -51,7 +51,7 @@
       <view class='modal-content-item'>
         <text class='modal-content-text'>详细地址</text>
         <view class="modal-input">
-          <input placeholder-class="input-holder" value='{{addressDetail}}' maxlength="10" bindblur="inputChange3" class="input"></input>
+          <input placeholder-class="input-holder" value='{{addressDetail}}' maxlength="25" bindblur="inputChange3" class="input"></input>
         </view>
       </view>
     </view>

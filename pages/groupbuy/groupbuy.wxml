@@ -1,34 +1,54 @@
 <view class='container1'>
   <view class='page_row'>
     <view class="search">
-      <view class="df search_arr">
+      <view class="search_arr">
         <icon class="searchcion" size='20' type='search'></icon>
-        <input bindblur="onbindblur" placeholder="请输入关键字"/>
+        <input bindblur="onbindblur" placeholder="请输入关键字" />
       </view>
     </view>
-    <view class='sousuo' bindtap='onsearch'>搜索</view>
+    <view class='sousuo' bindtap='onsearch'>
+      <text>搜索</text>
+    </view>
   </view>
+  <view class='radis-container'>
+    <view class="shop-container" wx:for="{{grouplist}}" bindtap='tapgoods' data-groupid='{{item.group_id}}' data-productid="{{item.product_id}}" wx:key=''>
+      <image class="shop-img" src='{{item.product_first_image}}'></image>
+      <view class='shop-text'>
+        <text class='shop-item'>{{item.product_name}}</text>
+      </view>
+      <view class='shop-price'>
+        <text>￥{{item.product_price}}</text>
+      </view>
+      <view class='shop-time'>
+        <text>剩余时间</text>
+      </view>
+      <view class='shop-timeout'>
+        <text>{{item.last_time[0]}}天{{item.last_time[1]}}：{{item.last_time[2]}}</text>
+      </view>
+      <view class="{{item.product_state?'shop-type':''}}">
+        <text>{{item.product_state}}</text>
+      </view>
+      <view class='shop-comment'>
+        <text>{{item.degree_of_praise}}</text>
+      </view>
 
-  <view class="shop-container" wx:for="{{testshuju}}" bindtap='tapgoods' data-groupid='{{item.group_id}}' data-productid="{{item.product_id}}" wx:key=''>
-    <image class="shop-img" src='{{item.product_first_image}}'></image>
-    <view class='shop-text'>
-      <text class='shop-item'>{{item.product_name}}</text>
     </view>
-    <view class='shop-price'>
-      <text>￥{{item.product_price}}</text>
-    </view>
-    <view class='shop-time'>
-      <text>剩余时间</text>
-    </view>
-    <view class='shop-timeout'>
-      <text>{{item.last_time[0]}}天{{item.last_time[1]}}：{{item.last_time[2]}}</text>
-    </view>
-    <view class="{{item.product_state?'shop-type':''}}">
-      <text>{{item.product_state}}</text>
-    </view>
-    <view class='shop-comment'>
-      <text>{{item.degree_of_praise}}</text>
+    <view class="{{is_null==true?'nothing':'something'}}">
+      <image class='nothing-img' src='/images/nothing.png'></image>
+      <text>没有您想要的东西嘞，看看别的吧~</text>
     </view>
   </view>
-  <button open-type='share'>转发</button>
+  <view class='model-mask' wx:if='{{showModel}}'></view>
+  <view class='model-dialog' wx:if='{{showModel}}'>
+    <view class='model-title'>
+      <text>登录提示</text>
+    </view>
+    <view class='model-content'>
+      <text>请登陆客团，以获取所有使用权限</text>
+      <image class='model-content-img' src='/images/logo.png'></image>
+    </view>
+    <view class='model-footer'>
+       <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo'>授权登录</button>
+    </view>
+  </view>
 </view>

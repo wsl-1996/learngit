@@ -166,3 +166,34 @@
 .footer-content-commit text{
 
 }
+.deduction-content{
+   display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0 20rpx 20rpx;
+}
+
+.deduction-sub-content{
+   display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.deduction-content-img{
+  width: 90rpx;
+  height: 80rpx;
+}
+
+.deduction-content-text{
+  margin-left: 20rpx;
+}
+
+.deduction-content-price{
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  color: red
+}
+
+.deduction-content-radio{
+    margin-right: 20rpx;
+}

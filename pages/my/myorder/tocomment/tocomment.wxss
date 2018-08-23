@@ -1,0 +1,81 @@
+/* pages/my/myorder/tocomment/tocomment.wxss */
+
+.title{
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+.comment-img{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.photo-img{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.title text{
+  margin-right: 20rpx;
+}
+
+.star-img{
+  margin-right: 12rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.add-img-container{
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border:  dashed #ccc  1px;
+  color: #ccc
+}
+
+.commit-btn{
+  background-color: #cc0066;
+  color: #fff;
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+.comment-img-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start
+}
+.comment-img{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 20rpx;
+}
+
+.comment-body{
+  background-color: #fff;
+  margin-top: 15rpx;
+  height: 1080rpx;
+}
+
+.inputtext{
+  width: 750rpx;
+  height: 230rpx;
+}
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20rpx;
+
+}

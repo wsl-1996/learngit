@@ -8,13 +8,15 @@ Page({
     goods: '商品',
     detail: '详情',
     comment: '评价',
-    chosen: '已选',
+    chosen: '已选：',
     groupprice: "团购价",
     originalprice: "原价",
+    cashback: '返现比例：',
+    cashrule: '返现规则',
     tmprice: "天猫价",
     jdprice: "京东价",
     shareicon: "../../../images/share.png",
-
+    showModellogin: false,
     showModal: false,
     ischecked: true,
     idx: 0,
@@ -28,11 +30,14 @@ Page({
   onLoad: function(event) {
     this.setData({
       groupid: event.groupid,
-      productid: event.productid
+      productid: event.productid,
+      parentid: event.parentid,
+      showModellogin: event.showModellogin
     })
-
+    console.log("this is parentid", this.data.parentid)
     console.log("this is productid" + this.data.groupid)
     console.log("this is groupid" + this.data.groupid)
+
     var that = this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/products/getproductinfo?productid=' + this.data.productid + '&sessionid=' + app.globalData.g_sessionid,
@@ -177,21 +182,31 @@ Page({
     }
     app.globalData.g_arr = wx.getStorageSync('msglist')
     for (var i = 0; i < app.globalData.g_arr.length; i++) {
-      if(app.globalData.g_arr[i].userid == temp.userid){
-        is_have = true       
-      }   
+      if (app.globalData.g_arr[i].userid == temp.userid) {
+        is_have = true
+      }
     }
     if (app.globalData.g_arr == '') {
-      app.globalData.g_arr=[]
+      app.globalData.g_arr = []
     }
 
-    if(is_have==false){
+    if (is_have == false) {
       app.globalData.g_arr.push(temp)
       console.log(app.globalData.g_arr)
       wx.setStorageSync("msglist", app.globalData.g_arr)
     }
-    
+
   },
+  previewimg: function(e) { //图片预览
+    var list = e.currentTarget.dataset.list
+    var currentimg = e.currentTarget.dataset.currentimg
+    console.log('this is list ', list)
+    wx.previewImage({
+      current: currentimg,
+      urls: list
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -237,7 +252,57 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    console.log('this is share', res)
+    return {
+      title: 'this is share',
+      path: '/pages/groupbuy/groupgoods/goods?productid=' + this.data.productid + '&parentid=' + wx.getStorageSync('userid') + '&showModellogin=' + true,
+    }
+  },
+  bindGetuserinfo: function(e) { //登陆授权
+    var that = this
+    console.log(e.detail)
+    wx.login({
+      success: function(res1) {
+        if (res1.code) {
+          wx.request({
+            url: app.globalData.g_ip + '/ketuan/applet/users/login',
+            data: {
+              code: res1.code,
+              rawData: e.detail.rawData,
+              encryptedData: e.detail.encryptedData,
+              iv: e.detail.iv,
+              signature: e.detail.signature,
+              userInfo: e.detail.userInfo,
+              parentid: that.data.parentid
+            },
+            success: function(res) {
+              wx.setStorageSync('sessionid', res.data.data.sessionId)
+              wx.setStorageSync('userid', res.data.data.userId)
+              app.globalData.g_sessionid = wx.getStorageSync('sessionid')
+              app.globalData.g_userid = wx.getStorageSync('userid')
+              console.log('this is sessionid:')
+              console.log(app.globalData.g_sessionid)
+              console.log('this is userid')
+              console.log(app.globalData.g_userid)
 
-  }
+              wx.showToast({
+                title: '登陆成功',
+                icon: 'success'
+              })
+              that.setData({
+                showModellogin: true
+              })
+              that.listenmsg()
+              wx.onSocketClose(function(res) {
+                console.log('++++++++++++WebSocket 已关闭！++++++++++++')
+                that.listenmsg()
+              })
+            }
+
+          })
+        }
+      }
+    })
+  },
 })

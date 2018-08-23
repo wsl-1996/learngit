@@ -1,10 +1,13 @@
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    goods: '商品',
+    detail: '详情',
+    comment: '评价',
   },
 
   /**
@@ -22,7 +25,17 @@ Page({
       }
     })
   },
+  ongoods: function () {
+    wx.navigateTo({
+      url: '../groupgoods/goods?productid=' + this.data.productid,
+    })
+  },
 
+  oncomment: function () {
+    wx.navigateTo({
+      url: '../groupcomment/comment?productid=' + this.data.productid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -23,13 +23,77 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 9,
+			"list": [
+				{
+					"id": -1,
+					"name": "group",
+					"pathName": "pages/groupbuy/groupbuy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "group",
+					"pathName": "pages/my/express/express",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "myaccount",
+					"pathName": "pages/my/myaccount/myaccount",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "hsoujihao",
+					"pathName": "pages/my/myaccount/myaccount",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ll",
+					"pathName": "pages/groupbuy/groupgoods/goods",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "goodsssss",
+					"pathName": "pages/groupbuy/groupgoods/goods",
+					"query": "productid=01"
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/commitorder/commitorder",
+					"query": "productid=01"
+				},
+				{
+					"id": -1,
+					"name": "order1111",
+					"pathName": "pages/my/myorder/myorder",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tocomment",
+					"pathName": "pages/my/myorder/tocomment/tocomment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "backrule",
+					"pathName": "pages/my/myback/backmore/backmore"
+				}
+			]
 		}
 	}
 }

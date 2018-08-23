@@ -1,9 +1,10 @@
 <!--pages/message/messages.wxml-->
-<button  bindtap='customser' >客服按钮</button>
+
 <view>
   <view class='list-container' wx:for="{{msglist}}" bindtap='gototalk' data-userid='{{item.userid}}'>
    <image class='avater' src='{{item.avatar}}'  ></image>
    <text class='nickname' bindtap='express'>{{item.nickname}}</text>
    <text class='message'>{{item.message}}</text>
+   <image class="{{item.is_new==true?'newmsg-img':'none'}}" src='/images/icon/newmsg.png'></image>
   </view>
 </view>

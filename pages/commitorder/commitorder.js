@@ -1,20 +1,25 @@
 var app = getApp()
+var flag=false
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    totalprice: 0
+    totalprice: 0,
+    deduction:0,
+    outcost:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
     var that = this
+
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
       success: function(res) {
         that.setData({
           addressinfo: res.data.data.addressinfo
@@ -39,7 +44,11 @@ Page({
     this.setData({
       totalprice: this.data.num * this.data.pricenow
     })
+    this.setData({
+      outcost:this.data.totalprice-this.data.deduction
+    })
     console.log('this is totalprice' + this.data.totalprice)
+    this.getback()
   },
 
   commitorder: function(res) {
@@ -50,6 +59,7 @@ Page({
         groupid: this.data.groupid,
         sessionid: app.globalData.g_sessionid,
         totalprice: this.data.totalprice,
+        deduction: this.data.deduction,
         style: this.data.style,
         meno: this.data.meno,
         productprice: this.data.pricenow,
@@ -58,47 +68,64 @@ Page({
       },
       success: function(res) {
         console.log(res.data)
-        var data=res.data.data
+        var data = res.data.data
         wx.requestPayment({
-          'timeStamp': data.timeStamp ,
+          'timeStamp': data.timeStamp,
           'nonceStr': data.nonceStr,
           'package': data.package,
           'signType': data.signType,
           'paySign': data.paySign,
-          'appId':'wx5733cafea467c980',
+          'appId': 'wx5733cafea467c980',
           'success': function(res) {
             console.log('调用支付success')
           },
           'fail': function(res) {
             console.log(res)
-            console.log('调用支付failed'+ JSON.stringify(data.nonceStr))
+            console.log('调用支付failed' + JSON.stringify(data.nonceStr))
           }
         })
       }
     })
 
-    // wx.requestPayment({
-    //   timeStamp: '1490840662',
-    //   nonceStr: '5K8264ILTKCH16CQ2502SI8ZNMTM67VS',
-    //   package: 'prepay_id=wx2017033010242291fcfe0db70013231072',
-    //   signType: 'MD5',
-    //   paySign: 'MD5(appId=wx5733cafea467c980&nonceStr=5K8264ILTKCH16CQ2502SI8ZNMTM67VS&package=prepay_id=wx2017033010242291fcfe0db70013231072&signType=MD5&timeStamp=1490840662&key=qazwsxedcrfvtgbyhnujmikolp111111) = 22D9B4E54AB1950F51E0649E8810ACD6',
-    //   success: function (res) {
-    //     console.log('调用支付success')
-    //   },
-    //   fail: function (res) {
-    //     console.log('调用支付failed')
-    //   }
-    // })
+  },
+
+  getback: function() {
+    var that = this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade?sessionid=' + wx.getStorageSync('sessionid'),
+      success: function(res) {
+        that.setData({
+          userBalance: res.data.data.userBalance
+        })
+        console.log('用户等级：', res.data)
+        console.log(that.data.totalprice * 0.2)
+        console.log(that.data.userBalance)
+        var deduction = Math.min(that.data.totalprice * 0.2, that.data.userBalance)
+        console.log('this is dedution+++++++++++', deduction)
+        that.setData({
+          deduction: 3.24 //deduction
+        })
+      }
+    })
+
   },
   onplus: function(res) {
 
     this.setData({
-      num: Number(this.data.num)  + 1
+      num: Number(this.data.num) + 1
     })
     this.setData({
       totalprice: this.data.num * this.data.pricenow
     })
+    if (flag == true) {
+      this.setData({
+        outcost: this.data.totalprice - this.data.deduction
+      })
+    } else {
+      this.setData({
+        outcost: this.data.totalprice
+      })
+    }
     console.log(this.data.num)
   },
 
@@ -111,7 +138,17 @@ Page({
       this.setData({
         totalprice: this.data.num * this.data.pricenow
       })
-      console.log(this.data.num)
+      if(flag==true){
+        this.setData({
+          outcost: this.data.totalprice - this.data.deduction
+        })
+      }else{
+        this.setData({
+          outcost: this.data.totalprice
+        })
+      }
+     
+      console.log('这是num：',this.data.num)
     }
   },
 
@@ -168,5 +205,25 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  chkRadio: function(res) {
+    console.log(res)
+    flag = !flag;
+    res.checked =flag
+    console.log(res.checked)
+    this.setData({
+      flag:flag
+    })
+  if(res.checked==true){
+    this.setData({
+      outcost: this.data.totalprice-this.data.deduction
+    })
+  }else{
+    console.log('这是totalpricenow',this.data.totalprice)
+   
+    this.setData({
+      outcost: this.data.totalprice
+    })
   }
+   }
 })

@@ -174,8 +174,30 @@
   position: relative;
   background-color: #fff;
   border-bottom: 1px #F2f2f2 solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end
+
 }
 
+.detail-info-item view{
+  width: 160rpx;
+  height: 50rpx;
+  border: 1px #CCC solid;
+  border-radius: 10%;
+  padding-left: 20rpx;
+  margin-right: 20rpx;
+}
+/* .detail-info-item-back{
+  width: 160rpx;
+  height: 50rpx;
+  border: 1px #CCC solid;
+  border-radius: 10%;
+  position: absolute;
+  top: 10rpx;
+  left: 130rpx;
+  padding-left: 20rpx;
+}
 .detail-info-item-delete{
   width: 160rpx;
   height: 50rpx;
@@ -186,7 +208,15 @@
   left: 330rpx;
   padding-left: 20rpx;
 }
-
+.detail-info-item-pay{
+  width: 160rpx;
+  height: 50rpx;
+  border: 1px #CCC solid;
+  border-radius: 10%;
+  position: absolute;
+  top: 10rpx;
+  padding-left: 20rpx;
+}
 .detail-info-item-more{
   width: 160rpx;
   height: 50rpx;
@@ -196,7 +226,7 @@
   right: 30rpx;
   top: 10rpx;
   padding-left: 20rpx;
-}
+} */
 
 .noorder-item{
   width: 750rpx;
@@ -219,3 +249,4 @@
   top: 420rpx;
   left: 230rpx;
 }
+

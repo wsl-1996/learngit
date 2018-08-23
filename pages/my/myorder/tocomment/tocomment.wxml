@@ -1,0 +1,29 @@
+<view>
+  <view class='title'>
+    <image class='comment-img' src='/images/sls.jpg'></image>
+    <text>给我打个分吧~</text>
+    <image class='star-img' src="{{is_light==true&&starnum>=1?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv1'></image>
+    <image class='star-img' src="{{is_light==true&&starnum>=2?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv2'></image>
+    <image class='star-img' src="{{is_light==true&&starnum>=3?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv3'></image>
+    <image class='star-img' src="{{is_light==true&&starnum>=4?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv4'></image>
+    <image class='star-img' src="{{is_light==true&&starnum>=5?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv5'></image>
+
+  </view>
+  <view class='comment-body'>
+    <textarea class='inputtext' bindblur='inputdone' placeholder='分享您对这款商品的评价吧，让更多人看见'></textarea>
+    <view class='comment-img-container'>
+     <view  wx:for='{{tempFilePaths}}'>
+      <image class='comment-img' src='{{item}}' bindtap='previewimg' data-idx='{{index}}'></image>
+    </view>
+    </view>
+   <view class='footer'>
+   <view class='add-img-container' bindtap='addimg'>
+      <image class='photo-img' src='/images/photo.png'></image>
+      <text>添加图片</text>
+    </view>
+    <view class='commit-btn' bindtap='tocommit'>发布</view>
+   </view>
+    
+  </view>
+  
+</view>

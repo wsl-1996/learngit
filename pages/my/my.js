@@ -13,13 +13,12 @@ Page({
     is_hidden:false
   },
   onLoad: function() {
-    // util.register(['q', 'w', 'e'])
-    console.log('随机数' + util.RndNum()) 
+    
   },
   showaddress:function(){
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
       method: 'GET',
       header: {
         'Content-Type': 'application/json'
@@ -43,6 +42,7 @@ Page({
           userGrade: res.data.data.userGrade
 
         })
+        console.log('用户等级：',res.data)
       }
     })
   },
@@ -61,49 +61,49 @@ Page({
     })
   },
   
-  bindGetuserinfo: function(e) {
-    var that = this
-    console.log(e.detail)
-    wx.login({
-      success: function(res1) {
-        if (res1.code) {
-          wx.request({
-            url: app.globalData.g_ip + '/ketuan/applet/users/login',
-            data: {
-              code: res1.code,
-              rawData: e.detail.rawData,
-              encryptedData: e.detail.encryptedData,
-              iv: e.detail.iv,
-              signature: e.detail.signature,
-              userInfo: e.detail.userInfo
-            },
-            success: function(res) {
-              app.globalData.g_sessionid = res.data.data.sessionId
-              app.globalData.g_userid = res.data.data.userId
+  // bindGetuserinfo: function(e) {
+  //   var that = this
+  //   console.log(e.detail)
+  //   wx.login({
+  //     success: function(res1) {
+  //       if (res1.code) {
+  //         wx.request({
+  //           url: app.globalData.g_ip + '/ketuan/applet/users/login',
+  //           data: {
+  //             code: res1.code,
+  //             rawData: e.detail.rawData,
+  //             encryptedData: e.detail.encryptedData,
+  //             iv: e.detail.iv,
+  //             signature: e.detail.signature,
+  //             userInfo: e.detail.userInfo
+  //           },
+  //           success: function(res) {
+  //             app.globalData.g_sessionid = res.data.data.sessionId
+  //             app.globalData.g_userid = res.data.data.userId
 
-              console.log('this is sessionid:')
-              console.log(app.globalData.g_sessionid)
-              console.log('this is userid')
-              console.log(app.globalData.g_userid)
-              wx.showToast({
-                title: '登陆成功',
-                icon:'success'
-              })
-              that.setData({
-                is_hidden:true
-              })
-              that.listenmsg()
-              wx.onSocketClose(function (res) {
-                console.log('++++++++++++WebSocket 已关闭！++++++++++++')
-                that.listenmsg()
-              })
-            }
+  //             console.log('this is sessionid:')
+  //             console.log(app.globalData.g_sessionid)
+  //             console.log('this is userid')
+  //             console.log(app.globalData.g_userid)
+  //             wx.showToast({
+  //               title: '登陆成功',
+  //               icon:'success'
+  //             })
+  //             that.setData({
+  //               is_hidden:true
+  //             })
+  //             that.listenmsg()
+  //             wx.onSocketClose(function (res) {
+  //               console.log('++++++++++++WebSocket 已关闭！++++++++++++')
+  //               that.listenmsg()
+  //             })
+  //           }
 
-          })
-        }
-      }
-    })
-  },
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
   addressmanage: function() {
     wx.navigateTo({
       url: 'myaddress/myaddress',
@@ -205,6 +205,8 @@ Page({
       }
       tampstorage.push(temp)
       wx.setStorageSync('centendata' + tempres.messageFrom, tampstorage) //接收的消息存入缓存
+      app.globalData.g_msgfromid = tempres.messageFrom,
+
       console.log('+++++++++++++++您有新的消息了+++++++++++++++')
      
     })
@@ -223,5 +225,10 @@ Page({
         }
       }
     })
+  },
+  onShow:function(){
+    this.showaddress()
+    this.showcashback()
+    this.showusergrade()
   }
 })

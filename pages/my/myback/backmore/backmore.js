@@ -1,4 +1,5 @@
 // pages/my/myback/backmore/backmore.js
+var stadata=require('../../../../staticdata/data.js')
 Page({
 
   /**
@@ -12,6 +13,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      backrule:stadata.data.backrule,
+      vip: stadata.data.vip
+    })
     var that=this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback?sessionid=' + app.globalData.g_sessionid,

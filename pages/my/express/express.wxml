@@ -23,7 +23,8 @@
       <view class='clomn-line'></view>
       <view class='body-detail-container'>
       <view  wx:for='{{expressDetail}}' class="body-detail {{item.is_now==true?'is_now':''}}">
-        <view>{{item.AcceptStation}}</view>
+        <image class='doc-img' src="{{item.is_now==true?'/images/icon/doc.png':'/images/icon/nodoc.png'}}"></image>
+       <view>{{item.AcceptStation}}</view>
         <view>{{item.AcceptTime}}</view>
       </view>
       </view>

@@ -26,7 +26,7 @@
         </view>
         <view class='goods-info-item'  bindtap='orderdetail' data-orderid='{{item.orderId}}'>
           <image class='goods-info-item-img' src='{{item.productImg}}'></image>
-          <text class='goods-info-item-title'>{{item.descript}}</text>
+          <text class='goods-info-item-title'>{{item.productTitle}}</text>
           <text class='goods-info-item-price'>{{item.productPrice}}</text>
           <text class='goods-info-item-num'>x{{item.sums}}</text>
           <text class='goods-info-item-model'>{{item.typeSpecification}}</text>
@@ -35,8 +35,11 @@
           <text class='pay-info-item-price'>实付：￥{{item.sumPrice}}</text>
         </view>
         <view class='detail-info-item'>
+        <view hidden='{{item.orderState!=1?true:false}}' class='detail-info-item-pay' bindtap='gotopay'>去付款</view>
+          <view hidden='{{item.orderState!=2?true:false}}' class='detail-info-item-back'>申请退款</view>
           <view class='detail-info-item-delete' bindtap='deleteorder'>删除订单</view>
-          <view class='detail-info-item-more' bindtap='orderdetail' data-orderid='{{item.orderId}}'>售后详情</view>
+          <view class='detail-info-item-more' bindtap='orderdetail' data-orderid='{{item.orderId}}'>查看物流</view>
+          <view hidden='{{item.orderState!=4?true:false}}' bindtap='gotocomment' data-orderid='{{item.orderId}}'>评价</view>
         </view>
       </block>
     </view>

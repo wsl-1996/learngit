@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+     
   },
   customser: function (e) {
     wx.navigateTo({
@@ -22,18 +22,6 @@ Page({
   },
 
   setmsglist:function(){
-    //  var   temp={}g 
-    //   "avatar": "/images/avatar/1.png",
-    //   "nickname":"往事随风了把",
-    //   "message":"上一条消息上一条消息上一条消息"
-    // }
-    // app.globalData.g_arr.push(temp)
-    // temp = {
-    //   "avatar": "/images/avatar/2.png",
-    //   "nickname": "易王义",
-    //   "message": "图形sdfsdfsdfsd夏天"
-    // }
-    // app.globalData.g_arr.push(temp)
     console.log(app.globalData.g_arr)
     wx.setStorageSync("msglist", app.globalData.g_arr)
   },
@@ -43,6 +31,14 @@ Page({
     this.setData({
       msglist:arr
     })
+    for(var i=0;i<this.data.msglist.length;i++){
+      if (this.data.msglist[i].userid == app.globalData.g_msgfromid){
+        this.data.msglist[i].is_new=true
+        this.setData({
+          msglist: this.data.msglist
+        })   
+      }    
+    }
     console.log('this is mmsglist')
     console.log(this.data.msglist)
   },

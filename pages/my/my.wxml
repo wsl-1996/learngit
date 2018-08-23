@@ -1,6 +1,6 @@
 <view class="container1">
-  <button open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo' class="{{is_hidden==false? '':'hidden'}}">点击授权</button>
   <view class="userinfo">
+    <!-- <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo' class="{{is_hidden==false? '':'hidden'}}">点击授权</button> -->
     <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
     <open-data class="userinfo-nickname" type="userNickName"></open-data>
     <text class='userinfo-manage' bindtap='accountmanger'>账号管理>></text>
@@ -64,6 +64,6 @@
       </view>
       <text class='sub-rec-more' bindtap='gotorecmore'>更多</text>
     </view>
-    <text class='sub-share'>分享个人名片</text>
+    <!-- <text class='sub-share'>分享个人名片</text> -->
   </view>
 </view>

@@ -1,18 +1,28 @@
 /* pages/my/myaccount/myaccount.wxss */
+page{
+  background-color: #fff
+}
+.container1{
+  background-color: #fff;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .input-content{
-     background: white;
    width:650rpx;
    display: flex;
    flex-direction: row;
    align-items: center;
+   justify-content: center;
    padding-top: auto;
-   padding-left: 20rpx;
+
    padding-bottom: auto;
    margin: auto;
    height: 70rpx;
    border-radius:5px 5px;
    margin-top: 20rpx;
-   margin-left: 50rpx;
+
 
 }
 
@@ -21,18 +31,27 @@
 
 }
 
-.input-text{
+.input-textone{
+  width: 500rpx;
+  height: 60rpx;
+  border-radius:5px 5px;
+  border: 1px #ccc solid
+}
+
+.input-texttwo{
+  width: 340rpx;
+  height: 60rpx;
   border-radius:5px 5px;
   border: 1px #ccc solid
 }
 
 .send-text1{
   width: 160rpx;
-  height: 70rpx;
+  height: 60rpx;
   background-color: #00cc33;
   color: #fff;
   border-radius: 5px;
-  margin-left: 30rpx;
+  margin-left: 5rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -41,12 +60,12 @@
 }
 
 .send-text2{
-  width: 160rpx;
-  height: 70rpx;
+  width: 505rpx;
+  height: 60rpx;
   background-color: #00cc33;
+  margin-top: 30rpx;
   color: #fff;
-   border-radius: 5px;
-  margin-left: 30rpx;
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
   justify-content: center;

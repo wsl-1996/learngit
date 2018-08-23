@@ -1,2 +1,5 @@
-
-  <web-view src="{{guige}}"></web-view>
+<view class='topbar'>
+    <text class='goods' bindtap='ongoods'>{{goods}}</text>
+    <text class='detail' >{{detail}}</text>
+    <text class='comment' bindtap='oncomment'>{{comment}}</text>
+  </view>

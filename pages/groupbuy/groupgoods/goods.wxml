@@ -1,51 +1,51 @@
 <view class='container1'>
   <view class='topbar'>
-    <text class='goods'>{{goods}}</text>
-    <text class='detail' bindtap='ondetail'>{{detail}}</text>
-    <text class='comment' bindtap='oncomment'>{{comment}}</text>
+    <view class='goods'>{{goods}}</view>
+    <view class='detail' bindtap='ondetail'>{{detail}}</view>
+    <view class='comment' bindtap='oncomment'>{{comment}}</view>
   </view>
-    <swiper class='goods-swp' indicator-dots='true'>
-      <swiper-item wx:for="{{productdetails.ImageAddress}}" wx:for-item="swiperitem">
-        <image class="goodsbanner" src='{{swiperitem}}'></image>
-      </swiper-item>
-    </swiper>
-    <view class='group-info'>
-      <image src='/images/groupbuy.png'></image>
-      <text class='group-info-grouptype'>固定团</text>
-      <text class='group-info-groupnum'>2人团</text>
-      <text class='group-info-time'>距团购结束还剩</text>
-      <text class='group-info-grouptime'>2天12:34:11</text>
-    </view>
-  <block wx:for='{{productdetails.Details}}'>
-    <view class='group-price' >
-      <text>{{groupprice}}</text>
-      <text class='nowprice' >{{item.groupprice}}</text>
-      <text class='originalprice'>{{originalprice}}</text>
-      <text>{{item.originalprice}}\n</text>
-      <text>{{tmprice}}</text>
-      <text>{{item.tmprice}}\n</text>
-      <text>{{jdprice}}</text>
-      <text>{{item.jdprice}}\n</text>
-    </view>
+  <swiper class='goods-swp' autoplay='true'>
+    <swiper-item wx:for="{{productdetails.ImageAddress}}" wx:for-item="swiperitem" wx:key='' >
+      <image class="goodsbanner" src='{{swiperitem}}' bindtap='previewimg' data-currentimg='{{swiperitem}}' data-list="{{productdetails.ImageAddress}}"></image>
+    </swiper-item>
+  </swiper>
+  <view class='group-info'>
+    <image src='/images/groupbuy1.png'></image>
+    <text class='group-info-grouptype'>固定团</text>
+    <text class='group-info-groupnum'>2人团</text>
+    <text class='group-info-time'>距团购结束还剩</text>
+    <text class='group-info-grouptime'>2天12:34:11</text>
+  </view>
+  <block wx:for='{{productdetails.Details}}' wx:key=''>
     <view class='maininfo'>
-      <view>
+      <view class='maininfo-text'>
         <text>{{item.maininfo}}</text>
       </view>
-      <image src='{{shareicon}}'></image>
+      <button open-type='share' class='sharebtn' data-parentid='{{parentid}}'>
+        <image src='{{shareicon}}'></image>
+      </button>
+      <view class='share-text' ><text>分享</text></view>
     </view>
-    <view class='chose'>
+    <view class='group-price'>
+      <text class='nowprice-text'>{{groupprice}}</text>
+      <text class='nowprice'>￥{{item.groupprice}}</text>
+      <text class='originalprice'>{{originalprice}}</text>
+      <text>￥{{item.originalprice}}\n</text>
+    </view>
+
+    <!-- <view class='chose'>
       <text class='chosen'>{{chosen}}</text>
       <text class='chosenstyle'>{{item.chosenstyle}}</text>
-    </view>
+    </view> -->
     <view class='cash'>
       <text class='cashback'>{{cashback}}</text>
       <text class='cashbackratio'>{{item.cashback}}</text>
       <text class='cashrule'>{{cashrule}}</text>
     </view>
-</block>
-    <view class='goodsshow' wx:for="{{productdetails.SlideImage}}" wx:for-item="goodshowitem">
-      <image src='{{goodshowitem}}' mode="widthFix"></image>  
-    </view> 
+  </block>
+  <view class='goodsshow' wx:for="{{productdetails.SlideImage}}" wx:for-item="goodshowitem" wx:key='' data-list='{{productdetails.SlideImage}}' data-currentimg='{{goodshowitem}}' bindtap='previewimg'>
+    <image src='{{goodshowitem}}' mode="widthFix"></image>
+  </view>
 
   <view class='footer'>
     <view class='talk-btn' bindtap='ontalk'>
@@ -57,25 +57,38 @@
   </view>
 
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-<view class="modal-dialog" wx:if="{{showModal}}">
-  <view class="modal-title">
-    <image class="modal-title-img" src='{{firstimg}}' bindload='onfirstimg' data-goodsimg='/images/ad3.jpg'></image>
-    <text class='modal-title-price'>￥{{pricenow}}</text>
-    <text class='modal-title-styletext'>请选择  款式</text>
-    <image class='model-cancel' bindtap='onCancel' src='/images/cancel.png'></image>
-  </view>
-  <view class='modal-content' wx:for="{{productStyle}}">
-    <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}} style-item" data-idx='{{index}}' data-style='{{item}}'>{{item}}</text>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">
+      <image class="modal-title-img" src='{{firstimg}}' bindload='onfirstimg' data-goodsimg='/images/ad3.jpg'></image>
+      <text class='modal-title-price'>￥{{pricenow}}</text>
+      <text class='modal-title-styletext'>请选择  款式</text>
+      <image class='model-cancel' bindtap='onCancel' src='/images/cancel.png'></image>
+    </view>
+    <view class='modal-content' wx:for="{{productStyle}}">
+      <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}} style-item" data-idx='{{index}}' data-style='{{item}}'>{{item}}</text>
 
-  </view>
-  <view class='model-num-item'>
-    <text class='model-num-item-text'>数量</text>
+    </view>
+    <view class='model-num-item'>
+      <text class='model-num-item-text'>数量</text>
       <image class='model-minus-img' bindtap='onminus' src='/images/minus.png'></image>
       <text class="model-num-item-num">{{num}}</text>
       <image class='model-plus-img' bindtap='onplus' src='/images/plus.png'></image>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>
   </view>
-  <view class="modal-footer">
-    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    <view class='model-mask' wx:if='{{showModellogin}}'></view>
+  <view class='model-dialog' wx:if='{{showModellogin}}'>
+    <view class='model-title'>
+      <text>登录提示</text>
+    </view>
+    <view class='model-content'>
+      <text>请登陆客团，以获取所有使用权限</text>
+      <image class='model-content-img' src='/images/logo.png'></image>
+    </view>
+    <view class='model-footer'>
+       <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo'>授权登录</button>
+    </view>
   </view>
-</view>
 </view>

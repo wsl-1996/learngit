@@ -26,3 +26,15 @@
   left: 140rpx;
   color: #bbb;
 }
+
+.newmsg-img{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 50rpx;
+}
+
+.none{
+  display: none
+}

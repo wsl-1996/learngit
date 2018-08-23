@@ -30,13 +30,13 @@ Page({
     var that = this
     console.log(that.data.currentType)
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?sessionid=' + app.globalData.g_sessionid+'&orderstate=' + this.data.currentType,
+      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?sessionid=' + wx.getStorageSync('sessionid')+'&orderstate=' + this.data.currentType,
       success: function (res) {
         console.log(res.data)
         that.setData({
           orderlist: res.data.data.searchResult
         })
-        console.log(that.data.orderlist)
+        console.log('这是订单列表',that.data.orderlist)
       }
     })
   },
@@ -77,7 +77,7 @@ Page({
   },
 
   orderdetail:function(e){
-    console.log(e.currentTarget.dataset.orderid)
+    console.log('这是订单号：',e.currentTarget.dataset.orderid)
     wx.navigateTo({
       url: 'orderdetail/orderdetail?myorderid='+e.currentTarget.dataset.orderid,
     })
@@ -93,7 +93,7 @@ Page({
     })
     console.log(e.detail.value)
   },
-  toSearch: function () {
+  toSearch: function () {         //查找订单
     var that=this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/orders/searchorders?sessionid=' + app.globalData.g_sessionid+'&key=%E8%A1%AC%E8%A1%AB',
@@ -107,6 +107,20 @@ Page({
           orderlist:res.data.data.searchResult
         })
       }
+    })
+  },
+  gotopay:function(){
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/orders/orderpay',
+      success:function(){
+        console.log('this is 待支付回调',res)
+      }
+    })
+  },
+
+  gotocomment:function(e){
+    wx.navigateTo({
+      url: 'tocomment/tocomment?orderid='+e.currentTarget.dataset.orderid,
     })
   },
   /**

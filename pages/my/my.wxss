@@ -116,7 +116,7 @@
   position: absolute;
   left: 20rpx;
   top: 90rpx;
-  border: 1px solid #000;
+
 }
 
 .sub-mycount{
@@ -186,4 +186,7 @@
   right: 30rpx;
   font-size: 28rpx;
   vertical-align: middle;
+}
+.login-btn{
+  
 }

@@ -1,13 +1,12 @@
 {
   "pages": [
-    
+    "pages/groupbuy/groupbuy",
     "pages/my/my",
     "pages/my/express/express",
-    "pages/groupbuy/groupbuy",
     "pages/messages/customservice/customservice",
     "pages/groupbuy/groupgoods/goods",
     "pages/messages/messages",
-    "pages/groupbuy/groupcomment/comment",   
+    "pages/groupbuy/groupcomment/comment",
     "pages/my/myaccount/myaccount",
     "pages/commitorder/commitorder",
     "pages/my/myback/recmore/recmore",
@@ -18,8 +17,8 @@
     "pages/start/start",
     "pages/retail/retail",
     "pages/groupbuy/groupdetail/detail",
-    "pages/my/myorder/backgoods/backgoods"
-    
+    "pages/my/myorder/backgoods/backgoods",
+    "pages/my/myorder/tocomment/tocomment"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -40,12 +39,6 @@
         "iconPath": "/images/home.png",
         "selectedIconPath": "/images/home_hover.png",
         "text": "客团"
-      },
-      {
-        "pagePath": "pages/retail/retail",
-        "iconPath": "/images/cart .png",
-        "selectedIconPath": "/images/cart_hover.png",
-        "text": "商城"
       },
       {
         "pagePath": "pages/messages/messages",

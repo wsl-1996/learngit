@@ -176,7 +176,7 @@ Page({
           header: {
             "Content-Type": "multipart/form-data"
           },
-
+    
           success: function(res) {
             console.log('上传ok')
             console.log(that.data.headOwner)

@@ -6,6 +6,6 @@
   </view>
   <view class='sub-footer' bindtap='checkdetail'>查看返现规则</view>
   <view hidden='{{hidenview}}' class='sub-detail'>
-    <text>具体返现规则</text>
+    <text>{{vip}}</text>
   </view>
 </view>

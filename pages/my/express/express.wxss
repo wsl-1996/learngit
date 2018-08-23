@@ -58,7 +58,7 @@
 .clomn-line {
   width: 1px;
   background-color: #ccc;
-  margin: 15rpx 20rpx;
+  margin: 35rpx 20rpx;
 }
 
 .sub-body {
@@ -71,13 +71,23 @@
   margin: 20rpx;
   padding-bottom: 20rpx;
   border-bottom: 1px solid #ccc;
+  position: relative;
 }
 
 .body-detail-container {
   display: flex;
   flex-direction: column;
+  
 }
 
 .is_now{
   color: rgb(36, 172, 93);
+}
+
+.doc-img{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  left: -55rpx;
+  top: 8rpx;
 }
