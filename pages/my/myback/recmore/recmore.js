@@ -1,11 +1,29 @@
 // pages/my/myback/recmore/recmore.js
+
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+     fanslist:[
+       {
+         avatar:'/images/avatar/1.png',
+         contuibution:'146',
+         contuibutiontotal:'668'
+       },
+       {
+         avatar: '/images/avatar/2.png',
+         contuibution: '146',
+         contuibutiontotal: '628'
+       }, {
+         avatar: '/images/avatar/3.png',
+         contuibution: '546',
+         contuibutiontotal: '1098'
+       }
+    
+     ]
   },
 
   /**

@@ -45,28 +45,28 @@ Page({
   this.setData({
     currentType: options.currentyp
   });
+  console.log('this is current type:',this.data.currentType)
   this.getorderlist()
   },
 
 
-  deleteorder:function(){
-    console.log('deleteorder test')
+  deleteorder:function(e){
+    var that=this
+    var orderid= e.currentTarget.dataset.orderid
     wx.showModal({
       title: '确定要删除此订单么？',
       success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
           wx.request({
-            url: 'url',
+            url: app.globalData.g_ip + '/ketuan/applet/orders/removeorder',
             data:{
-              order_id:"orderid"
+              orderid:orderid,
+              sessionid:app.globalData.g_sessionid
             },
-            header:{
-              'content-type':'application/json'
-            },
-            method:"POST",
-            success:function(){
-              console.log("这里是返回订单编号")
+            success:function(res){
+              console.log("这里是返回订单编号",res)
+              that.getorderlist()
             }
           })
         } else if (res.cancel) {
@@ -109,10 +109,16 @@ Page({
       }
     })
   },
-  gotopay:function(){
+  gotopay:function(e){
+    var that = this
+    var orderid = e.currentTarget.dataset.orderid
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/orders/orderpay',
-      success:function(){
+      data:{
+        orderid: orderid,
+        sessionid: app.globalData.g_sessionid
+      },
+      success:function(res){
         console.log('this is 待支付回调',res)
       }
     })
@@ -121,6 +127,18 @@ Page({
   gotocomment:function(e){
     wx.navigateTo({
       url: 'tocomment/tocomment?orderid='+e.currentTarget.dataset.orderid,
+    })
+  },
+
+  gotoexpress:function(e){
+    wx.navigateTo({
+      url: '../express/express?orderid=' + e.currentTarget.dataset.orderid + '&productimg=' + e.currentTarget.dataset.productimg,
+    })
+  },
+
+  topayback:function(e){
+    wx.navigateTo({
+      url: 'topayback/topayback?orderid='+e.currentTarget.dataset.orderid,
     })
   },
   /**

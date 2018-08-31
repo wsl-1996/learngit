@@ -3,6 +3,7 @@
 page{
   font-size: 28rpx;
   background-color: rgb(240,239,245);
+  color: #676a6c
 }
 .container {
   height: 100%;

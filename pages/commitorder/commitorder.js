@@ -1,4 +1,5 @@
 var app = getApp()
+var util=require('../../utils/util.js')
 var flag=false
 Page({
 
@@ -45,7 +46,7 @@ Page({
       totalprice: this.data.num * this.data.pricenow
     })
     this.setData({
-      outcost:this.data.totalprice-this.data.deduction
+      outcost:util.getnum(this.data.totalprice-this.data.deduction)
     })
     console.log('this is totalprice' + this.data.totalprice)
     this.getback()
@@ -59,7 +60,7 @@ Page({
         groupid: this.data.groupid,
         sessionid: app.globalData.g_sessionid,
         totalprice: this.data.totalprice,
-        deduction: this.data.deduction,
+        deduction: this.data.usededuction,
         style: this.data.style,
         meno: this.data.meno,
         productprice: this.data.pricenow,
@@ -101,9 +102,10 @@ Page({
         console.log(that.data.totalprice * 0.2)
         console.log(that.data.userBalance)
         var deduction = Math.min(that.data.totalprice * 0.2, that.data.userBalance)
+        deduction=util.getnum(deduction)
         console.log('this is dedution+++++++++++', deduction)
         that.setData({
-          deduction: 3.24 //deduction
+          deduction: deduction
         })
       }
     })
@@ -119,11 +121,11 @@ Page({
     })
     if (flag == true) {
       this.setData({
-        outcost: this.data.totalprice - this.data.deduction
+        outcost: util.getnum(this.data.totalprice - this.data.deduction) 
       })
     } else {
       this.setData({
-        outcost: this.data.totalprice
+        outcost: util.getnum(this.data.totalprice)
       })
     }
     console.log(this.data.num)
@@ -138,13 +140,13 @@ Page({
       this.setData({
         totalprice: this.data.num * this.data.pricenow
       })
-      if(flag==true){
+      if (flag == true) {
         this.setData({
-          outcost: this.data.totalprice - this.data.deduction
+          outcost: util.getnum(this.data.totalprice - this.data.deduction)
         })
-      }else{
+      } else {
         this.setData({
-          outcost: this.data.totalprice
+          outcost: util.getnum(this.data.totalprice)
         })
       }
      
@@ -216,14 +218,18 @@ Page({
     })
   if(res.checked==true){
     this.setData({
-      outcost: this.data.totalprice-this.data.deduction
+      outcost: util.getnum(this.data.totalprice-this.data.deduction),
+      usededuction:this.data.deduction
     })
+    console.log('这是使用的抵扣金额',this.data.usededuction)
   }else{
     console.log('这是totalpricenow',this.data.totalprice)
    
     this.setData({
-      outcost: this.data.totalprice
+      outcost: util.getnum(this.data.totalprice),
+      usededuction:0
     })
+    console.log('这是使用的抵扣金额', this.data.usededuction)
   }
    }
 })

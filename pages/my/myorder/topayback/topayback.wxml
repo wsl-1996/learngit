@@ -1,0 +1,16 @@
+<import src='/pages/logofooter/logofooter-template.wxml' />
+<view>
+  <view class='reason-content'>
+    <view class='reason-title'>
+      <image class='reason-img' src='/images/icon/reason.svg'></image>
+      <text>退款理由</text>
+    </view>
+
+    <textarea class='input' bindinput='applycontent'></textarea>
+  </view>
+
+  <view class='commit-btn' bindtap='toapply'>提交申请</view>
+</view>
+<view class='logofooter-container'>
+  <template is='logofooter-template' />
+</view>

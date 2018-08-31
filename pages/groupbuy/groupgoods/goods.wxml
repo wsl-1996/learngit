@@ -14,7 +14,7 @@
     <text class='group-info-grouptype'>固定团</text>
     <text class='group-info-groupnum'>2人团</text>
     <text class='group-info-time'>距团购结束还剩</text>
-    <text class='group-info-grouptime'>2天12:34:11</text>
+    <text class='group-info-grouptime'>{{d}}天{{h}}:{{m}}:{{s}}</text>
   </view>
   <block wx:for='{{productdetails.Details}}' wx:key=''>
     <view class='maininfo'>
@@ -29,8 +29,8 @@
     <view class='group-price'>
       <text class='nowprice-text'>{{groupprice}}</text>
       <text class='nowprice'>￥{{item.groupprice}}</text>
-      <text class='originalprice'>{{originalprice}}</text>
-      <text>￥{{item.originalprice}}\n</text>
+      <text class='originalpricetext'>{{originalprice}}</text>
+      <text class='originalprice'>￥{{item.originalprice}}\n</text>
     </view>
 
     <!-- <view class='chose'>
@@ -49,6 +49,7 @@
 
   <view class='footer'>
     <view class='talk-btn' bindtap='ontalk'>
+      <image src='/images/icon/talk.svg'></image>
       <text>客服</text>
     </view>
     <view class='join-btn' bindtap='joingroup'>
@@ -62,7 +63,7 @@
       <image class="modal-title-img" src='{{firstimg}}' bindload='onfirstimg' data-goodsimg='/images/ad3.jpg'></image>
       <text class='modal-title-price'>￥{{pricenow}}</text>
       <text class='modal-title-styletext'>请选择  款式</text>
-      <image class='model-cancel' bindtap='onCancel' src='/images/cancel.png'></image>
+      <image class='model-cancel' bindtap='onCancel' src='/images/icon/close1.svg'></image>
     </view>
     <view class='modal-content' wx:for="{{productStyle}}">
       <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}} style-item" data-idx='{{index}}' data-style='{{item}}'>{{item}}</text>
@@ -70,9 +71,9 @@
     </view>
     <view class='model-num-item'>
       <text class='model-num-item-text'>数量</text>
-      <image class='model-minus-img' bindtap='onminus' src='/images/minus.png'></image>
+      <image class='model-minus-img' bindtap='onminus' src='/images/icon/minus.svg'></image>
       <text class="model-num-item-num">{{num}}</text>
-      <image class='model-plus-img' bindtap='onplus' src='/images/plus.png'></image>
+      <image class='model-plus-img' bindtap='onplus' src='/images/icon/plus1.svg'></image>
     </view>
     <view class="modal-footer">
       <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>

@@ -1,0 +1,32 @@
+/* pages/my/tobevip/tobevip.wxss */
+text{
+  line-height: 50rpx;
+}
+
+.sub-text{
+  width: 650rpx;
+  margin-left: 60rpx;
+  margin-bottom: 50rpx;
+}
+
+.title-text{
+margin: 0 20rpx;
+}
+
+.upgrade-img{
+  width: 100rpx;
+  height: 100rpx;
+}
+.grade-content{
+  background:rgb(255, 177, 10);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: #fff;
+}
+
+.sub-grade-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

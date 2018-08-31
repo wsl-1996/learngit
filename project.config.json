@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -91,7 +91,67 @@
 				{
 					"id": -1,
 					"name": "backrule",
-					"pathName": "pages/my/myback/backmore/backmore"
+					"pathName": "pages/my/myback/backmore/backmore",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tobevip",
+					"pathName": "pages/my/tobevip/tobevip",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "express",
+					"pathName": "pages/my/express/express",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "detail",
+					"pathName": "pages/groupbuy/groupdetail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "start",
+					"pathName": "pages/groupbuy/groupbuy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "start",
+					"pathName": "pages/start/start",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tocomment",
+					"pathName": "pages/my/myorder/tocomment/tocomment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "返现",
+					"pathName": "pages/my/myback/backmore/backmore",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "topayback",
+					"pathName": "pages/my/myorder/topayback/topayback",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "fans",
+					"pathName": "pages/my/myback/recmore/recmore"
 				}
 			]
 		}

@@ -1,5 +1,5 @@
 <view>
-    <scroll-view class="historycon" scroll-y="true" scroll-into-view="{{toView}}" >
+    <scroll-view class="historycon" scroll-y="true" scroll-into-view="{{toView}}" bindscroll='onroll'>
       <scroll-view  id='{{item.toView}}' class="history-item" wx:for="{{centendata}}" wx:key=''  >
         <view>
           <text class='time' >{{item.createtime}}</text>
@@ -8,7 +8,7 @@
           <view class='my_right'>
             <view class='page_row'>
               <text wx:if='{{!item.is_img}}' class='new_txt'>{{item.messageContent}}</text>
-              <image wx:if='{{item.is_img}}' src='{{item.messageContent}}' class='new_imgtent'></image>
+              <image wx:if='{{item.is_img}}' src='{{item.messageContent}}' class='new_imgtent' bindtap='previewimg' data-preimg='{{item.messageContent}}'></image>
               <view wx:if='{{!item.is_img}}' class='sanjiao my'></view>
               <image class='new_img' src='{{item.headOwner}}'></image>
             </view>
@@ -20,14 +20,14 @@
               <image class='new_img' src='{{item.headOwner}}'></image>
               <view wx:if='{{!item.contentType}}' class='sanjiao you'></view>
               <text wx:if='{{!item.contentType}}' class='new_txt leftnew_txt'>{{item.messageContent}}</text>
-              <image wx:if='{{item.contentType}}' src='{{item.messageContent}}' class='new_imgtent'></image>
+              <image wx:if='{{item.contentType}}' src='{{item.messageContent}}' class='new_imgtent' bindtap='previewimg' data-preimg='{{item.messageContent}}'></image>
             </view>
           </view>
         </block>
       </scroll-view>
     </scroll-view>
   <view class="sendmessage">
-    <input type="emoji" bindblur="bindChange" confirm-type="done" value='{{news_input_val}}' placeholder="" />
+    <input type="emoji" bindinput="bindChange" confirm-type="done" value='{{news_input_val}}' placeholder="" />
     <button catchtap="add">发送</button>
     <image bindtap="upimg1" class='jia_img' src='/images/jiahao.png'></image>
   </view>

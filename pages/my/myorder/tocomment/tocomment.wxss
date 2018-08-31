@@ -1,12 +1,12 @@
 /* pages/my/myorder/tocomment/tocomment.wxss */
-
+@import '/pages/logofooter/logofooter-template.wxss';
 .title{
   background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-
+  padding: 15rpx 15rpx;
 }
 .comment-img{
   width: 80rpx;
@@ -18,7 +18,7 @@
   height: 80rpx;
 }
 
-.title text{
+.titletext{
   margin-right: 20rpx;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .commit-btn{
-  background-color: #cc0066;
+  background-color: rgb(255, 177, 10);
   color: #fff;
   width: 150rpx;
   height: 150rpx;
@@ -56,15 +56,15 @@
   justify-content: flex-start
 }
 .comment-img{
-  width: 100rpx;
-  height: 100rpx;
-  margin: 0 20rpx;
+
+
 }
 
 .comment-body{
   background-color: #fff;
+  min-height: 450rpx;
   margin-top: 15rpx;
-  height: 1080rpx;
+  padding: 15rpx 15rpx;
 }
 
 .inputtext{
@@ -78,4 +78,11 @@
   justify-content: space-around;
   margin-top: 20rpx;
 
+}
+
+.logofooter-container{
+  position: absolute;
+  bottom: 30rpx;
+  left: 50%;
+  margin-left: -100rpx;
 }

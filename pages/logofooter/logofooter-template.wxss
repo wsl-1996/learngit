@@ -1,0 +1,33 @@
+.logofooter-content{
+   width: 200rpx;
+  height: 100rpx;
+  /*position: absolute;
+  bottom: 100rpx;
+  left: 275rpx; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.logofooter-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+  color: #ccc
+}
+
+.logofooter-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%
+}
+
+.logofooter-line{
+ width: 1px;
+ height: 50rpx;
+ background-color: #ccc;
+ margin: 0 15rpx;
+}

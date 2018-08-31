@@ -1,7 +1,8 @@
+<import src='/pages/logofooter/logofooter-template.wxml'/>
 <view>
   <view class='title'>
     <image class='comment-img' src='/images/sls.jpg'></image>
-    <text>给我打个分吧~</text>
+    <text class='title-text'>给我打个分吧~</text>
     <image class='star-img' src="{{is_light==true&&starnum>=1?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv1'></image>
     <image class='star-img' src="{{is_light==true&&starnum>=2?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv2'></image>
     <image class='star-img' src="{{is_light==true&&starnum>=3?'/images/icon/star.png':'/images/icon/none-star.png'}}" bindtap='setstarlv3'></image>
@@ -22,8 +23,9 @@
       <text>添加图片</text>
     </view>
     <view class='commit-btn' bindtap='tocommit'>发布</view>
-   </view>
-    
+   </view> 
   </view>
-  
+  <view class='logofooter-container'>
+   <template is='logofooter-template'/>
+  </view>
 </view>

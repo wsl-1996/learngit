@@ -1,7 +1,7 @@
-.topbar{
+.topbar {
   width: 750rpx;
   height: 50rpx;
- background-color: #cc0066;
+  background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 203 , 80));
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -13,17 +13,46 @@
   color: #fff;
 }
 
-.goods , .detail , .comment{
+.goods, .detail, .comment {
   width: 120rpx;
   height: 50rpx;
-    display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
 }
 
-.detail{
+.detail {
   font-size: 36rpx;
   font-weight: 700;
+}
+.margin-container{
+  margin-top: 80rpx;
+}
+
+.mainbody {
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.subkey {
+  width: 250rpx;
+  margin-left: 50rpx;
+  text-align: right;
+}
+
+.main-text {
+  margin: 20rpx;
+}
+
+.subvalue {
+  width: 250rpx;
+  margin-right: 50rpx;
 }

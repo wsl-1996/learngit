@@ -1,3 +1,4 @@
+var util=require('../../../utils/util.js')
 var app = getApp();
 Page({
 
@@ -28,20 +29,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(event) {
+    var that=this
     this.setData({
       groupid: event.groupid,
       productid: event.productid,
       parentid: event.parentid,
-      showModellogin: event.showModellogin
+      showModellogin: event.showModellogin,
+      lasttime:event.lasttime
     })
-    console.log("this is parentid", this.data.parentid)
-    console.log("this is productid" + this.data.groupid)
-    console.log("this is groupid" + this.data.groupid)
 
+    setInterval(function(){
+      that.setData({
+        d: util.countdown(that.data.lasttime).d,
+        h: util.countdown(that.data.lasttime).h,
+        m: util.countdown(that.data.lasttime).m,
+        s: util.countdown(that.data.lasttime).s
+      })
+     
+    },1000)
+   
+
+    this.getproductinfo()
+
+  },
+  getproductinfo:function(){
     var that = this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/products/getproductinfo?productid=' + this.data.productid + '&sessionid=' + app.globalData.g_sessionid,
-      success: function(res) {
+      success: function (res) {
         that.setData({
           productdetails: res.data.data,
           productinfo: res.data.data.product.productInfo,
@@ -50,15 +65,14 @@ Page({
           serviceNickname: res.data.data.product.serviceNickname
         })
         console.log('客服ID' + that.data.userid)
-        console.log(that.data.productdetails)
-        console.log(res.data.data.product.productInfo)
+        console.log('商品详情', res)
       }
     })
-
   },
+
   ondetail: function() {
-    wx.navigateTo({
-      url: '../groupdetail/detail',
+    wx.redirectTo({
+      url: '../groupdetail/detail?productid=' + this.data.productid,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
@@ -67,7 +81,7 @@ Page({
 
   oncomment: function() {
     wx.redirectTo({
-      url: '../groupcomment/comment?proid=' + this.data.productid,
+      url: '../groupcomment/comment?productid=' + this.data.productid,
     })
     console.log('goods页面pid' + this.data.productid)
   },
@@ -171,13 +185,13 @@ Page({
     })
   },
 
-  setmsglist: function() {
+  setmsglist: function() {       //发送消息列表 存缓存
     var temp = {}
     var is_have = false
     temp = {
       "avatar": this.data.serviceHeadimg,
       "nickname": this.data.serviceNickname,
-      "message": "kokokoko",
+      "message": "",
       "userid": this.data.userid
     }
     app.globalData.g_arr = wx.getStorageSync('msglist')

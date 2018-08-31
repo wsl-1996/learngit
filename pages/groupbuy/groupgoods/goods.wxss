@@ -5,7 +5,7 @@
 .topbar {
   width: 750rpx;
   height: 50rpx;
-  background-color: #c06;
+ background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 203 , 80));
   color: #fff;
   display: flex;
   flex-direction: row;
@@ -48,7 +48,7 @@
 .group-info {
   width: 750rpx;
   height: 100rpx;
-  background-color: #c06;
+   background:  linear-gradient(to right, rgb(255, 60, 10) , rgb(255, 149 , 0));
   opacity: 0.5;
   position: relative;
   /* border-radius: 15rpx; */
@@ -101,8 +101,12 @@
   margin-left: 30rpx;
 }
 
-.originalprice {
+.originalpricetext {
   margin-left: 40rpx;
+}
+
+.originalprice{
+  text-decoration: line-through;
 }
 
 .maininfo {
@@ -205,38 +209,51 @@
 }
 
 .footer {
+  border-top: 1px solid #ccc;
   display: flex;
   flex-direction: row;
   justify-content: center;
   position: fixed;
-  bottom: 30rpx;
+  bottom: 0;
   width: 750rpx;
   font-size: 36rpx;
 }
 
 .talk-btn {
-  width: 150rpx;
-  height: 60rpx;
-  color: #fff;
-  background-color: red;
-  border-radius: 5px;
+  width: 200rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #000;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-right: 30rpx;
 }
-
+.talk-btn image{
+  width: 80rpx;
+  height: 80rpx;
+}
 .join-btn {
-  width: 150rpx;
-  height: 60rpx;
+  width: 550rpx;
+  height: 100rpx;
+   position: absolute;
+  right: 0;
+  bottom: 0;
   color: #fff;
-  background-color: red;
-  border-radius: 5px;
+  background-color:rgb(255, 144, 0);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+.join-btn text{
+  padding-left: 50rpx;
+  font-size: 42rpx;
+  letter-spacing:50rpx;
 }
 
 .modal-mask {
@@ -254,6 +271,7 @@
 
 .modal-dialog {
   width: 750rpx;
+  min-height: 700rpx;
   overflow: hidden;
   position: fixed;
   bottom: 0;
@@ -296,14 +314,14 @@
   min-width: 100rpx;
   height: 40rpx;
   margin-bottom: 15rpx;
-  display: flex;
-  flex-direction: column;
+  font-size: 34rpx;
   padding-left: 30rpx;
   /* border-bottom: 1px #ccc solid; */
 }
 
 .modal-content text {
   line-height: 40rpx;
+  padding: 0 20rpx;
 }
 
 .model-num-item {
@@ -335,9 +353,11 @@
 }
 
 .btn-confirm {
+  position: absolute;
+  bottom: 0;
   width: 400rpx;
   height: 80rpx;
-  background-color: red;
+  background-color: rgb(255, 85, 0);
   color: #fff;
   text-align: center;
   border-radius: 36rpx;
@@ -345,10 +365,10 @@
 }
 
 .is_checked {
-  border: 1px red solid;
+  border: 1px rgb(255, 85, 0) solid;
   border-radius: 5rpx;
-  color: red;
-  width: auto;
+  color: rgb(255, 85, 0);
+  /* width: auto; */
 }
 
 .style-item {

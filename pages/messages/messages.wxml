@@ -1,10 +1,14 @@
 <!--pages/message/messages.wxml-->
 
 <view>
-  <view class='list-container' wx:for="{{msglist}}" bindtap='gototalk' data-userid='{{item.userid}}'>
+  <view class='list-container' wx:for="{{msglist}}" bindtap='gototalk' data-userid='{{item.userid}}' data-idx='{{index}}'>
    <image class='avater' src='{{item.avatar}}'  ></image>
-   <text class='nickname' bindtap='express'>{{item.nickname}}</text>
+   <text class='nickname'>{{item.nickname}}</text>
    <text class='message'>{{item.message}}</text>
    <image class="{{item.is_new==true?'newmsg-img':'none'}}" src='/images/icon/newmsg.png'></image>
   </view>
+</view>
+<view class='progress'>
+  <view style='width:{{percentage*300}}rpx' class='fill'>{{percentage}}</view>
+  <view class='unfill'></view>
 </view>

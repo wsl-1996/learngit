@@ -11,30 +11,39 @@
     </view>
   </view>
   <view class='radis-container'>
-    <view class="shop-container" wx:for="{{grouplist}}" bindtap='tapgoods' data-groupid='{{item.group_id}}' data-productid="{{item.product_id}}" wx:key=''>
+    <view class="shop-container" wx:for="{{grouplist}}" bindtap='tapgoods' data-groupid='{{item.group_id}}' data-productid="{{item.product_id}}" data-lasttime='{{item.last_time}}' wx:key=''>
       <image class="shop-img" src='{{item.product_first_image}}'></image>
       <view class='shop-text'>
-        <text class='shop-item'>{{item.product_name}}</text>
+        <text class='shop-item'>{{item.group_name}}</text>
       </view>
       <view class='shop-price'>
         <text>￥{{item.product_price}}</text>
       </view>
-      <view class='shop-time'>
+      <view  class="{{item.countDown.d==0?'red':'blue'}} shop-time">
         <text>剩余时间</text>
       </view>
-      <view class='shop-timeout'>
-        <text>{{item.last_time[0]}}天{{item.last_time[1]}}：{{item.last_time[2]}}</text>
+      <view  class='shop-timeout'>
+        <text class='shop-timeout-text' hidden='{{!item.countDown.d}}'>{{item.countDown.d}}天</text>
+        <text class="shop-timeout-text {{item.countDown.d==0?'red':'blue'}} " >{{item.countDown.h}}</text>
+         <text class="{{item.countDown.d==0?'red':'blue'}} shop-timeout-text" >{{item.countDown.m}}</text>
+          <text class="{{item.countDown.d==0?'red':'blue'}} shop-timeout-text" >{{item.countDown.s}}</text>
       </view>
       <view class="{{item.product_state?'shop-type':''}}">
         <text>{{item.product_state}}</text>
       </view>
-      <view class='shop-comment'>
+      <!-- <view class='shop-comment'>
         <text>{{item.degree_of_praise}}</text>
+      </view> -->
+      <image src='/images/icon/hot.svg' class='hot-img'></image>
+      <view class='progress'>
+        <view style='width:{{item.percentnum*300}}rpx' class='fill' ><text  hidden='{{item.is_showhot}}'>{{item.percent}}</text></view>
+        <text hidden='{{!item.is_showhot}}' class='hiddenhottext'>{{item.percent}}</text>
+        <view class='unfill'></view>
       </view>
-
+       <view class='hot-text'>团购热度</view>
     </view>
     <view class="{{is_null==true?'nothing':'something'}}">
-      <image class='nothing-img' src='/images/nothing.png'></image>
+      <image class='nothing-img' src='/images/icon/nothing.svg'></image>
       <text>没有您想要的东西嘞，看看别的吧~</text>
     </view>
   </view>
@@ -44,11 +53,12 @@
       <text>登录提示</text>
     </view>
     <view class='model-content'>
-      <text>请登陆客团，以获取所有使用权限</text>
       <image class='model-content-img' src='/images/logo.png'></image>
+      <text>请登陆客团，以获取所有使用权限</text>
+
     </view>
     <view class='model-footer'>
-       <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo'>授权登录</button>
+      <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo'>授权登录</button>
     </view>
   </view>
 </view>

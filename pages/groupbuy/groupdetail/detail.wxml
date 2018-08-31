@@ -1,5 +1,18 @@
 <view class='topbar'>
-    <text class='goods' bindtap='ongoods'>{{goods}}</text>
-    <text class='detail' >{{detail}}</text>
-    <text class='comment' bindtap='oncomment'>{{comment}}</text>
+  <text class='goods' bindtap='ongoods'>{{goods}}</text>
+  <text class='detail'>{{detail}}</text>
+  <text class='comment' bindtap='oncomment'>{{comment}}</text>
+</view>
+<view class='margin-container'>
+<view class='mainbody' wx:for='{{mainarr}}'>
+  <view class='main-text'>{{item}}</view>
+  <view class='flex-container'>
+    <view class='subkey'>
+      <view wx:for='{{subarr[index]}}' wx:for-item='sub'>{{sub}} </view>
+    </view>
+    <view class='subvalue'>
+      <view wx:for='{{minarr[item]}}' wx:for-item='min' wx:for-item='min'>{{min}} </view>
+    </view>
   </view>
+</view>
+</view>

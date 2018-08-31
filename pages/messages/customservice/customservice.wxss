@@ -10,13 +10,10 @@ page {
 }
 
 .new_imgtent {
-  height: 180rpx;
-  width: 190rpx;
+  /* height: 180rpx;
+  width: 190rpx; */
+  margin: 120rpx 20rpx 0 20rpx;
 }
-
-
-
-
 
 /* 聊天 */
 
@@ -32,24 +29,23 @@ page {
   left: 5rpx;
 }
 
-
-
-.new_img{
- width: 80rpx;
+.new_img {
+  width: 80rpx;
   height: 80rpx;
+  min-width: 80rpx;
   border-radius: 50%;
 }
 
 .new_txt {
-  
   min-width: 100rpx;
+  max-width: 580rpx;
   border-radius: 7px;
   background-color: #95d4ff;
   margin-right: 29rpx;
   padding: 0rpx 30rpx 0rpx 30rpx;
 }
 
-.leftnew_txt{
+.leftnew_txt {
   margin-left: 25rpx;
 }
 
@@ -59,6 +55,7 @@ page {
   align-items: center;
   position: relative;
   min-height: 100rpx;
+  max-width: 580rpx;
 }
 
 .sanjiao {
@@ -110,7 +107,7 @@ page {
 }
 
 .historycon {
-  height:1100rpx;
+  height: 1100rpx;
   width: 100%;
   flex-direction: column;
   display: flex;
@@ -129,7 +126,6 @@ page {
 }
 
 .time {
-
   margin-left: 275rpx;
   text-align: center;
   padding: 5rpx 20rpx 5rpx 20rpx;
@@ -137,4 +133,3 @@ page {
   font-size: 26rpx;
   background-color: #e8e8e8;
 }
-

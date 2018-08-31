@@ -1,12 +1,19 @@
 // pages/my/myback/backmore/backmore.js
 var stadata=require('../../../../staticdata/data.js')
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    hidenview: true
+    hidenview: true,
+    cashback:[{ cashbackmonth:8,
+      cashbackmoney:30
+    }, {
+      cashbackmonth: 7,
+        cashbackmoney: 10
+      }]
   },
 
   /**
@@ -32,7 +39,7 @@ Page({
   },
   checkdetail:function(){
     this.setData({
-      hidenview:false
+      hidenview: !this.data.hidenview
     })
     console.log(this.data.hidenview)
   },

@@ -8,7 +8,7 @@
  .topbar{
   width: 750rpx;
   height: 50rpx;
- background-color: #cc0066;
+background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 203 , 80));
   display: flex;
   flex-direction: row;
   justify-content: space-around;

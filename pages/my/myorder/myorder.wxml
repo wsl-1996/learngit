@@ -15,7 +15,7 @@
   </view>
 
    <view class='noorder-item' wx:if="{{orderlist.length==0}}">
-      <image class='noorder-item-img' src='../../../images/order.png'></image>
+      <image class='noorder-item-img' src='/images/icon/noorder.svg'></image>
       <text class='noorder-item-text'>您还没有相关订单</text>
     </view>
     <view wx:else class='sub-all-item'>
@@ -35,10 +35,10 @@
           <text class='pay-info-item-price'>实付：￥{{item.sumPrice}}</text>
         </view>
         <view class='detail-info-item'>
-        <view hidden='{{item.orderState!=1?true:false}}' class='detail-info-item-pay' bindtap='gotopay'>去付款</view>
-          <view hidden='{{item.orderState!=2?true:false}}' class='detail-info-item-back'>申请退款</view>
-          <view class='detail-info-item-delete' bindtap='deleteorder'>删除订单</view>
-          <view class='detail-info-item-more' bindtap='orderdetail' data-orderid='{{item.orderId}}'>查看物流</view>
+        <view hidden='{{item.orderState!=1?true:false}}' class='detail-info-item-pay' bindtap='gotopay' data-orderid='{{item.orderId}}'>去付款</view>
+          <view hidden='{{item.orderState!=2?true:false}}' class='detail-info-item-back' data-orderid='{{item.orderId}}' bindtap='topayback' data-orderid='{{item.orderId}}'>申请退款</view>
+          <view class='detail-info-item-delete' bindtap='deleteorder' data-orderid='{{item.orderId}}'>删除订单</view>
+          <view class='detail-info-item-more' bindtap='gotoexpress' data-orderid='{{item.orderId}}' data-productimg='{{item.productImg}}'  hidden='{{item.orderState==1||item.orderState==2?true:false}}' >查看物流</view>
           <view hidden='{{item.orderState!=4?true:false}}' bindtap='gotocomment' data-orderid='{{item.orderId}}'>评价</view>
         </view>
       </block>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/myorder/tocomment/tocomment",
     "pages/groupbuy/groupbuy",
     "pages/my/my",
     "pages/my/express/express",
@@ -18,19 +19,20 @@
     "pages/retail/retail",
     "pages/groupbuy/groupdetail/detail",
     "pages/my/myorder/backgoods/backgoods",
-    "pages/my/myorder/tocomment/tocomment"
+    "pages/my/tobevip/tobevip",
+    "pages/my/myorder/topayback/topayback"
   ],
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "客团",
-    "navigationBarBackgroundColor": "#cc0066",
+    "navigationBarBackgroundColor": "#FFB10A",
     "backgroundColor": "#fff",
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "color": "#cacaca",
-    "selectedColor": "#cc0066",
+    "selectedColor": "#DF4733",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
@@ -53,5 +55,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "enablePullDownRefresh":false
 }

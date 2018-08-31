@@ -4,11 +4,10 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     iconimg: [
-      "../../images/icon/pay.png",
-      "../../images/icon/getgoods.png",
-      "../../images/icon/onroad.png",
-      "../../images/icon/comment.png",
-      "../../images/icon/getback.png",
+      "../../images/icon/pay.svg",
+      "../../images/icon/getgoods.svg",
+      "../../images/icon/onroad.svg",
+      "../../images/icon/comment.svg",
     ],
     is_hidden:false
   },
@@ -224,6 +223,11 @@ Page({
           }
         }
       }
+    })
+  },
+  tobevip:function(){
+    wx.navigateTo({
+      url: 'tobevip/tobevip',
     })
   },
   onShow:function(){

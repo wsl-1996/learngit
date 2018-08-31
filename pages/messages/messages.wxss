@@ -25,6 +25,8 @@
   top: 80rpx;
   left: 140rpx;
   color: #bbb;
+  width: 580rpx;
+  height: 52rpx;
 }
 
 .newmsg-img{
@@ -38,3 +40,10 @@
 .none{
   display: none
 }
+
+.test{
+  width: 300rpx;
+  height: 300rpx;
+  background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 234, 189))
+}
+

@@ -1,3 +1,4 @@
+@import '/pages/logofooter/logofooter-template.wxss';
 .container1{
   
   margin: 10rpx;
@@ -12,8 +13,15 @@
   position: relative;
   border: 1px #ccc solid;
 }
+.address-item{
+  height: 200rpx;
+}
 .count-item {
+  height: 200rpx;
   font-size: 10pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .address-item{
@@ -45,46 +53,19 @@
 .order-item image{
   width: 80rpx;
   height: 80rpx;
-  position: absolute;
-  top: 10rpx;
- 
 }
 
-.order-item text{
-  font-size: 10pt;
-  position: absolute;
-  top: 100rpx;
+.order-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-
-.iconimg0,.iconimg1,.iconimg2,.iconimg3,.iconimg4 {
-  width: 120rpx;
-  height: 150rpx;
-  
-  position: absolute;
-  top: 80rpx;
-} 
-
-.iconimg0 {
-  left: 20rpx;
+.iconimg{
+  margin-top: 70rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-.iconimg1{
-  left: 160rpx;
-}
-
-.iconimg2{
-  left: 305rpx;
-}
-
-.iconimg3{
-  left: 450rpx;
-}
-
-.iconimg4{
-  right: 20rpx;
-}
-
-
 
 .order-item .order-sub {
   position:absolute;
@@ -101,7 +82,7 @@
 .sub-myaddress{
   position: absolute;
   top: 30rpx;
-  left: 20rpx;
+  left: 120rpx;
 }
 .sub-address-manage{
   position: absolute;
@@ -109,12 +90,18 @@
   right: 30rpx;
   font-size: 10pt;
 }
-
+.address-img{
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 40rpx;
+}
 .sub-address{
   width: 500rpx;
   height: 120rpx;
   position: absolute;
-  left: 20rpx;
+  left: 120rpx;
   top: 90rpx;
 
 }
@@ -127,10 +114,26 @@
 
 .subitem-count{
   position: absolute;
+  width: 730rpx;
   top: 60rpx;
   left: 10rpx;
 }
+.sub-gradetext{
+position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+.sub-grade{
+  position: absolute;
+  top: 0rpx;
+  left: 140rpx;
+}
 
+.sub-upgrade{
+   position: absolute;
+  top: 0rpx;
+  right: 30rpx;
+}
 .subitem-back{
   width: 730rpx;
   position: absolute;
@@ -178,15 +181,23 @@
   display: none
 }
 
-.clearstorage{
-  width: 180rpx;
-  height: 75rpx;
-  position: absolute;
-  top:100rpx;
-  right: 30rpx;
-  font-size: 28rpx;
-  vertical-align: middle;
+.count-img{
+  width: 100rpx;
+  height: 100rpx;
 }
-.login-btn{
-  
+
+.count-img-fans{
+  width: 80rpx;
+  height: 80rpx;
+  padding: 10rpx;
+}
+.sub-count-item{
+  margin-top: 15rpx;
+}
+
+.logofooter-container{
+  position: absolute;
+  bottom: -130rpx;
+  left: 50%;
+  margin-left: -100rpx;
 }

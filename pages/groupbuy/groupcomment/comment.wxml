@@ -6,8 +6,8 @@
     <text class='comment' bindtap='oncomment'>评价</text>
   </view>
   <view class='totoalcomment'>
-    <text class='commentnum'>已评价{{commentnum}}份</text>
-    <text class='goodcomment'>好评率{{rate}}97%</text>
+    <text class='commentnum'>已评价{{favorableNums}}份</text>
+    <text class='goodcomment'>好评率{{favorableRate}}</text>
   </view>
   <view class='usercomment' wx:for="{{comments}}" wx:key="">
     <view class='usercomment-title'>

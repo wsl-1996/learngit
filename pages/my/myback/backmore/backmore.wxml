@@ -1,11 +1,29 @@
+<import src='/pages/logofooter/logofooter-template.wxml' />
 <view class='container1'>
-  <view class='sub-text'><text>当前返现：</text></view>
-  <view  class='sub-cashback' wx:for='{{cashback}}'>
-    <text class='mouth-text'>{{item.cashbackmonth}}月</text>
-    <text class='cash-text'>￥{{item.cashbackmoney}}</text>
+  <view class='sub-text'>
+    <view class='cash-title'>
+      <view>每月返现</view>
+      <view class='line-container'></view>
+      <view class='sub-cashback'>
+      <view class='sub-cashback-item' wx:for='{{cashback}}'>
+        <text class='mouth-text'>{{item.cashbackmonth}}月</text>
+        <text class='cash-text'>￥{{item.cashbackmoney}}</text>
+      </view>
+      </view>
+      
+    </view>
+    <view class='cash-content'>
+      <image class='cash-img' src='/images/icon/cash.svg'></image>
+      <view>我要提现</view>
+    </view>
   </view>
+
   <view class='sub-footer' bindtap='checkdetail'>查看返现规则</view>
   <view hidden='{{hidenview}}' class='sub-detail'>
-    <text>{{vip}}</text>
+    <text>{{backrule}}</text>
   </view>
+  <view class='logo-view'>
+  <template is='logofooter-template' />
+  </view>
+  
 </view>

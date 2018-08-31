@@ -1,14 +1,14 @@
 <view class='container1'>
   <view class='title'>
-    <image class='title-img' src='/images/ad3.jpg'></image>
+    <image class='title-img' src='{{productimg}}'></image>
     <view class='text-container'>
       <view class='sub-title'>
         <text class='sub-title-text'>物流公司：</text>
-        <text class='sub-title-text-name'>申通快递</text>
+        <text class='sub-title-text-name'>{{track.ShipperCode}}</text>
       </view>
       <view class='sub-title'>
         <text class='sub-title-text'>物流单号：</text>
-        <text>112435355</text>
+        <text>{{track.LogisticCode}}</text>
       </view>
       <view class='sub-title'>
         <text class='sub-title-text'>物流电话：</text>

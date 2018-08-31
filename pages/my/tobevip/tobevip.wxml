@@ -1,0 +1,31 @@
+<!--pages/my/tobevip/tobevip.wxml-->
+<view class='grade-content'>
+  <view class='sub-grade-content'>
+    <text>用户等级</text>
+    <text>会员用户</text>
+  </view>
+
+  <view class='sub-grade-content'  bindtap='toup'>
+    <image class='upgrade-img' src='/images/icon/upgrade.svg'></image>
+    <text>申请升级</text>
+  </view>
+</view>
+<view>查看用户及合伙人规则：</view>
+<view class='title-text'>
+  <text class='vip-text'>{{vip[0]}}</text>
+</view>
+<view class='sub-text'>
+  <text>{{vip[1]}}</text>
+</view>
+<view class='title-text'>
+  <text class='vip-text'>{{vip[2]}}</text>
+</view>
+<view class='sub-text'>
+  <text decode="{{true}}">{{vip[3]}}</text>
+</view>
+<view class='title-text'>
+  <text class='vip-text'>{{vip[4]}}</text>
+</view>
+<view class='sub-text'>
+  <text>{{vip[5]}}</text>
+</view>

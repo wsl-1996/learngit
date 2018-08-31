@@ -1,12 +1,16 @@
 page {
-  background-color: #c06;
+  /* background-color: #c06; */
+   background:  linear-gradient(to bottom, rgb(255, 203 , 80) , rgb(255, 234, 189));
+   height: 100%
 }
 
 .page_row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #c06;
+  /* background-color: #c06; */
+ 
+  background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 203 , 80))
 }
 
 .search {
@@ -76,13 +80,15 @@ page {
 .shop-img {
   width: 250rpx;
   height: 250rpx;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-radius: 10rpx;
+  /* border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px; */
 }
 
 .shop-text {
   margin-left: 10rpx;
   width: 460rpx;
+  height: 90rpx;
   font-size: 30rpx;
 }
 
@@ -90,26 +96,44 @@ page {
   position: absolute;
   right: 30rpx;
   bottom: 50rpx;
-  border: 1px solid #0f0;
-  color: #0f0;
+  padding: 0 10rpx;
+  border-radius: 8rpx;
+  color:#fff;
   font-size: 10pt;
 }
 
 .shop-timeout {
   position: absolute;
-  right: 30rpx;
+  right: 20rpx;
   bottom: 8rpx;
-  border: 1px solid #0f0;
-  color: #0f0;
+  padding: 0 10rpx;
+  color:#fff;
   font-size: 10pt;
+}
+
+.shop-timeout-text{
+  border-radius: 6rpx;
+  background:  rgb(13, 190, 255);
+  /* background-color: red; */
+  padding: 0 5rpx;
+  margin-left: 7rpx;
+}
+
+.red{
+  background-color: red;
+}
+.blue{
+   background:  rgb(13, 190, 255);
 }
 
 .shop-type {
   position: absolute;
+  width: 70rpx;
+  text-align: center;
   left: 260rpx;
   bottom: 8rpx;
-  border: 1px solid #f00;
-  color: #f00;
+  background: rgb(255, 103, 11);
+  color:#fff;
   font-size: 10pt;
 }
 
@@ -125,7 +149,7 @@ page {
   position: absolute;
   left: 270rpx;
   bottom: 60rpx;
-  font-size: 10pt;
+  font-size: 36rpx;
 }
 
 .something {
@@ -133,16 +157,21 @@ page {
 }
 
 .nothing {
+  height: 1270rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 80rpx 0;
+
 }
 
 .nothing-img {
   width: 200rpx;
   height: 200rpx;
+}
+
+.nothing text{
+  margin-top: 30rpx;
 }
 
 .model-mask{
@@ -166,7 +195,6 @@ page {
   margin-top: -250rpx;
   background-color: #fff;
   z-index: 9999;
-  border-radius: 20rpx;
 }
 
 .model-title{
@@ -196,8 +224,13 @@ page {
 }
 
 .model-content-img{
-  width: 150rpx;
+  margin-top: 10rpx;
+  width: 170rpx;
   height: 150rpx;
+}
+
+.model-content text{
+  margin-top: 20rpx
 }
 .model-footer{
   width: 500rpx;
@@ -211,8 +244,54 @@ page {
   justify-content: center;
 }
 .login-btn{
-  width: 500rpx;
-  background-color:  	#32CD32;
+  width: 600rpx;
+  background-color:rgb(255, 177, 10);
   color: #fff;
+  border-radius: 0
+}
 
+.login-btn::after{
+border-radius: 0
+}
+.hot-img{
+  position: absolute;
+  top: 100rpx;
+  left: 250rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.progress{
+  position: absolute;
+  top: 100rpx;
+  left: 280rpx;
+  width: 300rpx;
+  height: 25rpx;
+  border-radius: 25rpx;
+  border: 1px solid #FF6E36;
+  display: flex;
+   flex-direction: row;
+  align-items: center;
+}
+.hot-text{
+  position: absolute;
+  top: 95rpx;
+  left: 600rpx;
+  color: #FF6E36;
+}
+.fill{
+  height: 25rpx;
+  background-color: #FF6E36;
+  color: #fff;
+  font-size: 24rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  border-top-left-radius:10px;
+  border-bottom-left-radius:10px;
+}
+
+.hiddenhottext{
+  color: #FF6E36;
+  font-size: 24rpx;
 }

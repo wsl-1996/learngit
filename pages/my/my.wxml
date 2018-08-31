@@ -1,41 +1,43 @@
+<import src='/pages/logofooter/logofooter-template.wxml'/>
 <view class="container1">
   <view class="userinfo">
     <!-- <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo' class="{{is_hidden==false? '':'hidden'}}">点击授权</button> -->
     <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
     <open-data class="userinfo-nickname" type="userNickName"></open-data>
     <text class='userinfo-manage' bindtap='accountmanger'>账号管理>></text>
-    <button class='clearstorage' bindtap='clearstorage'>清除缓存</button>
+
   </view>
 
   <view class='order-item'>
     <text class='order-sub'>我的订单</text>
     <text class='order-more' bindtap='getinmyorder'>更多>></text>
-    <view class="iconimg0" bindtap='gotopay'>
+    <view class="iconimg" bindtap='gotopay'>
       <image src='{{iconimg[0]}}'></image>
       <text>待支付</text>
     </view>
-    <view class="iconimg1" bindtap='gotoDeliver'>
+    <view class="iconimg" bindtap='gotoDeliver'>
       <image src='{{iconimg[1]}}'></image>
       <text>待发货</text>
     </view>
-    <view class="iconimg2" bindtap='gotoCollect'>
+    <view class="iconimg" bindtap='gotoCollect'>
       <image src='{{iconimg[2]}}'></image>
       <text>待收货</text>
     </view>
-    <view class="iconimg3" bindtap='gotocomment'>
+    <view class="iconimg" bindtap='gotocomment'>
       <image src='{{iconimg[3]}}'></image>
       <text>待评价</text>
     </view>
-    <view class="iconimg4" bindtap='gotoback'>
+    <!-- <view class="iconimg4" bindtap='gotoback'>
       <image src='{{iconimg[4]}}'></image>
       <text>退换货</text>
-    </view>
+    </view> -->
 
 
 
   </view>
 
   <view class='address-item'>
+  <image class='address-img' src='/images/icon/address.svg'></image>
     <text class='sub-myaddress'>我的地址</text>
     <text class='sub-address-manage' bindtap='addressmanage'>管理>></text>
     <view class='sub-address' wx:for="{{defaultaddress}}" wx:key="">
@@ -47,10 +49,29 @@
   </view>
 
   <view class='count-item'>
-    <text class='sub-mycount'>我的客团账户</text>
+    <view class='sub-count-item' bindtap='tobevip'>
+      <image class='count-img' src='/images/icon/grade.svg'></image>
+      <view>我的等级</view>
+    </view>
+
+    <view class='sub-count-item' bindtap='gotobackmore'>
+      <image class='count-img' src='/images/icon/yue.svg'></image>
+      <view>返现余额</view>
+    </view>
+    <view  class='sub-count-item' bindtap='gotorecmore'>
+      <image class='count-img-fans' src='/images/icon/fans1.svg'></image>
+      <view>我的粉丝</view>
+    </view>
+     <view  class='sub-count-item' bindtap='clearstorage'>
+      <image class='count-img-fans' src='/images/icon/clear.svg'></image>
+      <view>清理缓存</view>
+    </view>
+
+    <!-- <text class='sub-mycount'>我的客团账户</text>
     <view class='subitem-count'>
       <text class='sub-gradetext'>账户等级</text>
-      <text class='sub-grade'>{{userGrade}}</text>
+      <text class='sub-grade'>Lv{{userGrade}}</text>
+      <text class='sub-upgrade' bindtap='tobevip'>等  级提升</text>
     </view>
     <view class='subitem-back'>
       <text class='sub-backtext'>上月返现</text>
@@ -63,7 +84,11 @@
         <image src='{{}}'></image>
       </view>
       <text class='sub-rec-more' bindtap='gotorecmore'>更多</text>
-    </view>
+    </view> -->
     <!-- <text class='sub-share'>分享个人名片</text> -->
   </view>
+  <view class='logofooter-container'>
+    <template is='logofooter-template'/>
+  </view>
+  
 </view>

@@ -1,4 +1,5 @@
 /* pages/my/myaccount/myaccount.wxss */
+@import '/pages/logofooter/logofooter-template.wxss';
 page{
   background-color: #fff
 }
@@ -48,7 +49,7 @@ page{
 .send-text1{
   width: 160rpx;
   height: 60rpx;
-  background-color: #00cc33;
+  background-color: #FFD54F;
   color: #fff;
   border-radius: 5px;
   margin-left: 5rpx;
@@ -62,7 +63,7 @@ page{
 .send-text2{
   width: 505rpx;
   height: 60rpx;
-  background-color: #00cc33;
+  background-color: #FFD54F;
   margin-top: 30rpx;
   color: #fff;
   border-radius: 5px;
@@ -70,4 +71,11 @@ page{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.logofooter-container{
+  position: absolute;
+  bottom: 30rpx;
+  left: 50%;
+  margin-left: -100rpx;
 }

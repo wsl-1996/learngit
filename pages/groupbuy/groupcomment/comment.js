@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      productid: options.proid
+      productid: options.productid
     })
     console.log('conment页面pid'+this.data.productid)
     this.getcommentlist()
@@ -26,10 +26,12 @@ Page({
       url: app.globalData.g_ip + '/ketuan/applet/comments/getcommentlist?page=1&productid=' + this.data.productid,
       success: function(res) {
         that.setData({
-          commentlist: res.data.data.commentList
+          commentlist: res.data.data.commentList,
+          favorableNums: res.data.data.favorableInfo.favorableNums,
+          favorableRate: res.data.data.favorableInfo.favorableRate,
         })
         that.processcommentData(res.data.data)
-        // console.log(res.data.data)
+        console.log("评价信息",res.data)
       }
     })
   },
@@ -61,13 +63,13 @@ Page({
 
   },
   ongoods: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../groupgoods/goods?productid='+this.data.productid,
     })
   },
 
   ondetail:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../groupdetail/detail?productid=' + this.data.productid,
     })
   },

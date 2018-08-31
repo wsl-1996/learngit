@@ -1,9 +1,15 @@
+<import src='/pages/logofooter/logofooter-template.wxml'/>
 <view class="container1">
-  <view class='sub-title'>我的推荐</view>
-  <view wx:for="{{childrenInfo}}">
-    <view class='sub-list'>
-      <image class='sub-list-img' src='{{item.headImg}}'></image>
-      <text class='sub-list-text'>{{item.nickName}}</text>
-    </view>
+  <view class='sub-title'>
+    <text>月贡献</text>
+    <text>总贡献</text>
+  </view>
+  <view class='fans-item' wx:for="{{fanslist}}">
+      <image class='sub-list-img' src='{{item.avatar}}'></image>
+      <text class='sub-list-text'>{{item.contuibution}}</text>
+      <text class='sub-list-text'>{{item.contuibutiontotal}}</text>
+  </view>
+    <view class='logofooter-container'>
+    <template is='logofooter-template'/>
   </view>
 </view>

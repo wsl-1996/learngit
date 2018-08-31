@@ -34,7 +34,7 @@
   </view>
   <view class='deduction-content'>
   <view class='deduction-sub-content'>
-  <image src='/images/deduction.png' class='deduction-content-img'></image>
+  <image src='/images/icon/deduction.svg' class='deduction-content-img'></image>
     <text class='deduction-content-text'>可抵扣金额:</text>
     <text class='deduction-content-price'>{{deduction}}</text>
   </view>
