@@ -8,7 +8,3 @@
    <image class="{{item.is_new==true?'newmsg-img':'none'}}" src='/images/icon/newmsg.png'></image>
   </view>
 </view>
-<view class='progress'>
-  <view style='width:{{percentage*300}}rpx' class='fill'>{{percentage}}</view>
-  <view class='unfill'></view>
-</view>

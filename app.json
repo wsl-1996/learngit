@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/my/myorder/tocomment/tocomment",
     "pages/groupbuy/groupbuy",
+    "pages/my/myorder/tocomment/tocomment",
+    
     "pages/my/my",
     "pages/my/express/express",
     "pages/messages/customservice/customservice",
@@ -20,7 +21,8 @@
     "pages/groupbuy/groupdetail/detail",
     "pages/my/myorder/backgoods/backgoods",
     "pages/my/tobevip/tobevip",
-    "pages/my/myorder/topayback/topayback"
+    "pages/my/myorder/topayback/topayback",
+    "pages/canvastest/canvastest"
   ],
   "window": {
     "navigationBarTextStyle": "white",
@@ -56,5 +58,5 @@
       }
     ]
   },
-  "enablePullDownRefresh":false
+  "enablePullDownRefresh": false
 }

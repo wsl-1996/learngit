@@ -1,6 +1,6 @@
 .topbar {
   width: 750rpx;
-  height: 50rpx;
+  height: 100rpx;
   background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 203 , 80));
   display: flex;
   flex-direction: row;
@@ -15,7 +15,7 @@
 
 .goods, .detail, .comment {
   width: 120rpx;
-  height: 50rpx;
+  height: 80rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -23,36 +23,32 @@
 }
 
 .detail {
-  font-size: 36rpx;
+  font-size: 40rpx;
   font-weight: 700;
 }
 .margin-container{
-  margin-top: 80rpx;
-}
-
-.mainbody {
-  margin-top: 20rpx;
-  padding-bottom: 20rpx;
-  border-bottom: 1px solid #ccc
-}
-
-.flex-container {
+  margin-top: 120rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  align-content: center;
+  
 }
 
-.subkey {
-  width: 250rpx;
-  margin-left: 50rpx;
+.mainbody-name{
+  padding-right: 20rpx;
+  min-width: 300rpx;
+   margin-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid rgb(235, 235, 235) ;
   text-align: right;
 }
 
-.main-text {
-  margin: 20rpx;
+.mainbody {
+  padding-left: 20rpx;
+  min-width: 300rpx;
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid rgb(235, 235, 235)
 }
 
-.subvalue {
-  width: 250rpx;
-  margin-right: 50rpx;
-}

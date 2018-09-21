@@ -1,5 +1,5 @@
 var app = getApp()
-var util=require('../../utils/util.js')
+var util = require('../../utils/util.js')
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -9,12 +9,11 @@ Page({
       "../../images/icon/onroad.svg",
       "../../images/icon/comment.svg",
     ],
-    is_hidden:false
+    is_hidden: false,
+    todayred:false
   },
-  onLoad: function() {
-    
-  },
-  showaddress:function(){
+  onLoad: function() {},
+  showaddress: function() {
     var that = this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
@@ -22,35 +21,43 @@ Page({
       header: {
         'Content-Type': 'application/json'
       },
-      success: function (res) {
+      success: function(res) {
+        var data = res.data.data.addressinfo
         that.setData({
-          defaultaddress: res.data.data
+          userProvince: data.userProvince,
+          userCity: data.userCity,
+          userDistricts: data.userDistricts,
+          userAddressDetails: data.userAddressDetails,
+          defaultaddressid: data.addressId
         })
-
+        console.log('默认地址：', data)
       }
     })
   },
 
-  showusergrade:function(){
+  showusergrade: function() {
     var that = this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade?sessionid=' + app.globalData.g_sessionid,
-      success: function (res) {
+      success: function(res) {
 
         that.setData({
-          userGrade: res.data.data.userGrade
+          userGrade: res.data.data.userGrade,
+          userBalance: res.data.data.userBalance
+
 
         })
-        console.log('用户等级：',res.data)
+        console.log('用户信息：', res.data)
+        console.log('用户等级：', that.data.userGrade)
       }
     })
   },
 
-  showcashback:function(){
+  showcashback: function() {
     var that = this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback?sessionid=' + app.globalData.g_sessionid,
-      success: function (res) {
+      success: function(res) {
 
         that.setData({
           cashback: res.data.data.cashback
@@ -59,53 +66,11 @@ Page({
       }
     })
   },
-  
-  // bindGetuserinfo: function(e) {
-  //   var that = this
-  //   console.log(e.detail)
-  //   wx.login({
-  //     success: function(res1) {
-  //       if (res1.code) {
-  //         wx.request({
-  //           url: app.globalData.g_ip + '/ketuan/applet/users/login',
-  //           data: {
-  //             code: res1.code,
-  //             rawData: e.detail.rawData,
-  //             encryptedData: e.detail.encryptedData,
-  //             iv: e.detail.iv,
-  //             signature: e.detail.signature,
-  //             userInfo: e.detail.userInfo
-  //           },
-  //           success: function(res) {
-  //             app.globalData.g_sessionid = res.data.data.sessionId
-  //             app.globalData.g_userid = res.data.data.userId
 
-  //             console.log('this is sessionid:')
-  //             console.log(app.globalData.g_sessionid)
-  //             console.log('this is userid')
-  //             console.log(app.globalData.g_userid)
-  //             wx.showToast({
-  //               title: '登陆成功',
-  //               icon:'success'
-  //             })
-  //             that.setData({
-  //               is_hidden:true
-  //             })
-  //             that.listenmsg()
-  //             wx.onSocketClose(function (res) {
-  //               console.log('++++++++++++WebSocket 已关闭！++++++++++++')
-  //               that.listenmsg()
-  //             })
-  //           }
 
-  //         })
-  //       }
-  //     }
-  //   })
-  // },
   addressmanage: function() {
     wx.navigateTo({
-      url: 'myaddress/myaddress',
+      url: 'myaddress/myaddress?defaultaddress=' + this.data.defaultaddressid,
     })
   },
   getinmyorder: function() {
@@ -145,7 +110,7 @@ Page({
   },
   gotobackmore: function() {
     wx.navigateTo({
-      url: 'myback/backmore/backmore',
+      url: 'myback/backmore/backmore?usergrade=' + this.data.userGrade + '&userBalance=' + this.data.userBalance,
     })
   },
   gotorecmore: function() {
@@ -158,64 +123,13 @@ Page({
       url: 'myaccount/myaccount',
     })
   },
-  listenmsg:function(){
-    var that = this
-    var msg = "{ messageFrom:" + "'" + app.globalData.g_userid + "'" + ",messageContent:'connect',contentType: '-1'}"
-    wx.connectSocket({
-      url: app.globalData.g_socket + '/ketuan/websocket'
-    })
-    wx.onSocketOpen(function (res) {
-      sendSocketMessage(msg)
-      console.log("+++++++++++++开始监听+++++++++++++")
-    })
 
-    function sendSocketMessage(msg) {
-      wx.sendSocketMessage({
-        data: msg,
-      })
-    }
-
-    wx.onSocketMessage(function (res) {
-      
-      console.log(res)
-      // res.data.replace("{\"", "{'");
-      // res.data.replace("\":", "':");
-      // res.data.replace(",\"", ",'");
-      console.log('this is res.data')
-      console.log(res.data)
-      var tempres = JSON.parse(res.data)
-      console.log('this is tempres')
-      console.log(tempres)
-      console.log(tempres.messageContent)
-      app.globalData.g_tempmsgfrom = tempres.messageContent
-      var temp = {
-        is_show_right: 0,
-        messageContent: tempres.messageContent,
-        messageFrom: tempres.messageFrom,
-        messageto: app.globalData.userid,
-        toView: util.RndNum(),
-        contentType: parseInt(tempres.contentType),
-        createtime: util.formatTime(new Date()),
-        headOwner: tempres.headOwner,
-      }
-      var tampstorage = wx.getStorageSync('centendata' + tempres.messageFrom) //从缓存中把对应ID的数组取出来
-      if (tampstorage == '') {
-        tampstorage = []
-      }
-      tampstorage.push(temp)
-      wx.setStorageSync('centendata' + tempres.messageFrom, tampstorage) //接收的消息存入缓存
-      app.globalData.g_msgfromid = tempres.messageFrom,
-
-      console.log('+++++++++++++++您有新的消息了+++++++++++++++')
-     
-    })
-  },
-  clearstorage:function(){
+  clearstorage: function() {
     wx.showModal({
       title: '是否要清除缓存',
       content: '',
-      success:function(res){
-        if(res.confirm){
+      success: function(res) {
+        if (res.confirm) {
           try {
             wx.clearStorageSync()
           } catch (e) {
@@ -225,14 +139,92 @@ Page({
       }
     })
   },
-  tobevip:function(){
+  tobevip: function() {
     wx.navigateTo({
       url: 'tobevip/tobevip',
     })
   },
-  onShow:function(){
+  onShow: function() {
     this.showaddress()
     this.showcashback()
     this.showusergrade()
-  }
+    console.log('this is onshow')
+  },
+  touchcanvas: function() {
+    this.setData({
+      istouched: true
+    })
+  },
+
+  closemodel: function() {
+    this.setData({
+      redshow: false,
+      istouched: false
+    })
+  },
+
+  gotoredpacket: function() {
+    var dt=new Date()
+    var that=this
+    if (wx.getStorageSync('reddate')!=dt.getDate()) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '每天均可免费领取一次随机金额红包',
+        confirmText: '领取',
+        success: function(res) {
+          if (res.confirm) {
+            Math.random()
+            that.setData({
+              redshow: true,
+            })
+            wx.setStorageSync('reddate', dt.getDate())
+          }
+        }
+      })
+  } else {
+      wx.showToast({
+        title: '您今天已经领取过了',
+      })
+    }
+  },
+  // drawcanvas:function(){
+  //   const ctx = wx.createCanvasContext('myCanvas')
+  //   const ctx1 = wx.createCanvasContext("myCanvas1")
+  //   const ctx2 = wx.createCanvasContext('myCanvas2')
+
+  //   ctx2.beginPath()
+  //   ctx2.moveTo(0, 0)
+  //   ctx2.lineTo(0, 10)
+  //   ctx2.quadraticCurveTo(150, 130, 300, 10)
+  //   ctx2.lineTo(300, 0)
+  //   ctx2.closePath()
+  //   ctx2.lineWidth = 3
+  //   ctx2.fillStyle = '#E89688'
+  //   ctx2.fill()
+  //   ctx2.draw()
+
+  //   ctx.beginPath()
+  //   ctx.moveTo(0, 0)
+  //   ctx.lineTo(0, 20)
+  //   ctx.quadraticCurveTo(150, 150, 300, 20)
+  //   ctx.lineTo(300, 0)
+  //   ctx2.closePath()
+  //   ctx.setStrokeStyle('red')
+  //   ctx.setFillStyle('red')
+  //   ctx.fill()
+  //   ctx.draw()
+
+  //   ctx1.beginPath()
+  //   ctx1.arc(150, 70, 30, 0, 2 * Math.PI)
+  //   ctx1.setFillStyle('yellow')
+  //   ctx1.fill()
+  //   ctx1.beginPath()
+  //   ctx1.setFontSize(20)
+  //   ctx1.setFillStyle('#000')
+  //   ctx1.fillText('拆', 140, 75)
+  //   ctx1.fill()
+  //   ctx1.draw()
+
+  //   console.log('绘制！！！！！')
+  // }
 })

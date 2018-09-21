@@ -1,4 +1,5 @@
 // pages/messages/customservice/customservice.js
+import redpackettemplate from '../../redpackettemplate/redpackettemplate.js'
 var util = require('../../../utils/util.js');
 var app = getApp();
 var message = '';
@@ -12,7 +13,8 @@ Page({
 
   data: {
     centendata: [],
-    scrollTop: '3000rpx'
+    scrollTop: '3000rpx',
+    redshow: false
   },
 
   /**
@@ -71,6 +73,7 @@ Page({
         messageContent: message,
         toView: util.RndNum(),
         createtime: util.formatTime(new Date()),
+        messageType: '0',
         contentType: '0',
         is_img: false,
         headOwner: this.data.headOwner
@@ -159,6 +162,7 @@ Page({
             messageFrom: wx.getStorageSync('userid'),
             messageTo: that.data.receiverid,
             toView: util.RndNum(),
+            messageType: '0',
             contentType: '1',
             createtime: util.formatTime(new Date()),
             headOwner: that.data.headOwner
@@ -213,6 +217,29 @@ Page({
     })
     console.log(this.data.toView)
   },
+
+  openpac: function() {
+    this.setData({
+      redshow: true
+    })
+    console.log('a123123', this.data.redshow)
+  },
+
+  // touchcanvas: function() {
+  //   this.setData({
+  //     istouched: true
+  //   })
+  // },
+
+  itemclick(event) {
+    this.setData({
+      istouched:true
+    })
+    redpackettemplate.touchcanvas(event)
+  },
+
+
+
   onReady: function() {
 
   },

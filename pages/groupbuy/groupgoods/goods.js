@@ -1,5 +1,9 @@
 var util=require('../../../utils/util.js')
 var app = getApp();
+var time = 0;
+var touchDot = 0;//触摸时的原点
+var interval = "";
+var flag_hd = true;
 Page({
 
   /**
@@ -18,11 +22,13 @@ Page({
     jdprice: "京东价",
     shareicon: "../../../images/share.png",
     showModellogin: false,
+    showModelrule:false,
     showModal: false,
     ischecked: true,
     idx: 0,
     index: 0,
-    num: 1
+    num: 1,
+    buytype:false
   },
 
   /**
@@ -32,47 +38,68 @@ Page({
     var that=this
     this.setData({
       groupid: event.groupid,
-      productid: event.productid,
       parentid: event.parentid,
       showModellogin: event.showModellogin,
-      lasttime:event.lasttime
+      // lasttime:event.lasttime
     })
+    this.getproductinfo()
+    // this.setlasttime() 
+    this.showusergrade()
+  },
+  getproductinfo:function(){
+    var that = this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/groups/getgroupinfo?groupid=' + this.data.groupid + '&sessionid=' + app.globalData.g_sessionid,
+      success: function (res) {
+        var data=res.data.data
+        that.setData({
+          productid: data.product.id,
+          lasttime:data.group.endTime,
+          groupSlideImg: JSON.parse(data.group.groupSlideImg) ,
+          imagesAddress: JSON.parse(data.product.imagesAddress),
+          productinfo: data.group.groupName,
+          groupPrice: data.group.groupPrice,
+          price:data.product.price,
+          userid: data.product.userId,
+          serviceHeadimg: data.product.serviceHeadimg,
+          serviceNickname: data.product.serviceNickname,
+          groupStyle: JSON.parse(data.group.groupStyle),
+          firstimg: data.group.groupFirstImg,
+          afterSale: JSON.parse(data.product.afterSale),
+          afterSalekey: Object.keys(JSON.parse(data.product.afterSale)),
+          returnCashRate: util.topercent(data.group.returnCashRate) ,
+          returnCashRateInviter: util.topercent(data.group.returnCashRateInviter), 
+          groupCount: data.group.groupCount
+        })
 
-    setInterval(function(){
+        console.log('客服ID' + that.data.userid)
+        console.log('商品详情', res)
+        that.setlasttime() 
+      }
+    })
+  },
+
+  setlasttime:function(){
+    var that=this
+    var timestamp = Date.parse(new Date());
+    if (timestamp > this.data.lasttime) {
+      this.setData({
+        endtype: true
+      })
+    }
+    setInterval(function () {
       that.setData({
         d: util.countdown(that.data.lasttime).d,
         h: util.countdown(that.data.lasttime).h,
         m: util.countdown(that.data.lasttime).m,
         s: util.countdown(that.data.lasttime).s
       })
-     
-    },1000)
-   
 
-    this.getproductinfo()
-
+    }, 1000)
   },
-  getproductinfo:function(){
-    var that = this
-    wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/products/getproductinfo?productid=' + this.data.productid + '&sessionid=' + app.globalData.g_sessionid,
-      success: function (res) {
-        that.setData({
-          productdetails: res.data.data,
-          productinfo: res.data.data.product.productInfo,
-          userid: res.data.data.product.userId,
-          serviceHeadimg: res.data.data.product.serviceHeadimg,
-          serviceNickname: res.data.data.product.serviceNickname
-        })
-        console.log('客服ID' + that.data.userid)
-        console.log('商品详情', res)
-      }
-    })
-  },
-
   ondetail: function() {
     wx.redirectTo({
-      url: '../groupdetail/detail?productid=' + this.data.productid,
+      url: '../groupdetail/detail?productid=' + this.data.productid+'&groupid='+this.data.groupid,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
@@ -81,7 +108,7 @@ Page({
 
   oncomment: function() {
     wx.redirectTo({
-      url: '../groupcomment/comment?productid=' + this.data.productid,
+      url: '../groupcomment/comment?productid=' + this.data.productid + '&groupid=' + this.data.groupid,
     })
     console.log('goods页面pid' + this.data.productid)
   },
@@ -90,28 +117,40 @@ Page({
 
   },
 
+  takegroup:function(){
+    this.setData({
+      showModal: true,
+      buytype:true,
+      goodsstyle: this.data.groupStyle[0]
+    })
+  },
+
   joingroup: function() {
     this.setData({
-      showModal: true
+      showModal: true,
+      buytype:false,
+      goodsstyle:this.data.groupStyle[0]
     })
-    var that = this
-    wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/products/getproductstyle?productid=01&sessionid=001',
-      success: function(res) {
-        console.log(res.data.data)
-        that.setData({
-          firstimg: res.data.data.FistImg,
-          productStyle: res.data.data.Style.productStyle,
-          stylePrice: res.data.data.Style.stylePrice,
-        })
-        console.log(that.data.stylePrice)
-        that.setData({
-          goodsstyle: that.data.productStyle[0],
-          pricenow: that.data.stylePrice[0]
-        })
-        console.log('这是默认款式：' + that.data.productStyle[0])
-      }
-    })
+
+    // var that = this
+    // wx.request({
+    //   url: app.globalData.g_ip + '/ketuan/applet/products/getproductstyle?productid='+ this.data.productid+'&sessionid=001',
+    //   success: function(res) {
+    //     console.log(res.data.data)
+    //     that.setData({
+    //       firstimg: res.data.data.FistImg,
+    //       productStyle: res.data.data.Style.productStyle,
+    //       stylePrice: res.data.data.Style.stylePrice,
+    //     })
+    //     console.log(that.data.stylePrice)
+    //     that.setData({
+    //       goodsstyle: that.data.productStyle[0],
+    //       pricenow: that.data.stylePrice[0]
+    //     })
+    //     console.log('这是默认款式：' + that.data.productStyle[0])
+    //   }
+    // })
+  
 
   },
   /**
@@ -136,10 +175,11 @@ Page({
    * 对话框确认按钮点击事件
    */
   onConfirm: function(e) {
+    var pricenow = this.data.buytype == false ? this.data.groupPrice:this.data.price
     this.hideModal();
     console.log(e.currentTarget.dataset.goodsimg)
     wx.navigateTo({
-      url: '../../commitorder/commitorder?num=' + this.data.num + '&style=' + this.data.goodsstyle + '&firstimg=' + this.data.firstimg + '&productinfo=' + this.data.productinfo + '&pricenow=' + this.data.pricenow + '&productid=' + this.data.productid + '&groupid=' + this.data.groupid
+      url: '../../commitorder/commitorder?num=' + this.data.num + '&style=' + this.data.goodsstyle + '&firstimg=' + this.data.firstimg + '&productinfo=' + this.data.productinfo + '&pricenow=' + pricenow + '&productid=' + this.data.productid + '&groupid=' + this.data.groupid
     })
     console.log("this is productidokok" + this.data.groupid)
     console.log("this is groupidokok" + this.data.groupid)
@@ -153,7 +193,7 @@ Page({
       ischecked: true,
       idx: index,
       goodsstyle: goodsstyle,
-      pricenow: this.data.stylePrice[index]
+      // pricenow: this.data.stylePrice[index]
     })
     console.log(this.data.ischecked)
     console.log(this.data.idx)
@@ -190,7 +230,7 @@ Page({
     var is_have = false
     temp = {
       "avatar": this.data.serviceHeadimg,
-      "nickname": this.data.serviceNickname,
+      "nickname": '客服：'+this.data.serviceNickname,
       "message": "",
       "userid": this.data.userid
     }
@@ -221,6 +261,40 @@ Page({
     })
   },
 
+
+  tocashrule:function(){
+    this.setData({
+      showModelrule:true
+    })
+  },
+
+  kownrule:function(){
+    this.setData({
+      showModelrule: false
+    })
+  },
+
+  showusergrade: function () {
+    var that = this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade?sessionid=' + app.globalData.g_sessionid,
+      success: function (res) {
+        var usergrade=res.data.data.userGrade
+        if(usergrade==0){
+          usergrade='会员用户'
+        }else if(usergrade==1){
+          usergrade='合伙人'
+        }else{
+          usergrade='金牌合伙人'
+        }
+        that.setData({
+          userGrade: usergrade
+
+        })
+        console.log('用户等级：', usergrade)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -232,7 +306,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    flag_hd = true;    //重新进入页面之后，可以再次执行滑动切换页面代码
+    clearInterval(interval); // 清除setInterval
+    time = 0;
   },
 
   /**
@@ -269,8 +345,8 @@ Page({
   onShareAppMessage: function(res) {
     console.log('this is share', res)
     return {
-      title: 'this is share',
-      path: '/pages/groupbuy/groupgoods/goods?productid=' + this.data.productid + '&parentid=' + wx.getStorageSync('userid') + '&showModellogin=' + true,
+      title: this.data.productinfo,
+      path: '/pages/groupbuy/groupgoods/goods?productid=' + this.data.productid + '&parentid=' + wx.getStorageSync('userid') + '&showModellogin=' + true,       //根据推荐进来的用户会在本页面登陆
     }
   },
   bindGetuserinfo: function(e) { //登陆授权
@@ -319,4 +395,36 @@ Page({
       }
     })
   },
+
+  touchStart: function (e) {
+    touchDot = e.touches[0].pageX; // 获取触摸时的原点
+    // 使用js计时器记录时间    
+    interval = setInterval(function () {
+      time++;
+    }, 100);
+  },
+  // 触摸结束事件
+  touchEnd: function (e) {
+    var touchMove = e.changedTouches[0].pageX;
+    // 向左滑动   
+    if (touchMove - touchDot <= -40 && time < 10 && flag_hd == true) {
+      flag_hd = false;
+      //执行切换页面的方法
+      console.log("向右滑动");
+      wx.redirectTo({
+        url: '../groupdetail/detail?productid=' + this.data.productid + '&groupid=' + this.data.groupid,
+      })
+    }
+    // 向右滑动   
+    if (touchMove - touchDot >= 40 && time < 10 && flag_hd == true) {
+      flag_hd = false;
+      //执行切换页面的方法
+      console.log("向左滑动");
+      wx.navigateTo({
+        url: '../left/left'
+      })
+    }
+    clearInterval(interval); // 清除setInterval
+    time = 0;
+  }
 })

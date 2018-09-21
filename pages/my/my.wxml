@@ -1,4 +1,4 @@
-<import src='/pages/logofooter/logofooter-template.wxml'/>
+<import src='/pages/logofooter/logofooter-template.wxml' />
 <view class="container1">
   <view class="userinfo">
     <!-- <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo' class="{{is_hidden==false? '':'hidden'}}">点击授权</button> -->
@@ -37,14 +37,14 @@
   </view>
 
   <view class='address-item'>
-  <image class='address-img' src='/images/icon/address.svg'></image>
+    <image class='address-img' src='/images/icon/address.svg'></image>
     <text class='sub-myaddress'>我的地址</text>
     <text class='sub-address-manage' bindtap='addressmanage'>管理>></text>
-    <view class='sub-address' wx:for="{{defaultaddress}}" wx:key="">
-      <text>{{item[0].userProvince}}</text>
-      <text>{{item[0].userCity}}</text>
-      <text>{{item[0].userDistricts}}</text>
-      <text>{{item[0].userAddressDetails}}</text>
+    <view class='sub-address'>
+      <text>{{userProvince}}</text>
+      <text>{{userCity}}</text>
+      <text>{{userDistricts}}</text>
+      <text>{{userAddressDetails}}</text>
     </view>
   </view>
 
@@ -58,37 +58,33 @@
       <image class='count-img' src='/images/icon/yue.svg'></image>
       <view>返现余额</view>
     </view>
-    <view  class='sub-count-item' bindtap='gotorecmore'>
+    <view class='sub-count-item' bindtap='gotorecmore'>
       <image class='count-img-fans' src='/images/icon/fans1.svg'></image>
       <view>我的粉丝</view>
     </view>
-     <view  class='sub-count-item' bindtap='clearstorage'>
+
+    <view class='sub-count-item' bindtap='gotoredpacket'>
+      <image class='count-img-fans' src='/images/icon/redpacket.svg'></image>
+      <view>红包中心</view>
+    </view>
+    <view class='sub-count-item' bindtap='clearstorage'>
       <image class='count-img-fans' src='/images/icon/clear.svg'></image>
       <view>清理缓存</view>
     </view>
-
-    <!-- <text class='sub-mycount'>我的客团账户</text>
-    <view class='subitem-count'>
-      <text class='sub-gradetext'>账户等级</text>
-      <text class='sub-grade'>Lv{{userGrade}}</text>
-      <text class='sub-upgrade' bindtap='tobevip'>等  级提升</text>
-    </view>
-    <view class='subitem-back'>
-      <text class='sub-backtext'>上月返现</text>
-      <text class='sub-back' wx:for='{{cashback}}' wx:key=''>{{index==0? '￥'+item.cashbackmoney:""}}</text>
-      <text class='sub-back-more' bindtap='gotobackmore'>更多</text>
-    </view>
-    <view class='subitem-recommend'>
-      <text class='sub-rectext'>我的推荐</text>
-      <view class='sub-rec' wx:for="{{}}" wx:key=''>
-        <image src='{{}}'></image>
-      </view>
-      <text class='sub-rec-more' bindtap='gotorecmore'>更多</text>
-    </view> -->
-    <!-- <text class='sub-share'>分享个人名片</text> -->
   </view>
   <view class='logofooter-container'>
-    <template is='logofooter-template'/>
+    <template is='logofooter-template' />
   </view>
-  
+  <view class='model-mask' wx:if='{{redshow}}'></view>
+  <view class='red-container' wx:if='{{redshow}}'>
+    <!-- <canvas canvas-id='myCanvas2'></canvas> -->
+    <image src='/images/redbg.svg' class='redbg-img'></image>
+    <image src='/images/redpacket3.svg' class="{{istouched==true?'redopen':''}}  redopenimg" bindtap='touchcanvas'></image>
+    <!-- <canvas canvas-id="myCanvas" class="{{istouched==true?'redopen':''}}  myCanvas" animation='{{animationdata}}' bindtap='touchcanvas' animation='{{canvasanimation}}' ></canvas> -->
+    <image src='/images/yellow.png' class="{{istouched==true?'yellowcolse':''}}  yellowcloseimg" bindtap='touchcanvas'></image>
+    <image src='/images/coin.svg' class="{{istouched==true?'moneyshow':''}}  moneycash"></image>
+    <view class="{{istouched==true?'cashshow':'' }} redcash">200元</view>
+    <view class="{{istouched==true?'textshow':''}}  redtext" bindtap='closemodel'>点击领取，存入余额</view>
+    
+  </view>
 </view>

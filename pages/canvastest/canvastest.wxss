@@ -1,0 +1,129 @@
+/* pages/canvastest/canvastest.wxss */
+
+.model-mask{
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+}
+
+.red-container{
+  width: 600rpx;
+  height: 800rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -300rpx;
+  margin-top: -400rpx;
+  background: rgb(223, 93, 93) ;
+  z-index: 9999;
+}
+
+.red-img{
+  width: 600rpx;
+  height: 800rpx
+}
+.myCanvas{
+  width: 600rpx;
+  height: 600rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0 0;
+}
+
+.redopen{
+  animation: redopen 2s ease forwards;
+}
+
+
+.yellowcolse{
+  animation: yellowcolse 1s ease forwards;
+}
+
+.redcash{
+  position: absolute;
+  top: 150rpx;
+  left: 340rpx;
+  display: none;
+}
+
+.cashshow{
+    animation: cashshow 2s ease forwards;
+    display: block
+}
+
+.redtext{
+  position: absolute;
+  top: 350rpx;
+  left: 160rpx;
+  display: none;
+}
+
+.textshow{
+    animation: textshow 2s ease forwards;
+    display: block
+}
+
+.moneycash{
+  position: absolute;
+  top: 50rpx;
+  left: 200rpx;
+  width: 120rpx;
+  height: 120rpx;
+  display: none
+}
+
+.moneyshow{
+  animation: moneyshow 2s ease forwards;
+    display: block
+}
+@keyframes cashshow{
+  from{color:rgba(0,0,0,0);
+      transform: translate3d(0,0,0);
+       
+  }
+   to{color:rgba(255,240,30,1);
+        transform: translate3d(0,-100rpx,0);
+  }
+}
+
+@keyframes moneyshow{
+  from{
+    opacity: 0;
+      transform: translate3d(0,0,0);
+       
+  }
+   to{opacity: 1;
+        transform: translate3d(0,-40rpx,0);
+  }
+}
+@keyframes redopen{
+  from{}
+  to{   
+    transform: rotateX(180deg)
+  }
+}
+
+@keyframes yellowcolse{
+  from{
+    opacity: 1
+  }
+  to{
+    opacity: 0
+  }
+}
+
+@keyframes textshow{
+  from{
+    opacity: 0
+  }
+  to{
+    opacity: 1;
+    transform: scale(1.5)
+  }
+}

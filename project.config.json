@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 23,
 			"list": [
 				{
 					"id": -1,
@@ -68,7 +68,7 @@
 					"id": 5,
 					"name": "goodsssss",
 					"pathName": "pages/groupbuy/groupgoods/goods",
-					"query": "productid=01"
+					"query": "productid=1716e7f5fb8041cf9a750a8964dd1d3a&groupid=53a6d042164d4325a69c7f9b64cc879c"
 				},
 				{
 					"id": -1,
@@ -151,7 +151,31 @@
 				{
 					"id": -1,
 					"name": "fans",
-					"pathName": "pages/my/myback/recmore/recmore"
+					"pathName": "pages/my/myback/recmore/recmore",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "goodsssss",
+					"pathName": "pages/my/myback/backmore/backmore",
+					"query": "productid=1716e7f5fb8041cf9a750a8964dd1d3a&groupid=53a6d042164d4325a69c7f9b64cc879c"
+				},
+				{
+					"id": -1,
+					"name": "message",
+					"pathName": "pages/messages/messages",
+					"query": "productid=1716e7f5fb8041cf9a750a8964dd1d3a&groupid=53a6d042164d4325a69c7f9b64cc879c"
+				},
+				{
+					"id": -1,
+					"name": "canvastest",
+					"pathName": "pages/canvastest/canvastest",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "customservice",
+					"pathName": "pages/messages/customservice/customservice"
 				}
 			]
 		}

@@ -1,16 +1,18 @@
 <!--pages/my/tobevip/tobevip.wxml-->
 <view class='grade-content'>
   <view class='sub-grade-content'>
-    <text>用户等级</text>
-    <text>会员用户</text>
+    <text>当前等级</text>
+    <text class='user-grade-text'>会员用户</text>
   </view>
 
   <view class='sub-grade-content'  bindtap='toup'>
+  <text>申请升级</text>
     <image class='upgrade-img' src='/images/icon/upgrade.svg'></image>
-    <text>申请升级</text>
+    
   </view>
 </view>
-<view>查看用户及合伙人规则：</view>
+<view>用户及合伙人规则：</view>
+<!-- <view>{{vip}}</view> -->
 <view class='title-text'>
   <text class='vip-text'>{{vip[0]}}</text>
 </view>

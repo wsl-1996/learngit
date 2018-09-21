@@ -9,6 +9,7 @@ Page({
   data: {
     totalprice: 0,
     deduction:0,
+    usededuction:0,
     outcost:0
   },
 
@@ -18,15 +19,8 @@ Page({
   onLoad: function(options) {
 
     var that = this
-
-    wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
-      success: function(res) {
-        that.setData({
-          addressinfo: res.data.data.addressinfo
-        })
-      }
-    })
+    this.getdefaultaddress()
+    
     this.setData({
       num: options.num,
       style: options.style,
@@ -49,9 +43,21 @@ Page({
       outcost:util.getnum(this.data.totalprice-this.data.deduction)
     })
     console.log('this is totalprice' + this.data.totalprice)
+    console.log('this is outcost' + this.data.outcost)
     this.getback()
   },
-
+  getdefaultaddress:function(){
+    var that = this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
+      success: function (res) {
+        that.setData({
+          addressinfo: res.data.data
+        })
+        console.log('kokokok设施 is addressinfo',res.data)
+      }
+    })
+  },
   commitorder: function(res) {
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/orders/createorder',
@@ -160,6 +166,12 @@ Page({
       meno: e.detail.value
     })
   },
+
+  toaddress:function(){
+    wx.navigateTo({
+      url: '../my/myaddress/myaddress',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -171,7 +183,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getdefaultaddress()
+    console.log('执行onshow')
   },
 
   /**
@@ -227,7 +240,7 @@ Page({
    
     this.setData({
       outcost: util.getnum(this.data.totalprice),
-      usededuction:0
+      usededuction:'0'
     })
     console.log('这是使用的抵扣金额', this.data.usededuction)
   }

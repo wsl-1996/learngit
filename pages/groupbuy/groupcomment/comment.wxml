@@ -1,5 +1,5 @@
 <import src='/pages/stars/stars-template.wxml'/>
-<view class='container1'>
+<view class='container1' bindtouchstart="touchStart" bindtouchend="touchEnd">
   <view class='topbar'>
     <text class='goods' bindtap='ongoods'>商品</text>
     <text class='detail' bindtap='ondetail'>详情</text>

@@ -1,5 +1,5 @@
 <view class='container1'>
-  <view class='title-content' wx:for="{{addressinfo}}">
+  <view class='title-content' wx:for="{{addressinfo}}" bindtap='toaddress'>
     <image src='/images/location.png'></image>
     <text class='title-content-text'>收货人：</text>
     <text class='title-content-name'>{{item.sendName}}</text>
@@ -8,9 +8,9 @@
     <text class='title-content-address'>{{item.userProvince}}{{item.userCity}}{{item.userDistricts}}{{item.userAddressDetails}}</text>
   </view>
   <view class='body-content'>
-    <view class='body-content-shopname'>
-      <text>文斯数码</text>
-    </view>
+    <!-- <view class='body-content-shopname'>
+      <text></text>
+    </view> -->
     <view class='body-content-goods'>
       <image src='{{firstimg}}'></image>
       <text class='body-content-detail'>{{productinfo}}</text>

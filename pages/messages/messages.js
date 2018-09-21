@@ -6,14 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msglist:[]
+    msglist:[],
+    animationdata:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var is_haveoffical=false
+  var is_haveoffical=false
     var templist=wx.getStorageSync('msglist')
     for(let i=0;i<templist.length;i++){
       if (templist[i].userid =='00000000000000000000000000000000')

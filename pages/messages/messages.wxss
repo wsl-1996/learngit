@@ -1,5 +1,6 @@
 /* pages/message/messages.wxss */
-.list-container{
+
+.list-container {
   width: 750rpx;
   height: 140rpx;
   background-color: #fff;
@@ -7,29 +8,32 @@
   margin-bottom: 15rpx;
 }
 
-.avater{
+.avater {
   width: 100rpx;
   height: 100rpx;
   margin: 20rpx 20rpx 0 20rpx;
 }
 
-.nickname{
+.nickname {
   position: absolute;
   top: 30rpx;
   left: 140rpx;
   font-size: 32rpx;
 }
 
-.message{
+.message {
   position: absolute;
   top: 80rpx;
   left: 140rpx;
   color: #bbb;
   width: 580rpx;
   height: 52rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.newmsg-img{
+.newmsg-img {
   width: 50rpx;
   height: 50rpx;
   position: absolute;
@@ -37,13 +41,12 @@
   right: 50rpx;
 }
 
-.none{
-  display: none
+.none {
+  display: none;
 }
 
-.test{
+.test {
   width: 300rpx;
   height: 300rpx;
-  background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 234, 189))
+  background: linear-gradient(to bottom, rgb(255, 177, 10), rgb(255, 234, 189));
 }
-

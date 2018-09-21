@@ -1,0 +1,12 @@
+<template name='redpacket-template'>
+  <view class='model-mask' wx:if='{{redshow}}' ></view>
+  <view class='red-container' wx:if='{{redshow}}' >
+    <image src='/images/redbg.svg' class='redbg-img'></image>
+    <image src='/images/redpacket3.svg' class="{{istouched==true?'redopen':''}}  redopenimg" bindtap='touchcanvas'></image>
+    <image src='/images/yellow.png' class="{{istouched==true?'yellowcolse':''}}  yellowcloseimg" bindtap='touchcanvas'></image>
+    <image src='/images/coin.svg' class="{{istouched==true?'moneyshow':''}}  moneycash"></image>
+    <view class="{{istouched==true?'cashshow':'' }} redcash">200元</view>
+    <view class="{{istouched==true?'textshow':''}}  redtext" bindtap='closemodel'>点击领取，存入余额</view>
+    <view class='a123123'>{{scrollTop}}</view>
+  </view>
+</template>

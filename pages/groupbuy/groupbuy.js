@@ -10,7 +10,15 @@ Page({
     images: '图片',
     title: '标题',
     grouplist: [],
-    showModel: false
+    showModel: false,
+    testbanner:[
+      {
+        key:'fdf',
+        imgurl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537246720866&di=ed71bdeedbc46bbbbc5862a0b95f8bf7&imgtype=0&src=http%3A%2F%2Fpic2.52pk.com%2Ffiles%2F160216%2F5329500_160443_1.png',
+        groupid:'53a6d042164d4325a69c7f9b64cc879c',
+        conenttype:true
+      }
+    ]
   },
 
   // progress: function (joingroup, maxgroup) {
@@ -19,9 +27,12 @@ Page({
   //   })
   // },
   onLoad: function(event) {
+   
+
     console.log('this is 分享获取参数', event)
     var that = this
     this.getgrouplist()
+    this.getbanner()
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/users/islogin',
       data: {
@@ -53,8 +64,10 @@ Page({
         var groups = res.data.data.groups
 
         for (let i = 0; i < groups.length; i++) {
+          var timestamp = Date.parse(new Date());
+          console.log("当前时间戳为：" + timestamp);  
           var lasttime = groups[i].last_time
-          var percent = util.topercent(groups[i].offered_count / groups[i].group_count)
+          var percent = util.tohot(groups[i].offered_count / groups[i].group_count)
           groups[i].percent = percent
           groups[i].percentnum = groups[i].offered_count / groups[i].group_count
           if (groups[i].percentnum < 0.25) { // 把团购情况转换为百分比
@@ -66,6 +79,9 @@ Page({
           var weight = that.getweight(groups[i].group_count, util.countdown(lasttime).d, groups[i].percentnum)
           groups[i].weight = weight
           console.log('this is weight', weight)
+          if (timestamp > lasttime){
+            groups[i].endtype=true
+          }
           intervalid1 = setInterval(function() { //时间戳转化为倒计时
             lasttime = groups[i].last_time
             groups[i].countDown = {}
@@ -102,6 +118,18 @@ Page({
     })
   },
 
+  getbanner:function(){
+    var that=this
+      wx.request({
+        url: app.globalData.g_ip + '/ketuan/applet/banners/getbanner',
+        success:function(res){
+          that.setData({
+            banners:res.data.data.banners
+          })
+        }
+      })
+  },
+
   getweight: function(count, d, hot) {
     var countweight, dayweight, hotweight, totalweight
     countweight = count / 5
@@ -133,7 +161,8 @@ Page({
       success: function(res) {
         var groups = res.data.data.groups
         for (let i = 0; i < groups.length; i++) {
-          var percent = util.topercent(groups[i].offered_count / groups[i].group_count)
+          
+          var percent = util.tohot(groups[i].offered_count / groups[i].group_count)
           groups[i].percentnum = groups[i].offered_count / groups[i].group_count
           groups[i].percent = percent
           if (groups[i].percentnum < 0.25) {
@@ -151,6 +180,9 @@ Page({
             groups[i].countDown.s = util.countdown(lasttime).s
           }, 1000)
         }
+        that.setData({
+          grouplist:groups
+        })
         intervalid2 = setInterval(function() {
           that.setData({
             grouplist: groups
@@ -229,7 +261,7 @@ Page({
   },
   listenmsg: function() { //监听消息传入
     var that = this
-    var msg = "{ messageFrom:" + "'" + wx.getStorageSync('userid') + "'" + ",messageContent:'connect',contentType: '-1'}"
+    var msg = "{ messageFrom:" + "'" + wx.getStorageSync('userid') + "'" + ",messageContent:'connect',messageType: '-1'}"
     wx.connectSocket({
       url: app.globalData.g_socket + '/ketuan/websocket'
     })
@@ -244,7 +276,7 @@ Page({
       })
     }
 
-    wx.onSocketMessage(function(res) {
+    wx.onSocketMessage(function(res) {  //监听消息传入
 
       console.log(res)
       // res.data.replace("{\"", "{'");
@@ -256,13 +288,18 @@ Page({
       console.log('this is tempres', tempres)
       console.log(tempres.messageContent)
       app.globalData.g_tempmsgfrom = tempres.messageFrom
+      if(tempres.messageType=='5'){
+        var redpacketContent = JSON.stringify(tempres.messageContent)
+      }
       var temp = {
         is_show_right: 0,
-        messageContent: tempres.messageContent,
+        messageContent: tempres.messageType == '5' ? redpacketContent.explain: tempres.messageContent,
+        redpacketsum: tempres.messageType == '5' ? redpacketContent.sum :null,
         messageFrom: tempres.messageFrom,
         messageto: app.globalData.userid,
         toView: util.RndNum(),
         contentType: parseInt(tempres.contentType),
+        messageType: parseInt(tempres.messageType),
         createtime: util.formatTime(new Date()),
         headOwner: tempres.headOwner,
       }
@@ -309,4 +346,15 @@ Page({
     }
 
   },
+
+  tobannergroup:function(e){
+    var cantab=e.currentTarget.dataset.cantab
+    var groupid=e.currentTarget.dataset.groupid
+    if(cantab==1){
+      wx.navigateTo({
+        url: 'groupgoods/goods?groupid=' + groupid,
+      })
+    }
+   
+  }
 })

@@ -31,7 +31,8 @@ Page({
       messageFrom: wx.getStorageSync('userid'),
       messageTo: '00000000000000000000000000000000',
       messageContent: msgcontent ,
-      contentType: '3'
+      messageType: '2',
+      contentType: '0'
     }
     temp=JSON.stringify(temp)
     wx.request({

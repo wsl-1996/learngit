@@ -7,41 +7,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    vip:stadata.data.vip
+    // vip:stadata.data.vip
   },
-  toup:function(){
+  
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that=this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/explains/getexplain',
+      data: {
+        key: 'vip'
+      },
+      success: function (res) {
+        that.setData({
+          vip: JSON.parse(JSON.parse(res.data.data.explain.explainInfo))
+        })
+        console.log('规则', JSON.parse(JSON.parse(res.data.data.explain.explainInfo)) )
+      }
+
+    })
+  },
+  toup: function () {
     var messagecontent = {
       reason: '请求升级'
     }
     messagecontent = JSON.stringify(messagecontent)
-    var tempres={
+    var tempres = {
       messageFrom: wx.getStorageSync('userid'),
       messageTo: '00000000000000000000000000000000',
       messageContent: messagecontent,
-      contentType: '4'
+      messageType: '1',
+      contentType: '0'
     }
     tempres = JSON.stringify(tempres)
     console.log('tempres:', tempres)
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/message/sendMessage',
-      data:{
-        data:tempres
+      data: {
+        data: tempres
       },
-      success:function(res){
-          console.log('申请成功',res)
-          wx.showToast({
-            title: '申请已提交,请等待审核',
-          })
+      success: function (res) {
+        console.log('申请成功', res)
+        wx.showToast({
+          title: '申请已提交,请等待审核',
+        })
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

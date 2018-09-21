@@ -5,67 +5,89 @@
     <view class='comment' bindtap='oncomment'>{{comment}}</view>
   </view>
   <swiper class='goods-swp' autoplay='true'>
-    <swiper-item wx:for="{{productdetails.ImageAddress}}" wx:for-item="swiperitem" wx:key='' >
-      <image class="goodsbanner" src='{{swiperitem}}' bindtap='previewimg' data-currentimg='{{swiperitem}}' data-list="{{productdetails.ImageAddress}}"></image>
+    <swiper-item wx:for="{{groupSlideImg}}" wx:for-item="swiperitem" wx:key=''>
+      <image class="goodsbanner" src='{{swiperitem}}' bindtap='previewimg' data-currentimg='{{swiperitem}}' data-list="{{groupSlideImg}}" mode="widthFix"></image>
     </swiper-item>
   </swiper>
-  <view class='group-info'>
-    <image src='/images/groupbuy1.png'></image>
-    <text class='group-info-grouptype'>固定团</text>
-    <text class='group-info-groupnum'>2人团</text>
-    <text class='group-info-time'>距团购结束还剩</text>
-    <text class='group-info-grouptime'>{{d}}天{{h}}:{{m}}:{{s}}</text>
-  </view>
-  <block wx:for='{{productdetails.Details}}' wx:key=''>
+  <view bindtouchstart="touchStart" bindtouchend="touchEnd">
+    <view class='group-info'>
+      <image class='group-img' src='/images/groupbuy1.png'></image>
+      <text class='group-info-grouptype'>固定团</text>
+      <text class='group-info-groupnum'>{{groupCount}}人团</text>
+      <text class='group-info-time'>距团购结束还剩</text>
+      <text class="group-info-grouptime {{endtype==true?'shop-end':''}}">{{d}}天{{h}}:{{m}}:{{s}}</text>
+      <image class='forcejoin-img' src='/images/forcejoin.svg'></image>
+    </view>
+    <!-- <block wx:for='{{productdetails.Details}}' wx:key=''> -->
     <view class='maininfo'>
       <view class='maininfo-text'>
-        <text>{{item.maininfo}}</text>
+        <text>{{productinfo}}</text>
       </view>
-      <button open-type='share' class='sharebtn' data-parentid='{{parentid}}'>
+      <!-- <button open-type='share' class='sharebtn' data-parentid='{{parentid}}'>
         <image src='{{shareicon}}'></image>
       </button>
-      <view class='share-text' ><text>分享</text></view>
+      <view class='share-text' ><text>分享</text></view> -->
     </view>
     <view class='group-price'>
       <text class='nowprice-text'>{{groupprice}}</text>
-      <text class='nowprice'>￥{{item.groupprice}}</text>
+      <text class='nowprice'>￥{{groupPrice}}</text>
       <text class='originalpricetext'>{{originalprice}}</text>
-      <text class='originalprice'>￥{{item.originalprice}}\n</text>
+      <text class='originalprice'>￥{{price}}\n</text>
+      <button open-type='share' class='sharebtn' data-parentid='{{parentid}}'>
+        <image src='{{shareicon}}'></image>
+      </button>
+      <view class='share-text'>
+        <text>分享</text>
+      </view>
     </view>
-
-    <!-- <view class='chose'>
-      <text class='chosen'>{{chosen}}</text>
-      <text class='chosenstyle'>{{item.chosenstyle}}</text>
-    </view> -->
     <view class='cash'>
-      <text class='cashback'>{{cashback}}</text>
-      <text class='cashbackratio'>{{item.cashback}}</text>
-      <text class='cashrule'>{{cashrule}}</text>
-    </view>
-  </block>
-  <view class='goodsshow' wx:for="{{productdetails.SlideImage}}" wx:for-item="goodshowitem" wx:key='' data-list='{{productdetails.SlideImage}}' data-currentimg='{{goodshowitem}}' bindtap='previewimg'>
-    <image src='{{goodshowitem}}' mode="widthFix"></image>
-  </view>
+      <view>
+        <text class='cashback'>{{cashback}}</text>
+        <text class='cashbackratio'>{{returnCashRate}}</text>
+      </view>
 
-  <view class='footer'>
-    <view class='talk-btn' bindtap='ontalk'>
-      <image src='/images/icon/talk.svg'></image>
-      <text>客服</text>
+      <text class='cashrule' bindtap='tocashrule'>{{cashrule}}</text>
     </view>
-    <view class='join-btn' bindtap='joingroup'>
-      <text>参团</text>
+    <!-- </block> -->
+    <view class='afterSale-container'>
+      <view class='afterSalekey'>
+        <view wx:for='{{afterSalekey}}'>{{item}}</view>
+      </view>
+      <view class='afterSale'>
+        <view wx:for='{{afterSale}}'>{{item}}</view>
+      </view>
     </view>
-  </view>
+    <view class='goodsshow-text'>产品详情</view>
+    <view class='googsshow-container'>
+      <view class='goodsshow' wx:for="{{imagesAddress}}" wx:for-item="goodshowitem" wx:key='' data-list='{{imagesAddress}}' data-currentimg='{{goodshowitem}}' bindtap='previewimg'>
+        <image src='{{goodshowitem}}' mode="widthFix"></image>
+      </view>
+    </view>
 
+    <view class='footer'>
+      <view class='talk-btn' bindtap='ontalk'>
+        <image src='/images/icon/talk.svg'></image>
+        <text>客服</text>
+      </view>
+      <view class='join-btn' >
+        <view class='originbuy' bindtap='takegroup'>
+          <view>直接购买</view>
+          <view>￥{{price}}</view>
+        </view>
+        <view class='joinbuy' bindtap='joingroup'>参团</view>
+      </view>
+    </view>
+
+  </view>
   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
   <view class="modal-dialog" wx:if="{{showModal}}">
     <view class="modal-title">
       <image class="modal-title-img" src='{{firstimg}}' bindload='onfirstimg' data-goodsimg='/images/ad3.jpg'></image>
-      <text class='modal-title-price'>￥{{pricenow}}</text>
+      <text class='modal-title-price'>￥{{buytype==false?groupPrice:price}}</text>
       <text class='modal-title-styletext'>请选择  款式</text>
       <image class='model-cancel' bindtap='onCancel' src='/images/icon/close1.svg'></image>
     </view>
-    <view class='modal-content' wx:for="{{productStyle}}">
+    <view class='modal-content' wx:for="{{groupStyle}}">
       <text bindtap='onchosen' class="{{ischecked&&idx==index?'is_checked':''}} style-item" data-idx='{{index}}' data-style='{{item}}'>{{item}}</text>
 
     </view>
@@ -79,17 +101,41 @@
       <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
     </view>
   </view>
-    <view class='model-mask' wx:if='{{showModellogin}}'></view>
-  <view class='model-dialog' wx:if='{{showModellogin}}'>
+
+  <view class='model-mask' wx:if='{{showModel}}'></view>
+  <view class='model-dialog' wx:if='{{showModel}}'>
     <view class='model-title'>
       <text>登录提示</text>
     </view>
     <view class='model-content'>
-      <text>请登陆客团，以获取所有使用权限</text>
       <image class='model-content-img' src='/images/logo.png'></image>
+      <text>请登陆客团，以获取所有使用权限</text>
+
     </view>
     <view class='model-footer'>
-       <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo'>授权登录</button>
+      <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindGetuserinfo'>授权登录</button>
+    </view>
+  </view>
+
+  <view class='model-mask' wx:if='{{showModelrule}}'></view>
+  <view class='model-rule-dialog' wx:if='{{showModelrule}}'>
+    <view class='model-rule-title'>
+      <text>返现规则</text>
+    </view>
+    <view class='model-rule-content'>
+      <text class='rule-text'>根据您的等级，推荐朋友购买会有不同的返现比例</text>
+      <view class='text-container'>
+        <text>当前等级：</text>
+        <text class='grade-text'>{{userGrade}}</text>
+      </view>
+      <view class='text-container'>
+        <text>该商品的推荐返现：</text>
+        <text class='rate-text'>{{returnCashRateInviter}}</text>
+      </view>
+
+    </view>
+    <view class='model-rule-footer' bindtap='kownrule'>
+      <view>知道了</view>
     </view>
   </view>
 </view>

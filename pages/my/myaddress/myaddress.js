@@ -122,11 +122,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      defaultaddress: options.defaultaddress
+    })
     var that = this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getalladdress?sessionid='+app.globalData.g_sessionid,
       success: function(res) {
-        console.log(res.data)
+        console.log('地址列表',res.data.data)
         that.setData({
           addresslist: res.data.data.alladdress
         })
@@ -136,6 +139,9 @@ Page({
   
   setdefault: function(e) { //设默认地址
     console.log('这是默认地址'+e.detail.value)
+    this.setData({
+      defaultaddress: e.detail.value
+    })
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/sendaddress/setdefaultaddress?sessionid=' + app.globalData.g_sessionid+'&fdid=' + e.detail.value,
     })
@@ -143,6 +149,12 @@ Page({
 
   deladdress: function(e) {
     var that =this 
+    if (this.data.defaultaddress == e.currentTarget.dataset.id){
+      wx.showToast({
+        title: '默认地址无法删除',
+        icon:'none'
+      })
+    }else {
     wx.showModal({
       title: '提示',
       content: '确定要删除此收货地址么？',
@@ -161,6 +173,7 @@ Page({
         }
       }
     })
+  }
   },
   bindRegionChange: function(e) { //地区值改变时数据绑定在data中
     console.log('picker发送选择改变，携带值为', e.detail.value[0])

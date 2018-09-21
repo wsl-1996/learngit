@@ -7,7 +7,7 @@
         <text class='useraddress'>{{item.province}}{{item.city}}{{item.districts}}{{item.addressDetail}}</text>
       </view>
       <view class='sub-content-item2'>
-        <radio class='default-img' value="{{item.id}}" checked="{{item.defaultAddress==0?true:flase}}" />
+        <radio class='default-img' value="{{item.id}}" checked="{{item.defaultAddress==1?true:flase}}" />
         <text class='default-text'>设为默认</text>
         <view class='edit-view' bindtap="reviseaddress" data-sendname='{{item.sendName}}' data-sendphone='{{item.sendPhone}}' data-province='{{item.province}}' data-city='{{item.city}}' data-districts='{{item.districts}}' data-addressdetail='{{item.addressDetail}}'
           data-addressid='{{item.id}}'>
@@ -63,7 +63,7 @@
   </view>
 
   <view class='sub-content-item3' bindtap='addaddress'>
-    <image src='../../../images/add.png'></image>
+    <image src='../../../images/add.svg'></image>
     <text>添加收货地址</text>
   </view>
 </view>

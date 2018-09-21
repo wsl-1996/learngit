@@ -1,34 +1,49 @@
+<import src='/pages/redpackettemplate/redpackettemplate.wxml' />
 <view>
-    <scroll-view class="historycon" scroll-y="true" scroll-into-view="{{toView}}" bindscroll='onroll'>
-      <scroll-view  id='{{item.toView}}' class="history-item" wx:for="{{centendata}}" wx:key=''  >
-        <view>
-          <text class='time' >{{item.createtime}}</text>
+  <scroll-view class="historycon" scroll-y="true" scroll-into-view="{{toView}}" bindscroll='onroll'>
+    <scroll-view id='{{item.toView}}' class="history-item" wx:for="{{centendata}}" wx:key=''>
+      <view>
+        <text class='time'>{{item.createtime}}</text>
+      </view>
+      <block wx:if="{{item.is_show_right ==1}}">
+        <view class='my_right'>
+          <view class='page_row'>
+            <text wx:if='{{!item.is_img}}' class='new_txt'>{{item.messageContent}}</text>
+            <image wx:if='{{item.is_img}}' src='{{item.messageContent}}' class='new_imgtent' bindtap='previewimg' data-preimg='{{item.messageContent}}'></image>
+            <view wx:if='{{!item.is_img}}' class='sanjiao my'></view>
+            <image class='new_img' src='{{item.headOwner}}'></image>
+          </view>
         </view>
-        <block wx:if="{{item.is_show_right ==1}}">
-          <view class='my_right'>
-            <view class='page_row'>
-              <text wx:if='{{!item.is_img}}' class='new_txt'>{{item.messageContent}}</text>
-              <image wx:if='{{item.is_img}}' src='{{item.messageContent}}' class='new_imgtent' bindtap='previewimg' data-preimg='{{item.messageContent}}'></image>
-              <view wx:if='{{!item.is_img}}' class='sanjiao my'></view>
-              <image class='new_img' src='{{item.headOwner}}'></image>
-            </view>
+      </block>
+
+      <block wx:elif='{{item.messageType==0}}'>
+        <view class='you_left'>
+          <view class='page_row'>
+            <image class='new_img' src='{{item.headOwner}}'></image>
+            <view wx:if='{{!item.contentType}}' class='sanjiao you'></view>
+            <text wx:if='{{!item.contentType}}' class='new_txt leftnew_txt'>{{item.messageContent}}</text>
+            <image wx:if='{{item.contentType}}' src='{{item.messageContent}}' class='new_imgtent' bindtap='previewimg' data-preimg='{{item.messageContent}}'></image>
           </view>
-        </block>
-        <block wx:else>
-          <view class='you_left'>
-            <view class='page_row'>
-              <image class='new_img' src='{{item.headOwner}}'></image>
-              <view wx:if='{{!item.contentType}}' class='sanjiao you'></view>
-              <text wx:if='{{!item.contentType}}' class='new_txt leftnew_txt'>{{item.messageContent}}</text>
-              <image wx:if='{{item.contentType}}' src='{{item.messageContent}}' class='new_imgtent' bindtap='previewimg' data-preimg='{{item.messageContent}}'></image>
-            </view>
-          </view>
-        </block>
-      </scroll-view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class='notice-container'>
+          <view class='notice-text'>消息通知</view>
+          <view class='notice-body'>{{item.messageContent}}</view>
+          <view wx:if='{{item.messageType==5}}' class='redpac-btn' bindtap='openpac'>领取红包</view>
+        </view>
+      </block>
+
+
     </scroll-view>
+  </scroll-view>
+  <view bindtap='itemclick'>
+    <template is='redpacket-template' data='{{istouched,redshow}}' />
+  </view>
+
   <view class="sendmessage">
     <input type="emoji" bindinput="bindChange" confirm-type="done" value='{{news_input_val}}' placeholder="" />
-    <button catchtap="add">发送</button>
+    <view catchtap="add">发送</view>
     <image bindtap="upimg1" class='jia_img' src='/images/jiahao.png'></image>
   </view>
 </view>

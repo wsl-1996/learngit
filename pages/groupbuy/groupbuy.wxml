@@ -3,12 +3,19 @@
     <view class="search">
       <view class="search_arr">
         <icon class="searchcion" size='20' type='search'></icon>
-        <input bindblur="onbindblur" placeholder="请输入关键字" />
+        <input bindinput="onbindblur" placeholder="请输入关键字" />
       </view>
     </view>
     <view class='sousuo' bindtap='onsearch'>
       <text>搜索</text>
     </view>
+  </view>
+  <view>
+     <swiper class='group-banner' autoplay='true' interval='2000'>
+        <swiper-item wx:for='{{banners}}'>
+          <image class='group-banner-img' src='{{item.imgUrl}}' bindtap='tobannergroup' data-groupid='{{item.groupId}}' data-cantab='{{item.canTab}}' mode="widthFix"></image>
+        </swiper-item>
+     </swiper>
   </view>
   <view class='radis-container'>
     <view class="shop-container" wx:for="{{grouplist}}" bindtap='tapgoods' data-groupid='{{item.group_id}}' data-productid="{{item.product_id}}" data-lasttime='{{item.last_time}}' wx:key=''>
@@ -22,11 +29,12 @@
       <view  class="{{item.countDown.d==0?'red':'blue'}} shop-time">
         <text>剩余时间</text>
       </view>
+      <view class='forcejoin' wx:if='{{item.endtype==true}}'>强参团</view>
       <view  class='shop-timeout'>
         <text class='shop-timeout-text' hidden='{{!item.countDown.d}}'>{{item.countDown.d}}天</text>
-        <text class="shop-timeout-text {{item.countDown.d==0?'red':'blue'}} " >{{item.countDown.h}}</text>
-         <text class="{{item.countDown.d==0?'red':'blue'}} shop-timeout-text" >{{item.countDown.m}}</text>
-          <text class="{{item.countDown.d==0?'red':'blue'}} shop-timeout-text" >{{item.countDown.s}}</text>
+        <text class="shop-timeout-text {{item.countDown.d==0?'red':'blue'}} {{item.endtype==true?'shop-end':''}} " >{{item.countDown.h}}</text>
+         <text class="{{item.countDown.d==0?'red':'blue'}} shop-timeout-text {{item.endtype==true?'shop-end':''}}" >{{item.countDown.m}}</text>
+          <text class="{{item.countDown.d==0?'red':'blue'}} shop-timeout-text {{item.endtype==true?'shop-end':''}}" >{{item.countDown.s}}</text>
       </view>
       <view class="{{item.product_state?'shop-type':''}}">
         <text>{{item.product_state}}</text>

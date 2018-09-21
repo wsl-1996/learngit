@@ -1,5 +1,5 @@
 /* pages/index/to_news/to_news.wxss */
-
+@import '/pages/redpackettemplate/redpackettemplate.wxss';
 page {
   background-color: #f7f7f7;
 }
@@ -84,6 +84,7 @@ page {
   bottom: 0rpx;
   display: flex;
   flex-direction: row;
+  border-top: 1px solid #d0d0d0;
 }
 
 .sendmessage input {
@@ -92,19 +93,24 @@ page {
   background-color: white;
   line-height: 40px;
   font-size: 14px;
+ 
   border: 1px solid #d0d0d0;
+   border-top: 0px;
   padding-left: 10px;
 }
 
-.sendmessage button {
-  border: 1px solid white;
+.sendmessage view {
   width: 18%;
   height: 40px;
+  text-align: center;
   background: #fff;
   color: #000;
   line-height: 40px;
   font-size: 14px;
+  border-right: 1px solid #d0d0d0;
 }
+
+
 
 .historycon {
   height: 1100rpx;
@@ -132,4 +138,39 @@ page {
   width: 200rpx;
   font-size: 26rpx;
   background-color: #e8e8e8;
+}
+
+.notice-container{
+  position: relative;
+  width: 700rpx;
+  margin-left: 5rpx;
+  margin-right: 20rpx;
+  margin-bottom: 130rpx;
+  border: 1px solid #ccc;
+  border-radius: 20rpx;
+
+}
+
+.notice-text{
+  width: 660rpx;
+  padding: 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+
+.notice-body{
+ width: 660rpx;
+ padding: 20rpx;
+ margin-bottom: 20rpx;
+}
+
+.redpac-btn{
+  width: 160rpx;
+  text-align: center;
+  background-color: #FF826B;
+  color: #fff;
+  border-radius: 10rpx;
+  position: absolute;
+  margin-top: 120rpx;
+  bottom: 20rpx;
+  right: 20rpx;
 }

@@ -147,6 +147,8 @@
   color: red;
   font-size: 32rpx;
   letter-spacing: 2rpx;
+  position: absolute;
+  right: 250rpx;
 }
 
 .footer-content-commit{

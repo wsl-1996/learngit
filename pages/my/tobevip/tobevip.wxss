@@ -14,8 +14,10 @@ margin: 0 20rpx;
 }
 
 .upgrade-img{
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
 }
 .grade-content{
   background:rgb(255, 177, 10);
@@ -29,4 +31,11 @@ margin: 0 20rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.user-grade-text{
+  font-size: 36rpx;
+  color: #1797FF;
+  font-weight: 700;
+  text-shadow: 100;
 }

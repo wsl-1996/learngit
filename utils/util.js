@@ -50,13 +50,23 @@ function RndNum() {
 
 function getnum(num){
   var s=num.toString()
-  var result=s.substring(0,s.indexOf('.')+3)
-  return result
+  if(s.indexOf('.')!=-1){
+    var result = s.substring(0, s.indexOf('.') + 3)
+    return result
+  }
+  else return num
+  
 }
 
-function topercent(point){
+function tohot(point){
   var str=Number(point*100).toFixed(0)  
   str +='℃'
+  return str
+}
+
+function topercent(point) {
+  var str = Number(point * 100).toFixed(0)
+  str += '%'
   return str
 }
 
@@ -99,5 +109,6 @@ module.exports = {
   getnum: getnum,
   topercent: topercent,
   countdown: countdown,
-  checkTime: checkTime
+  checkTime: checkTime,
+  tohot:tohot
 }

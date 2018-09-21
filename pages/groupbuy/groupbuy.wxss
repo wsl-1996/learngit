@@ -111,6 +111,18 @@ page {
   font-size: 10pt;
 }
 
+.shop-end{
+text-decoration: line-through
+}
+.forcejoin{
+  position: absolute;
+  right: 180rpx;
+  bottom: 8rpx;
+  padding: 0 10rpx;
+  background-color: #FF6E36;
+  color:#fff;
+  font-size: 10pt;
+}
 .shop-timeout-text{
   border-radius: 6rpx;
   background:  rgb(13, 190, 255);
@@ -294,4 +306,15 @@ border-radius: 0
 .hiddenhottext{
   color: #FF6E36;
   font-size: 24rpx;
+}
+
+.group-banner{
+  width: 750rpx;
+  height: 600rpx;
+}
+
+.group-banner-img{
+  width: 750rpx;
+  height: 600rpx;
+  
 }
