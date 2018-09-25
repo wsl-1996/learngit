@@ -100,6 +100,11 @@ function checkTime(i) { //将0-9的数字前面加上0，例1变为01
   return i;
 }
 
+function tworandom(max,min){
+  var result=Math.random()*(max-min)+min+0.01
+  return result
+}
+
 module.exports = {
   formatTime: formatTime,
   convertToStarsArray: convertToStarsArray,
@@ -110,5 +115,6 @@ module.exports = {
   topercent: topercent,
   countdown: countdown,
   checkTime: checkTime,
-  tohot:tohot
+  tohot:tohot,
+  tworandom, tworandom
 }

@@ -218,27 +218,54 @@ Page({
     console.log(this.data.toView)
   },
 
-  openpac: function() {
+  openpac: function(e) {
+    var redsum=e.currentTarget.dataset.redsum
     this.setData({
-      redshow: true
+      redshow: true,
+      redsum: redsum
     })
-    console.log('a123123', this.data.redshow)
+    console.log('redsum', this.data.redsum)
   },
 
-  // touchcanvas: function() {
-  //   this.setData({
-  //     istouched: true
+
+  // itemclick(event) {         //template外层的view的点击事件
+  //   this.setData({           
+  //     istouched:true         //点击view设置istouched的值，通过template的data传到模板中
   //   })
+  //   redpackettemplate.touchcanvas(event)      //在view的点击事件中触发调用template.js中的事件
+  //   // console.log(redpackettemplate.closemodel(event) )
+   
   // },
 
-  itemclick(event) {
+  closemodel: function () {
     this.setData({
-      istouched:true
+      redshow: false,
+      istouched: false
     })
-    redpackettemplate.touchcanvas(event)
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/users/setbalance',
+      header: {
+        'content-type': 'application/json',
+        'sessionid':wx.getStorageSync('sessionid')
+      },
+      data:{
+        addbalance: this.data.redsum
+      },
+      success:function(res){
+        console.log('添加余额',res)
+      }
+    })
   },
 
+  touchcanvas: function () {
+    this.setData({
+      istouched: true
+    })
+  },
 
+  setredamount:function(){
+
+  },
 
   onReady: function() {
 

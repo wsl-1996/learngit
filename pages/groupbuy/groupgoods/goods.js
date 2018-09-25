@@ -49,7 +49,11 @@ Page({
   getproductinfo:function(){
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/groups/getgroupinfo?groupid=' + this.data.groupid + '&sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/groups/getgroupinfo?groupid=' + this.data.groupid,
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function (res) {
         var data=res.data.data
         that.setData({
@@ -277,7 +281,11 @@ Page({
   showusergrade: function () {
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function (res) {
         var usergrade=res.data.data.userGrade
         if(usergrade==0){

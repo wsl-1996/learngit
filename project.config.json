@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 23,
+			"current": 24,
 			"list": [
 				{
 					"id": -1,
@@ -175,7 +175,14 @@
 				{
 					"id": -1,
 					"name": "customservice",
-					"pathName": "pages/messages/customservice/customservice"
+					"pathName": "pages/messages/customservice/customservice",
+					"query": ""
+				},
+				{
+					"id": 24,
+					"name": "backbalance",
+					"pathName": "pages/my/myback/backmore/backmore",
+					"query": "userBalance=600"
 				}
 			]
 		}

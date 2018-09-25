@@ -35,8 +35,12 @@ Page({
     this.getbanner()
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/users/islogin',
-      data: {
-        sessionid: wx.getStorageSync('sessionid')
+      // data: {
+      //   sessionid: wx.getStorageSync('sessionid')
+      // },
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
       },
       success: function(res) {
         console.log('this is islogin', res)
@@ -288,13 +292,13 @@ Page({
       console.log('this is tempres', tempres)
       console.log(tempres.messageContent)
       app.globalData.g_tempmsgfrom = tempres.messageFrom
-      if(tempres.messageType=='5'){
-        var redpacketContent = JSON.stringify(tempres.messageContent)
+      if(tempres.messageType=='4'){
+        var redpacketContent = JSON.parse(tempres.messageContent)
       }
       var temp = {
         is_show_right: 0,
-        messageContent: tempres.messageType == '5' ? redpacketContent.explain: tempres.messageContent,
-        redpacketsum: tempres.messageType == '5' ? redpacketContent.sum :null,
+        messageContent: tempres.messageType == '4' ? redpacketContent.explain: tempres.messageContent,
+        redpacketsum: tempres.messageType == '4' ? redpacketContent.sum :null,
         messageFrom: tempres.messageFrom,
         messageto: app.globalData.userid,
         toView: util.RndNum(),

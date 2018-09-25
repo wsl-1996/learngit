@@ -75,7 +75,7 @@ Page({
     var that = this
     wx.request({
       
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/addaddress?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/addaddress',
       data: {
         sendname: this.data.sendname,
         sendphone: this.data.sendphone,
@@ -83,6 +83,10 @@ Page({
         userprovince: this.data.province,
         usercity: this.data.city,
         userdistricts: this.data.districts
+      },
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
       },
       success: function (res) {
         console.log('添加地址：')
@@ -127,7 +131,11 @@ Page({
     })
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getalladdress?sessionid='+app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getalladdress',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function(res) {
         console.log('地址列表',res.data.data)
         that.setData({
@@ -143,7 +151,11 @@ Page({
       defaultaddress: e.detail.value
     })
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/setdefaultaddress?sessionid=' + app.globalData.g_sessionid+'&fdid=' + e.detail.value,
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/setdefaultaddress?fdid=' + e.detail.value,
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
     })
   },
 
@@ -162,7 +174,11 @@ Page({
         if (res.confirm) {
           console.log('用户点击确定' + e.currentTarget.dataset.id)
           wx.request({
-            url: app.globalData.g_ip + '/ketuan/applet/sendaddress/deleteaddress?sessionid=' + app.globalData.g_sessionid+'&fdid='+e.currentTarget.dataset.id,
+            url: app.globalData.g_ip + '/ketuan/applet/sendaddress/deleteaddress?fdid='+e.currentTarget.dataset.id,
+            header: {
+              'content-type': 'application/json',
+              'sessionid': wx.getStorageSync('sessionid')
+            },
             success:function(){
               that.hideModal()
               that.onLoad()

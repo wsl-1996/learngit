@@ -29,7 +29,11 @@ Page({
       url: app.globalData.g_ip + '/ketuan/applet/users/sendverficationcode',
       data: {
         phone: that.data.inputphone,
-        sessionid: app.globalData.g_sessionid
+        // sessionid: app.globalData.g_sessionid
+      },
+      header: {
+        'content-type': 'application/json',
+        'session': wx.getStorageSync('sessionid')
       },
       success: function() {
         console.log('发送手机号成功：')
@@ -51,7 +55,11 @@ Page({
       url: app.globalData.g_ip + '/ketuan/applet/users/checkverficationcode',
       data: {
         verficationcode: that.data.inputcode,
-        sessionid: app.globalData.g_sessionid
+        // sessionid: app.globalData.g_sessionid
+      },
+      header: {
+        'content-type': 'application/json',
+        'session': wx.getStorageSync('sessionid')
       },
       success: function(res) {
         console.log(res)

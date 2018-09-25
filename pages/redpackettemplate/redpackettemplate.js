@@ -6,7 +6,8 @@ var temp = {
     console.log('123123123')
   },
   closemodel:function(){
-    redshow:false
+    var redshow=false
+    return redshow
   }
 } //导出，供外部使用 
 export default temp

@@ -30,7 +30,11 @@ Page({
     var that = this
     console.log(that.data.currentType)
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?sessionid=' + wx.getStorageSync('sessionid')+'&orderstate=' + this.data.currentType,
+      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?orderstate=' + this.data.currentType,
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function (res) {
         console.log(res.data)
         that.setData({
@@ -62,7 +66,11 @@ Page({
             url: app.globalData.g_ip + '/ketuan/applet/orders/removeorder',
             data:{
               orderid:orderid,
-              sessionid:app.globalData.g_sessionid
+              // sessionid:app.globalData.g_sessionid
+            },
+            header: {
+              'content-type': 'application/json',
+              'sessionid': wx.getStorageSync('sessionid')
             },
             success:function(res){
               console.log("这里是返回订单编号",res)
@@ -116,7 +124,11 @@ Page({
       url: app.globalData.g_ip + '/ketuan/applet/orders/orderpay',
       data:{
         orderid: orderid,
-        sessionid: app.globalData.g_sessionid
+        // sessionid: app.globalData.g_sessionid
+      },
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
       },
       success:function(res){
         console.log('this is 待支付回调',res)

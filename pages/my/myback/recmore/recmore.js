@@ -32,7 +32,11 @@ Page({
   onLoad: function (options) {
     var that=this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/users/getchildren?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/users/getchildren',
+      header: {
+        'content-type': 'application/json',
+        'session': wx.getStorageSync('sessionid')
+      },
       success:function(res){
         that.setData({
           childrenInfo:res.data.data.childrenInfo

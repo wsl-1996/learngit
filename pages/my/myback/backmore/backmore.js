@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hidenview: true,
+    hidenview: false,
     showModelcash: false,
     cashback: [{
       cashbackmonth: 8,
@@ -36,9 +36,13 @@ Page({
     })
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function(res) {
-        console.log(res.data.data.cashback)
+        console.log('返现返回参数：',res.data.data.cashback)
 
         // that.setData({        
         //   cashback: res.data.data.cashback
@@ -161,7 +165,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
+      success: function (res) {
 
+        that.setData({
+          userBalance: util.getnum(res.data.data.userBalance) 
+        })
+        console.log('用户余额：', that.data.userBalance)
+      }
+    })
   },
 
   /**

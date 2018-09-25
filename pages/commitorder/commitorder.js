@@ -49,7 +49,11 @@ Page({
   getdefaultaddress:function(){
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress' ,
+      header:{
+        'content-type': 'application/json',
+        'sessionid':wx.getStorageSync('sessionid')
+      },
       success: function (res) {
         that.setData({
           addressinfo: res.data.data
@@ -64,7 +68,7 @@ Page({
       data: {
         productid: this.data.productid,
         groupid: this.data.groupid,
-        sessionid: app.globalData.g_sessionid,
+        // sessionid: app.globalData.g_sessionid,
         totalprice: this.data.totalprice,
         deduction: this.data.usededuction,
         style: this.data.style,
@@ -72,6 +76,10 @@ Page({
         productprice: this.data.pricenow,
         sums: this.data.num,
         carriageprice: 5
+      },
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
       },
       success: function(res) {
         console.log(res.data)
@@ -99,7 +107,11 @@ Page({
   getback: function() {
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade?sessionid=' + wx.getStorageSync('sessionid'),
+      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function(res) {
         that.setData({
           userBalance: res.data.data.userBalance

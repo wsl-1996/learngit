@@ -12,14 +12,17 @@ Page({
     is_hidden: false,
     todayred:false
   },
-  onLoad: function() {},
+  onLoad: function() {
+   
+  },
   showaddress: function() {
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress?sessionid=' + wx.getStorageSync('sessionid'),
+      url: app.globalData.g_ip + '/ketuan/applet/sendaddress/getdefaultaddress',
       method: 'GET',
       header: {
-        'Content-Type': 'application/json'
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
       },
       success: function(res) {
         var data = res.data.data.addressinfo
@@ -38,7 +41,11 @@ Page({
   showusergrade: function() {
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/users/getusergrade',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function(res) {
 
         that.setData({
@@ -47,7 +54,7 @@ Page({
 
 
         })
-        console.log('用户信息：', res.data)
+        console.log('用户余额：', that.data.userBalance)
         console.log('用户等级：', that.data.userGrade)
       }
     })
@@ -56,7 +63,11 @@ Page({
   showcashback: function() {
     var that = this
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback?sessionid=' + app.globalData.g_sessionid,
+      url: app.globalData.g_ip + '/ketuan/applet/bills/getcashback',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function(res) {
 
         that.setData({
@@ -150,6 +161,7 @@ Page({
     this.showusergrade()
     console.log('this is onshow')
   },
+
   touchcanvas: function() {
     this.setData({
       istouched: true
@@ -157,36 +169,59 @@ Page({
   },
 
   closemodel: function() {
+    var that=this
     this.setData({
       redshow: false,
       istouched: false
     })
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/users/setbalance',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
+      data: {
+        addbalance: this.data.sum
+      },
+      success: function (res) {
+        console.log('添加余额', res)
+        that.showusergrade()
+      }
+    })
   },
 
   gotoredpacket: function() {
+    this.setredamount()
     var dt=new Date()
     var that=this
-    if (wx.getStorageSync('reddate')!=dt.getDate()) {
-      wx.showModal({
-        title: '温馨提示',
-        content: '每天均可免费领取一次随机金额红包',
-        confirmText: '领取',
-        success: function(res) {
-          if (res.confirm) {
-            Math.random()
+    // if (wx.getStorageSync('reddate')!=dt.getDate()) {
+    //   wx.showModal({
+    //     title: '温馨提示',
+    //     content: '每天均可免费领取一次随机金额红包',
+    //     confirmText: '领取',
+    //     success: function(res) {
+    //       if (res.confirm) {
             that.setData({
               redshow: true,
             })
-            wx.setStorageSync('reddate', dt.getDate())
-          }
-        }
-      })
-  } else {
-      wx.showToast({
-        title: '您今天已经领取过了',
-      })
-    }
+  //           wx.setStorageSync('reddate', dt.getDate())
+  //         }
+  //       }
+  //     })
+  // } else {
+  //     wx.showToast({
+  //       title: '您今天已经领取过了',
+  //     })
+  //   }
   },
+
+  setredamount:function(){
+    var sum = util.getnum(util.tworandom(0.1,0))
+    this.setData({
+      sum:sum
+    })
+    console.log(sum)
+  }
   // drawcanvas:function(){
   //   const ctx = wx.createCanvasContext('myCanvas')
   //   const ctx1 = wx.createCanvasContext("myCanvas1")

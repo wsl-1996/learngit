@@ -1,8 +1,8 @@
 <import src='/pages/logofooter/logofooter-template.wxml' />
 <view class='container1'>
- 
+
   <view class='sub-text'>
-    <view class='cash-title'>
+    <!-- <view class='cash-title'>
       <view>每月返现</view>
       <view class='line-container'></view>
       <view class='sub-cashback'>
@@ -11,7 +11,12 @@
           <text class='cash-text'>￥{{item.cashbackmoney}}</text>
         </view>
       </view>
+    </view> -->
 
+    <view class='balance-content'>
+      <image class='balance-img' src='/images/balanceicon.svg'></image>
+      <view>我的余额</view>
+      <view>￥{{userBalance}}</view>
     </view>
     <view class='cash-content' bindtap='showcashmodel'>
       <image class='cash-img' src='/images/icon/cash.svg'></image>
@@ -19,15 +24,18 @@
     </view>
   </view>
 
+
   <view class='sub-footer' bindtap='checkdetail'>查看返现规则</view>
+
   <view hidden='{{hidenview}}' class='sub-detail'>
+    <view class='explain-view'>说明</view>
     <text>{{backrule}}</text>
   </view>
 
   <view class='model-mask' wx:if='{{showModelcash}}'></view>
   <view class='model-rule-dialog' wx:if='{{showModelcash}}'>
 
-   
+
 
     <view class='model-rule-title'>
       <text>余额提现</text>
@@ -42,7 +50,7 @@
       <input type='text' bindblur='netpointchange' required></input>
       <view class='text-container'>
         <text class='grade-text'>本次提现金额：</text>
-        <input type='number' class='cash-input' bindblur='cashchange' required   placeholder='最少提现金额100元'  placeholder-style='color:#CCC'></input>
+        <input type='number' class='cash-input' bindblur='cashchange' required placeholder='最少提现金额100元' placeholder-style='color:#CCC'></input>
       </view>
       <text class='balance-text'>可提现余额：{{userBalance}}</text>
     </view>
