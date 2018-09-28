@@ -22,18 +22,29 @@ page{
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
+  margin: 10rpx 20rpx 10rpx 0
 }
 
 .fans-item{
   width: 500rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: center;
   align-items: center
 }
 .logofooter-container{
   position: absolute;
   bottom: 30rpx;
+  left: 50%;
+  margin-left: -100rpx;
+}
+
+.nochildren-view{
+    width: 300rpx;
+  font-size: 32rpx;
+  position: absolute;
+  top: 100rpx;
   left: 50%;
   margin-left: -100rpx;
 }

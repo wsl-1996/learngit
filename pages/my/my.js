@@ -194,25 +194,25 @@ Page({
     this.setredamount()
     var dt=new Date()
     var that=this
-    // if (wx.getStorageSync('reddate')!=dt.getDate()) {
-    //   wx.showModal({
-    //     title: '温馨提示',
-    //     content: '每天均可免费领取一次随机金额红包',
-    //     confirmText: '领取',
-    //     success: function(res) {
-    //       if (res.confirm) {
+    if (wx.getStorageSync('reddate')!=dt.getDate()) {
+      wx.showModal({
+        title: '温馨提示',
+        content: '每天均可免费领取一次随机金额红包',
+        confirmText: '领取',
+        success: function(res) {
+          if (res.confirm) {
             that.setData({
               redshow: true,
             })
-  //           wx.setStorageSync('reddate', dt.getDate())
-  //         }
-  //       }
-  //     })
-  // } else {
-  //     wx.showToast({
-  //       title: '您今天已经领取过了',
-  //     })
-  //   }
+            wx.setStorageSync('reddate', dt.getDate())
+          }
+        }
+      })
+  } else {
+      wx.showToast({
+        title: '您今天已经领取过了',
+      })
+    }
   },
 
   setredamount:function(){

@@ -233,7 +233,7 @@ Page({
     var temp = {}
     var is_have = false
     temp = {
-      "avatar": this.data.serviceHeadimg,
+      "avatar": '/images/icon/talkicon.svg', // this.data.serviceHeadimg
       "nickname": '客服：'+this.data.serviceNickname,
       "message": "",
       "userid": this.data.userid

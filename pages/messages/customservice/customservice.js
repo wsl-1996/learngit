@@ -117,6 +117,9 @@ Page({
 
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/message/sendMessage',
+      header:{
+        'sessionid':wx.getStorageSync('sessionid')
+      },
       data: {
         data: tempmsg
       },
@@ -186,7 +189,8 @@ Page({
             filePath: tempFilePaths[i],
             name: 'file',
             header: {
-              "Content-Type": "multipart/form-data"
+              "Content-Type": "multipart/form-data",
+              'sessionid': wx.getStorageSync('sessionid')
             },
 
             success: function(res) {

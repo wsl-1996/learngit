@@ -24,9 +24,6 @@ page {
   justify-content: center;
 }
 
-.sub-cashback-item {
-}
-
 .cash-text {
   margin-left: 15rpx;
   margin-bottom: 10rpx;

@@ -1,25 +1,31 @@
-<import src='/pages/stars/stars-template.wxml'/>
+<import src='/pages/stars/stars-template.wxml' />
 <view class='container1' bindtouchstart="touchStart" bindtouchend="touchEnd">
   <view class='topbar'>
     <text class='goods' bindtap='ongoods'>商品</text>
     <text class='detail' bindtap='ondetail'>详情</text>
     <text class='comment' bindtap='oncomment'>评价</text>
   </view>
-  <view class='totoalcomment'>
-    <text class='commentnum'>已评价{{favorableNums}}份</text>
-    <text class='goodcomment'>好评率{{favorableRate}}</text>
+  <view wx:if='{{is_nocomment}}'>
+    <view class='nocomment-view'>抱歉，暂无评价</view>
   </view>
-  <view class='usercomment' wx:for="{{comments}}" wx:key="">
-    <view class='usercomment-title'>
-      <image class='Avatar' src='{{item.headImg}}'></image>
-      <text class='userName'>{{item.userName}}</text>
-      <text class='commentTime'>{{item.commentTime}}</text>
+  <view wx:else>
+    <view class='totoalcomment'>
+      <text class='commentnum'>已评价{{favorableNums}}份</text>
+      <text class='goodcomment'>好评率{{favorableRate}}</text>
     </view>
-    <template is='stars-template' data="{{starLevel:item.starLevel}}"/>
-     <view class='commentContent'><text>{{item.commentContent}}</text></view>
-    <view bindtap='imgYu' data-list='{{item.commentImg}}' class='img-container' wx:for='{{item.commentImg}}' wx:for-item='itemimg'>
-      <image  src='{{itemimg}}'></image>
+    <view class='usercomment' wx:for="{{comments}}" wx:key="">
+      <view class='usercomment-title'>
+        <image class='Avatar' src='{{item.headImg}}'></image>
+        <text class='userName'>{{item.userName}}</text>
+        <text class='commentTime'>{{item.commentTime}}</text>
+      </view>
+      <template is='stars-template' data="{{starLevel:item.starLevel}}" />
+      <view class='commentContent'>
+        <text>{{item.commentContent}}</text>
+      </view>
+      <view bindtap='imgYu' data-list='{{item.commentImg}}' class='img-container' wx:for='{{item.commentImg}}' wx:for-item='itemimg'>
+        <image src='{{itemimg}}'></image>
+      </view>
     </view>
   </view>
-
 </view>

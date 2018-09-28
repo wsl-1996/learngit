@@ -39,8 +39,8 @@ Page({
       temparr=[]
     }
     var tempobj={
-      "avatar": 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535710508993&di=bb6684ad9c01d0aacda8a262c6d1adca&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8694a4c27d1ed21bf486d5dca66eddc451da3fb8.jpg',
-      "nickname": '镁光官方客服',
+      "avatar": '/images/icon/officaltalkicon.svg',
+      "nickname": '官方客服',
       "message": '',
       "userid": '00000000000000000000000000000000'
     }

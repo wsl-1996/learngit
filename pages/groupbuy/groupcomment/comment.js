@@ -11,7 +11,8 @@ Page({
    * 页面的 初始数据
    */
   data: {
-    comments: {}
+    comments: {},
+    is_nocomment:false
   },
 
   /**gg
@@ -31,13 +32,22 @@ Page({
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/comments/getcommentlist?page=1&productid=' + this.data.productid,
       success: function(res) {
-        that.setData({
-          commentlist: res.data.data.commentList,
-          favorableNums: res.data.data.favorableInfo.favorableNums,
-          favorableRate: res.data.data.favorableInfo.favorableRate,
-        })
+        if (res.data.data.commentList.length==0) {
+          that.setData({
+            is_nocomment: true
+          })
+        }else{
+          that.setData({
+            commentlist: res.data.data.commentList,
+            favorableNums: res.data.data.favorableInfo.favorableNums,
+            favorableRate: res.data.data.favorableInfo.favorableRate,
+          })
+        }
+
+      
         that.processcommentData(res.data.data)
         console.log("评价信息",res.data)
+        console.log("评价信息", res.data.data.commentList)
       }
     })
   },

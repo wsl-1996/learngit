@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/groupbuy/groupbuy",
     "pages/my/myorder/tocomment/tocomment",
-    
     "pages/my/my",
     "pages/my/express/express",
     "pages/messages/customservice/customservice",
@@ -16,7 +16,6 @@
     "pages/my/myaddress/myaddress",
     "pages/my/myorder/myorder",
     "pages/my/myorder/orderdetail/orderdetail",
-    "pages/start/start",
     "pages/retail/retail",
     "pages/groupbuy/groupdetail/detail",
     "pages/my/myorder/backgoods/backgoods",
@@ -26,7 +25,7 @@
   ],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "客团",
+    "navigationBarTitleText": "程序园",
     "navigationBarBackgroundColor": "#FFB10A",
     "backgroundColor": "#fff",
     "enablePullDownRefresh": true,
@@ -42,7 +41,7 @@
         "pagePath": "pages/groupbuy/groupbuy",
         "iconPath": "/images/home.png",
         "selectedIconPath": "/images/home_hover.png",
-        "text": "客团"
+        "text": "程序园"
       },
       {
         "pagePath": "pages/messages/messages",

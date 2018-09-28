@@ -103,3 +103,12 @@ background:  linear-gradient(to bottom, rgb(255, 177, 10) , rgb(255, 203 , 80));
   width: 730rpx;
   height: 700rpx;
 }
+
+.nocomment-view{
+  width: 300rpx;
+  font-size: 32rpx;
+  position: absolute;
+  top: 200rpx;
+  left: 50%;
+  margin-left: -100rpx;
+}

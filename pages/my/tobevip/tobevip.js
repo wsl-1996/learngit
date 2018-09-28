@@ -29,6 +29,8 @@ Page({
 
     })
   },
+
+
   toup: function () {
     var messagecontent = {
       reason: '请求升级'

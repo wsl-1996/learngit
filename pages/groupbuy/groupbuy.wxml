@@ -61,8 +61,8 @@
       <text>登录提示</text>
     </view>
     <view class='model-content'>
-      <image class='model-content-img' src='/images/logo.png'></image>
-      <text>请登陆客团，以获取所有使用权限</text>
+      <image class='model-content-img' src='/images/logo.svg'></image>
+      <text>请登陆程序园，以获取所有使用权限</text>
 
     </view>
     <view class='model-footer'>

@@ -83,7 +83,8 @@ Page({
         filePath: tempFilePaths[i],
         name: 'file',
         header: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
+          'sessionid':wx.getStorageSync('sessionid')
         },
 
         success: function(res) {

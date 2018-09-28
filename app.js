@@ -16,8 +16,9 @@ App({
     g_hbhuserid: 'f1fc85a46ee64058b8529143ac0c1f70',
     g_ip: "http://192.168.0.105:8080",
     g_socket: 'ws://192.168.0.105:8080',
-    // g_ip: "http://47.99.78.252:8080",
-    // g_socket: "ws://47.99.78.252:8080",
+
+    // g_ip: "http://www.skqtec.com:8080",
+    // g_socket: 'ws://www.skqtec.com:8080',
     g_arr: [],
     g_tempdata:[],
     g_tempmsgfrom: '',

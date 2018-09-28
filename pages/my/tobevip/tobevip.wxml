@@ -5,29 +5,32 @@
     <text class='user-grade-text'>会员用户</text>
   </view>
 
-  <view class='sub-grade-content'  bindtap='toup'>
-  <text>申请升级</text>
+  <view class='sub-grade-content' bindtap='toup'>
+    <text>申请升级</text>
     <image class='upgrade-img' src='/images/icon/upgrade.svg'></image>
-    
+
   </view>
 </view>
-<view>用户及合伙人规则：</view>
+
 <!-- <view>{{vip}}</view> -->
-<view class='title-text'>
-  <text class='vip-text'>{{vip[0]}}</text>
-</view>
-<view class='sub-text'>
-  <text>{{vip[1]}}</text>
-</view>
-<view class='title-text'>
-  <text class='vip-text'>{{vip[2]}}</text>
-</view>
-<view class='sub-text'>
-  <text decode="{{true}}">{{vip[3]}}</text>
-</view>
-<view class='title-text'>
-  <text class='vip-text'>{{vip[4]}}</text>
-</view>
-<view class='sub-text'>
-  <text>{{vip[5]}}</text>
+<view class='sub-detail'>
+<view class='user-view'>用户及合伙人规则：</view>
+  <view class='title-text'>
+    <text class='vip-text'>{{vip[0]}}</text>
+  </view>
+  <view class='sub-text'>
+    <text>{{vip[1]}}</text>
+  </view>
+  <view class='title-text'>
+    <text class='vip-text'>{{vip[2]}}</text>
+  </view>
+  <view class='sub-text'>
+    <text decode="{{true}}">{{vip[3]}}</text>
+  </view>
+  <view class='title-text'>
+    <text class='vip-text'>{{vip[4]}}</text>
+  </view>
+  <view class='sub-text'>
+    <text>{{vip[5]}}</text>
+  </view>
 </view>

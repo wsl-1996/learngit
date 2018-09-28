@@ -63,14 +63,14 @@ page{
   position: absolute;
   font-size: 50pt;
   color: #fff;
-  margin: 100rpx 0 0 240rpx;
+  margin: 100rpx 0 0 180rpx;
   font-family: "幼圆"
 }
 
 .smalltitle{
   position: absolute;
   top: 100rpx;
-  left: 210rpx;
+  left: 260rpx;
   font-size: 20pt;
   font-family: "幼圆"
 }

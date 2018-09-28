@@ -1,6 +1,9 @@
-<import src='/pages/logofooter/logofooter-template.wxml'/>
-<view class="container1">
-  <view class='sub-title'>
+<import src='/pages/logofooter/logofooter-template.wxml' />
+<view wx:if='{{is_nochildren}}'>
+  <view class='nochildren-view'>您还没有粉丝</view>
+</view>
+<view wx:else class="container1">
+  <!-- <view class='sub-title'>
     <text>月贡献</text>
     <text>总贡献</text>
   </view>
@@ -8,8 +11,12 @@
       <image class='sub-list-img' src='{{item.avatar}}'></image>
       <text class='sub-list-text'>{{item.contuibution}}</text>
       <text class='sub-list-text'>{{item.contuibutiontotal}}</text>
+  </view> -->
+  <view class='fans-item' wx:for='{{childrenInfo}}'>
+    <image class='sub-list-img' src='{{item.avatar}}'></image>
+    <text class='sub-list-text'>{{item.nickName}}</text>
   </view>
-    <view class='logofooter-container'>
-    <template is='logofooter-template'/>
+  <view class='logofooter-container'>
+    <template is='logofooter-template' />
   </view>
 </view>

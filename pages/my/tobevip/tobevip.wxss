@@ -4,12 +4,13 @@ text{
 }
 
 .sub-text{
-  width: 650rpx;
+  width: 550rpx;
   margin-left: 60rpx;
   margin-bottom: 50rpx;
 }
 
 .title-text{
+  width: 600rpx;
 margin: 0 20rpx;
 }
 
@@ -38,4 +39,26 @@ margin: 0 20rpx;
   color: #1797FF;
   font-weight: 700;
   text-shadow: 100;
+}
+
+.user-view{
+  background:linear-gradient(to right,#FCE5BB,#F4D19C);
+  width: 300rpx;
+  height: 50rpx;
+  text-align: center;
+  margin-left: -30rpx;
+  padding-left: 20rpx;
+  border-top-left-radius: 10rpx;
+   border-bottom-left-radius: 10rpx;
+   font-weight: 700;
+}
+
+.sub-detail {
+  width: 660rpx;
+  background-color: #FFF6EC;
+  line-height: 50rpx;
+  margin-top: 50rpx;
+  margin-left: 25rpx;
+  padding: 20rpx;
+  padding-bottom: 50rpx;
 }
