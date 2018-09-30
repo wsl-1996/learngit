@@ -231,7 +231,7 @@ Page({
               iv: e.detail.iv,
               signature: e.detail.signature,
               userInfo: e.detail.userInfo,
-              parentid: '0'
+              parentid: '00000000000000000000000000000000'
             },
             success: function(res) {
               wx.setStorageSync('sessionid', res.data.data.sessionId)
