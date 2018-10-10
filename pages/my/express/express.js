@@ -22,19 +22,23 @@ Page({
   
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/expressages/gettrack',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       data:{
-        orderid:'01', //this.data.orderid
-        
+        orderid:this.data.orderid,  
       },
       success:function(res){
         console.log('物流信息：',res)
-        var track = JSON.parse(res.data.data.track)
+        var track = JSON.parse(res.data.data.track.track)
         console.log(track)
         that.setData({
-          track:track,
+          trackName: res.data.data.track.trackName,
+          trackNumber: res.data.data.track.trackNumber
         })
        
-        var reversedata = track.Traces.reverse()
+        var reversedata = track.reverse()
         reversedata[0].is_now = true
         that.setData({
           expressDetail: reversedata

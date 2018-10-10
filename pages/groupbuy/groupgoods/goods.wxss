@@ -135,7 +135,7 @@ page {
 }
 
 .maininfo-text {
-  width: 620rpx;
+  width: 710rpx;
   padding: 0 20rpx;
 }
 

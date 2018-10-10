@@ -4,16 +4,16 @@
     <view class='text-container'>
       <view class='sub-title'>
         <text class='sub-title-text'>物流公司：</text>
-        <text class='sub-title-text-name'>{{track.ShipperCode}}</text>
+        <text class='sub-title-text-name'>{{trackName}}</text>
       </view>
       <view class='sub-title'>
         <text class='sub-title-text'>物流单号：</text>
-        <text>{{track.LogisticCode}}</text>
+        <text>{{trackNumber}}</text>
       </view>
-      <view class='sub-title'>
+      <!-- <view class='sub-title'>
         <text class='sub-title-text'>物流电话：</text>
         <text class='sub-title-text-tele'>96662</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class='body-container'>
