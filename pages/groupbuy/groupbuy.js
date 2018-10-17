@@ -35,9 +35,6 @@ Page({
     this.getbanner()
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/users/islogin',
-      // data: {
-      //   sessionid: wx.getStorageSync('sessionid')
-      // },
       header: {
         'content-type': 'application/json',
         'sessionid': wx.getStorageSync('sessionid')

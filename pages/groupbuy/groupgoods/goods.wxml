@@ -23,10 +23,6 @@
       <view class='maininfo-text'>
         <text>{{productinfo}}</text>
       </view>
-      <!-- <button open-type='share' class='sharebtn' data-parentid='{{parentid}}'>
-        <image src='{{shareicon}}'></image>
-      </button>
-      <view class='share-text' ><text>分享</text></view> -->
     </view>
     <view class='group-price'>
       <text class='nowprice-text'>{{groupprice}}</text>
@@ -102,8 +98,8 @@
     </view>
   </view>
 
-  <view class='model-mask' wx:if='{{showModel}}'></view>
-  <view class='model-dialog' wx:if='{{showModel}}'>
+  <view class='model-mask' wx:if='{{showModellogin}}'></view>
+  <view class='model-dialog' wx:if='{{showModellogin}}'>
     <view class='model-title'>
       <text>登录提示</text>
     </view>

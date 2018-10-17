@@ -35,17 +35,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(event) {
+    console.log('event is',event)
     var that=this
     this.setData({
       groupid: event.groupid,
       parentid: event.parentid,
-      showModellogin: event.showModellogin,
+      gologin: event.gologin,
       // lasttime:event.lasttime
     })
     this.getproductinfo()
-    // this.setlasttime() 
     this.showusergrade()
+    if(this.data.gologin==true){
+      this.isLogin()
+    }
   },
+
   getproductinfo:function(){
     var that = this
     wx.request({
@@ -136,26 +140,6 @@ Page({
       goodsstyle:this.data.groupStyle[0]
     })
 
-    // var that = this
-    // wx.request({
-    //   url: app.globalData.g_ip + '/ketuan/applet/products/getproductstyle?productid='+ this.data.productid+'&sessionid=001',
-    //   success: function(res) {
-    //     console.log(res.data.data)
-    //     that.setData({
-    //       firstimg: res.data.data.FistImg,
-    //       productStyle: res.data.data.Style.productStyle,
-    //       stylePrice: res.data.data.Style.stylePrice,
-    //     })
-    //     console.log(that.data.stylePrice)
-    //     that.setData({
-    //       goodsstyle: that.data.productStyle[0],
-    //       pricenow: that.data.stylePrice[0]
-    //     })
-    //     console.log('这是默认款式：' + that.data.productStyle[0])
-    //   }
-    // })
-  
-
   },
   /**
    * 弹出框蒙层截断touchmove事件
@@ -185,8 +169,8 @@ Page({
     wx.navigateTo({
       url: '../../commitorder/commitorder?num=' + this.data.num + '&style=' + this.data.goodsstyle + '&firstimg=' + this.data.firstimg + '&productinfo=' + this.data.productinfo + '&pricenow=' + pricenow + '&productid=' + this.data.productid + '&groupid=' + this.data.groupid
     })
-    console.log("this is productidokok" + this.data.groupid)
-    console.log("this is groupidokok" + this.data.groupid)
+    console.log("this is productid" + this.data.groupid)
+    console.log("this is groupid" + this.data.groupid)
   },
 
   onchosen: function(e) {
@@ -354,7 +338,8 @@ Page({
     console.log('this is share', res)
     return {
       title: this.data.productinfo,
-      path: '/pages/groupbuy/groupgoods/goods?productid=' + this.data.productid + '&parentid=' + wx.getStorageSync('userid') + '&showModellogin=' + true,       //根据推荐进来的用户会在本页面登陆
+      path: '/pages/groupbuy/groupgoods/goods?groupid=' + this.data.groupid + '&parentid=' + wx.getStorageSync('userid') + '&gologin=' + true,       //根据推荐进来的用户会在本页面登陆
+      imageUrl: this.data.groupSlideImg[0]
     }
   },
   bindGetuserinfo: function(e) { //登陆授权
@@ -389,7 +374,7 @@ Page({
                 icon: 'success'
               })
               that.setData({
-                showModellogin: true
+                showModellogin: false
               })
               that.listenmsg()
               wx.onSocketClose(function(res) {
@@ -399,6 +384,120 @@ Page({
             }
 
           })
+        }
+      }
+    })
+  },
+
+  listenmsg: function () { //监听消息传入
+    var that = this
+    var msg = "{ messageFrom:" + "'" + wx.getStorageSync('userid') + "'" + ",messageContent:'connect',messageType: '-1'}"
+    wx.connectSocket({
+      url: app.globalData.g_socket + '/ketuan/websocket'
+    })
+    wx.onSocketOpen(function (res) {
+      sendSocketMessage(msg)
+      console.log("+++++++++++++开始监听+++++++++++++")
+    })
+
+    function sendSocketMessage(msg) {
+      wx.sendSocketMessage({
+        data: msg,
+      })
+    }
+
+    wx.onSocketMessage(function (res) {  //监听消息传入
+
+      console.log(res)
+      // res.data.replace("{\"", "{'");
+      // res.data.replace("\":", "':");
+      // res.data.replace(",\"", ",'");
+      console.log('this is res.data')
+      console.log(res.data)
+      var tempres = JSON.parse(res.data)
+      console.log('this is tempres', tempres)
+      console.log(tempres.messageContent)
+      app.globalData.g_tempmsgfrom = tempres.messageFrom
+      if (tempres.messageType == '4') {
+        var redpacketContent = JSON.parse(tempres.messageContent)
+      }
+      var temp = {
+        is_show_right: 0,
+        messageContent: tempres.messageType == '4' ? redpacketContent.explain : tempres.messageContent,
+        redpacketsum: tempres.messageType == '4' ? redpacketContent.sum : null,
+        messageFrom: tempres.messageFrom,
+        messageto: app.globalData.userid,
+        toView: util.RndNum(),
+        contentType: parseInt(tempres.contentType),
+        messageType: parseInt(tempres.messageType),
+        createtime: util.formatTime(new Date()),
+        headOwner: tempres.headOwner,
+      }
+      var tampstorage = wx.getStorageSync('centendata' + tempres.messageFrom) //从缓存中把对应ID的数组取出来
+      if (tampstorage == '') {
+        tampstorage = []
+      }
+      tampstorage.push(temp)
+      wx.setStorageSync('centendata' + tempres.messageFrom, tampstorage) //接收的消息存入缓存
+      app.globalData.g_msgfromid = tempres.messageFrom,
+
+        that.setmsglist(temp.headOwner, temp.messageContent, temp.messageContent, temp.messageFrom)
+      app.globalData.g_newmsg = true
+      console.log('+++++++++++++++您有新的消息了+++++++++++++++')
+
+    })
+  },
+
+  setmsglist: function (Headimg, Nickname, message, userid) {
+    var temp = {}
+    var is_have = false
+    temp = {
+      "avatar": Headimg,
+      "nickname": Nickname,
+      "message": message,
+      "userid": userid
+    }
+    app.globalData.g_arr = wx.getStorageSync('msglist')
+    for (var i = 0; i < app.globalData.g_arr.length; i++) {
+      if (app.globalData.g_arr[i].userid == temp.userid) {
+        is_have = true
+        app.globalData.g_arr[i].message = temp.message
+        wx.setStorageSync("msglist", app.globalData.g_arr)
+      }
+    }
+    if (app.globalData.g_arr == '') {
+      app.globalData.g_arr = []
+    }
+
+    if (is_have == false) {
+      app.globalData.g_arr.push(temp)
+      console.log(app.globalData.g_arr)
+      wx.setStorageSync("msglist", app.globalData.g_arr)
+    }
+
+  },
+
+
+  isLogin:function(){
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/users/islogin',
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
+      success: function (res) {
+        console.log('this is islogin', res)
+        if (res.data.data.isLogin == 'false') {
+          that.setData({
+            showModellogin: true
+          })
+          console.log('isLogin为false', that.data.showModel)
+        } else {
+          that.setData({
+            showModellogin: false
+          })
+          console.log('isLogin为true', that.data.showModel)
+          that.listenmsg()
         }
       }
     })

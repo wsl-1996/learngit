@@ -475,7 +475,7 @@ display: flex;
   min-width: 100rpx;
 }
 
-.model-mask {
+.model-mask{
   width: 100%;
   height: 100%;
   opacity: 0.5;
@@ -483,11 +483,11 @@ display: flex;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9000;
+  z-index: 9000
 }
 
-.model-dialog {
-  width: 500rpx;
+.model-dialog{
+  width: 500rpx;    
   height: 450rpx;
   position: fixed;
   top: 50%;
@@ -496,10 +496,9 @@ display: flex;
   margin-top: -250rpx;
   background-color: #fff;
   z-index: 9999;
-  border-radius: 20rpx;
 }
 
-.model-title {
+.model-title{
   width: 500rpx;
   font-size: 38rpx;
   position: absolute;
@@ -512,8 +511,8 @@ display: flex;
   padding-bottom: 20rpx;
 }
 
-.model-content {
-  width: 500rpx;
+.model-content{
+   width: 500rpx;
   font-size: 28rpx;
   color: #bbb;
   position: absolute;
@@ -522,14 +521,19 @@ display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
-.model-content-img {
-  width: 150rpx;
+.model-content-img{
+  margin-top: 10rpx;
+  width: 170rpx;
   height: 150rpx;
 }
 
-.model-footer {
+.model-content text{
+  margin-top: 20rpx
+}
+.model-footer{
   width: 500rpx;
   font-size: 28rpx;
   color: #bbb;
@@ -540,11 +544,15 @@ display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.login-btn {
-  width: 500rpx;
-  background-color: #32cd32;
+.login-btn{
+  width: 600rpx;
+  background-color:rgb(255, 177, 10);
   color: #fff;
+  border-radius: 0
+}
+
+.login-btn::after{
+border-radius: 0
 }
 
 .model-rule-dialog{

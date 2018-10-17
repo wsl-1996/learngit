@@ -17,10 +17,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log('1111111111111111111111111111onload')
     var that = this
-    this.getdefaultaddress()
-    
     this.setData({
       num: options.num,
       style: options.style,
@@ -29,23 +27,27 @@ Page({
       pricenow: options.pricenow,
       groupid: options.groupid,
       productid: options.productid
-
     })
-    console.log("this is thsada0")
     console.log(this.data.style)
     console.log(this.data.productinfo)
     console.log("this is groupid" + this.data.groupid)
     console.log("this is proid" + this.data.productid)
+    
+    this.caculateprice()
+   
+  },
+  caculateprice:function(){
     this.setData({
       totalprice: this.data.num * this.data.pricenow
     })
     this.setData({
-      outcost:util.getnum(this.data.totalprice-this.data.deduction)
+      outcost: util.getnum(Number(this.data.totalprice) - Number(this.data.deduction))
     })
     console.log('this is totalprice' + this.data.totalprice)
     console.log('this is outcost' + this.data.outcost)
     this.getback()
   },
+
   getdefaultaddress:function(){
     var that = this
     wx.request({
@@ -56,52 +58,58 @@ Page({
       },
       success: function (res) {
         that.setData({
-          addressinfo: res.data.data
+          addressinfo: res.data.data,
+          userProvince: res.data.data.addressinfo.userProvince
         })
-        console.log('kokokok设施 is addressinfo',res.data)
+        that.getexpressprice()
+        console.log('addressinfo',res.data)
       }
     })
   },
   commitorder: function(res) {
-    wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/orders/createorder',
-      data: {
-        productid: this.data.productid,
-        groupid: this.data.groupid,
-        // sessionid: app.globalData.g_sessionid,
-        totalprice: this.data.totalprice,
-        deduction: this.data.usededuction,
-        style: this.data.style,
-        meno: this.data.meno,
-        productprice: this.data.pricenow,
-        sums: this.data.num,
-        carriageprice: 5
-      },
-      header: {
-        'content-type': 'application/json',
-        'sessionid': wx.getStorageSync('sessionid')
-      },
-      success: function(res) {
-        console.log(res.data)
-        var data = res.data.data
-        wx.requestPayment({
-          'timeStamp': data.timeStamp,
-          'nonceStr': data.nonceStr,
-          'package': data.package,
-          'signType': data.signType,
-          'paySign': data.paySign,
-          'appId': 'wx5733cafea467c980',
-          'success': function(res) {
-            console.log('调用支付success')
-          },
-          'fail': function(res) {
-            console.log(res)
-            console.log('调用支付failed' + JSON.stringify(data.nonceStr))
-          }
-        })
-      }
-    })
-
+    if (this.data.addressinfo == null) {
+      wx.showToast({
+        title: '请填写收货地址',
+      })
+    }else{
+      wx.request({
+        url: app.globalData.g_ip + '/ketuan/applet/orders/createorder',
+        data: {
+          productid: this.data.productid,
+          groupid: this.data.groupid,
+          totalprice: this.data.totalprice,
+          deduction: this.data.usededuction,
+          style: this.data.style,
+          meno: this.data.meno,
+          productprice: this.data.pricenow,
+          sums: this.data.num,
+          carriageprice: this.data.valueprice
+        },
+        header: {
+          'content-type': 'application/json',
+          'sessionid': wx.getStorageSync('sessionid')
+        },
+        success: function (res) {
+          console.log(res.data)
+          var data = res.data.data
+          wx.requestPayment({
+            'timeStamp': data.timeStamp,
+            'nonceStr': data.nonceStr,
+            'package': data.package,
+            'signType': data.signType,
+            'paySign': data.paySign,
+            'appId': 'wx5733cafea467c980',
+            'success': function (res) {
+              console.log('调用支付success')
+            },
+            'fail': function (res) {
+              console.log(res)
+              console.log('调用支付failed' + JSON.stringify(data.nonceStr))
+            }
+          })
+        }
+      })
+    }
   },
 
   getback: function() {
@@ -135,7 +143,7 @@ Page({
       num: Number(this.data.num) + 1
     })
     this.setData({
-      totalprice: this.data.num * this.data.pricenow
+      totalprice: Number(this.data.num * this.data.pricenow) + Number(this.data.valueprice)
     })
     if (flag == true) {
       this.setData({
@@ -156,7 +164,7 @@ Page({
         num: num - 1
       })
       this.setData({
-        totalprice: this.data.num * this.data.pricenow
+        totalprice: Number(this.data.num * this.data.pricenow) + Number(this.data.valueprice)
       })
       if (flag == true) {
         this.setData({
@@ -184,6 +192,40 @@ Page({
       url: '../my/myaddress/myaddress',
     })
   },
+
+  getexpressprice:function(){
+    var that=this
+    wx.request({
+      url: app.globalData.g_ip + '/ketuan/applet/expressages/getexpressbyproductid',
+      data:{
+        productid:this.data.productid
+      },
+      success:function(res){
+        var expressinfo=res.data.data.expressage.priceStand
+        var keyname = ''
+        var valueprice = ''
+        expressinfo=JSON.parse(expressinfo)
+        console.log('expressprice', expressinfo)
+        for(var i=0;i<expressinfo.length;i++){
+          for (var key in expressinfo[i]){
+            keyname=key
+          }
+          if(keyname==that.data.userProvince){
+            valueprice = expressinfo[i][keyname]
+            that.setData({
+              valueprice: valueprice,
+              totalprice: Number(that.data.totalprice) + Number(valueprice)
+            })
+            that.setData({
+              outcost:that.data.totalprice
+            })
+            console.log('valueprice',that.data.valueprice)
+            break;
+          }
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -195,6 +237,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    console.log('222222222222222222222222222onshow')
     this.getdefaultaddress()
     console.log('执行onshow')
   },

@@ -199,3 +199,20 @@
 .deduction-content-radio{
     margin-right: 20rpx;
 }
+
+.express-content{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.express-content-img{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  width: 90rpx;
+  height: 80rpx;
+}
+
+.express-price{
+  margin-left: 300rpx;
+}

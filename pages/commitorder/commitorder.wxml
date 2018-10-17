@@ -32,13 +32,17 @@
     <image class='payment-img' src='/images/payment.png'></image>
     <text class='payment-text'>微信支付</text>
   </view>
-  <view class='deduction-content'>
-  <view class='deduction-sub-content'>
-  <image src='/images/icon/deduction.svg' class='deduction-content-img'></image>
-    <text class='deduction-content-text'>可抵扣金额:</text>
-    <text class='deduction-content-price'>{{deduction}}</text>
+  <view class='express-content'>
+    <image src='/images/icon/expressspent.svg' class='express-content-img'></image>
+    <text class='express-text'>配送方式：</text>
+    <text class='express-price'>快递：￥{{valueprice}}</text>
   </view>
-    
+  <view class='deduction-content'>
+    <view class='deduction-sub-content'>
+      <image src='/images/icon/deduction.svg' class='deduction-content-img'></image>
+      <text class='deduction-content-text'>可抵扣金额：</text>
+      <text class='deduction-content-price'>{{deduction}}</text>
+    </view>
     <radio bindtap='chkRadio' checked='{{flag}}' class='deduction-content-radio'>使用抵扣</radio>
   </view>
   <view class='footer-content'>
