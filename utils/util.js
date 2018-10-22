@@ -29,19 +29,6 @@ function convertToStarsArray(stars) {
   return array;
 }
 
-function Register(){
-   register() 
-  console.log("this is Register")
-  // console.log(temp)
-}
-
-function register(res) {
-  var tempdata=res
-  console.log("this is register temp")
-  console.log(temp)
-}
-// function Register({register(){}})
-
 function RndNum() {
   var rnd = "R";
   for (var i = 0; i < 8; i++)
@@ -107,85 +94,118 @@ function tworandom(max,min){
 }
 
 function socketlink(){
-  console.log('sockettype',app.globalData.socketCloseType)
+  console.log('socketclosetype',app.globalData.socketCloseType)
+  console.log('sockettype', app.globalData.localsocket)
   var that = this
-  
-  var msg = "{ messageFrom:" + "'" + wx.getStorageSync('userid') + "'" + ",messageContent:'connect',messageType: '-1'}"
-  wx.connectSocket({
-    url: app.globalData.g_socket + '/ketuan/websocket'
-  })
-  wx.onSocketOpen(function (res) {
-    sendSocketMessage(msg)
-    console.log("+++++++++++++开始监听+++++++++++++")
-  })
-
-  function sendSocketMessage(msg) {
-    wx.sendSocketMessage({
-      data: msg,
+  if(app.globalData.socketCloseType==true){
+    var msg = "{ messageFrom:" + "'" + wx.getStorageSync('userid') + "'" + ",messageContent:'connect',messageType: '-1'}"
+    app.globalData.localsocket = wx.connectSocket({
+      url: app.globalData.g_socket + '/ketuan/websocket'
     })
+    wx.onSocketOpen(function (res) {
+      sendSocketMessage(msg)
+      console.log("+++++++++++++开始监听+++++++++++++")
+    })
+    console.log('重连后sockettype', app.globalData.localsocket)
+    function sendSocketMessage(msg) {
+      wx.sendSocketMessage({
+        data: msg,
+      })
+    }
+
+    wx.onSocketMessage(function (res) {  //监听消息传入
+
+      console.log(res)
+      console.log('this is res.data')
+      console.log(res.data)
+      var tempres = JSON.parse(res.data)
+      console.log('this is tempres', tempres)
+      console.log(tempres.messageContent)
+      app.globalData.g_tempmsgfrom = tempres.messageFrom
+      if (tempres.messageType == '4') {
+        var redpacketContent = JSON.parse(tempres.messageContent)
+      }
+      var temp = {
+        is_show_right: 0,
+        msgid: tempres.id,
+        messageContent: tempres.messageType == '4' ? redpacketContent.explain : tempres.messageContent,
+        redpacketsum: tempres.messageType == '4' ? redpacketContent.sum : null,
+        messageFrom: tempres.messageFrom,
+        messageto: app.globalData.userid,
+        toView: that.RndNum(),
+        contentType: parseInt(tempres.contentType),
+        messageType: parseInt(tempres.messageType),
+        createtime: that.formatTime(new Date()),
+        headOwner: tempres.headOwner,
+      }
+      var tampstorage = wx.getStorageSync('centendata' + tempres.messageFrom) //从缓存中把对应ID的数组取出来
+      if (tampstorage == '') {
+        tampstorage = []
+      }
+      tampstorage.push(temp)
+      wx.setStorageSync('centendata' + tempres.messageFrom, tampstorage) //接收的消息存入缓存
+      app.globalData.g_msgfromid = tempres.messageFrom,
+
+        that.setmsglist(temp.headOwner, temp.messageContent, temp.messageContent, temp.messageFrom)
+      app.globalData.g_newmsg = true
+      console.log('+++++++++++++++您有新的消息了+++++++++++++++')
+      wx.showToast({
+        title: '新消息~！',
+      })
+
+    })
+
+    wx.onSocketClose(function () {
+      console.log('listenlist 监听socket close')
+    })
+
+    wx.onSocketError(function () {
+      console.log('listenlist 监听socket error')
+    })
+  }else{
+    console.log('socket已连接')
+  }
+  
+}
+
+function setmsglist(Headimg, Nickname, message, userid) {
+  var temp = {}
+  var is_have = false
+  temp = {
+    "avatar": Headimg,
+    "nickname": Nickname,
+    "message": message,
+    "userid": userid
+  }
+  app.globalData.g_arr = wx.getStorageSync('msglist')
+  for (var i = 0; i < app.globalData.g_arr.length; i++) {
+    if (app.globalData.g_arr[i].userid == temp.userid) {
+      is_have = true
+      app.globalData.g_arr[i].message = temp.message
+      wx.setStorageSync("msglist", app.globalData.g_arr)
+    }
+  }
+  if (app.globalData.g_arr == '') {
+    app.globalData.g_arr = []
   }
 
-  wx.onSocketMessage(function (res) {  //监听消息传入
+  if (is_have == false) {
+    app.globalData.g_arr.push(temp)
+    console.log(app.globalData.g_arr)
+    wx.setStorageSync("msglist", app.globalData.g_arr)
+  }
 
-    console.log(res)
-    console.log('this is res.data')
-    console.log(res.data)
-    var tempres = JSON.parse(res.data)
-    console.log('this is tempres', tempres)
-    console.log(tempres.messageContent)
-    app.globalData.g_tempmsgfrom = tempres.messageFrom
-    if (tempres.messageType == '4') {
-      var redpacketContent = JSON.parse(tempres.messageContent)
-    }
-    var temp = {
-      is_show_right: 0,
-      msgid: tempres.id,
-      messageContent: tempres.messageType == '4' ? redpacketContent.explain : tempres.messageContent,
-      redpacketsum: tempres.messageType == '4' ? redpacketContent.sum : null,
-      messageFrom: tempres.messageFrom,
-      messageto: app.globalData.userid,
-      toView: util.RndNum(),
-      contentType: parseInt(tempres.contentType),
-      messageType: parseInt(tempres.messageType),
-      createtime: util.formatTime(new Date()),
-      headOwner: tempres.headOwner,
-    }
-    var tampstorage = wx.getStorageSync('centendata' + tempres.messageFrom) //从缓存中把对应ID的数组取出来
-    if (tampstorage == '') {
-      tampstorage = []
-    }
-    tampstorage.push(temp)
-    wx.setStorageSync('centendata' + tempres.messageFrom, tampstorage) //接收的消息存入缓存
-    app.globalData.g_msgfromid = tempres.messageFrom,
-
-      that.setmsglist(temp.headOwner, temp.messageContent, temp.messageContent, temp.messageFrom)
-    app.globalData.g_newmsg = true
-    console.log('+++++++++++++++您有新的消息了+++++++++++++++')
-    wx.showToast({
-      title: '新消息~！',
-    })
-
-  })
-
-  wx.onSocketClose(function () {
-    console.log('listenlist 监听socket close')
-  })
-
-  wx.onSocketError(function () {
-    console.log('listenlist 监听socket error')
-  })
 }
 
 module.exports = {
   formatTime: formatTime,
   convertToStarsArray: convertToStarsArray,
-  register: register,
-  Register: Register,
   RndNum: RndNum,
   getnum: getnum,
   topercent: topercent,
   countdown: countdown,
   checkTime: checkTime,
   tohot:tohot,
-  socketlink: socketlink
+  socketlink: socketlink,
+  setmsglist: setmsglist
 }

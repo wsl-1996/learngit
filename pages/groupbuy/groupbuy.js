@@ -282,12 +282,13 @@ Page({
   listenmsg: function() { //监听消息传入
     var that = this
     var msg = "{ messageFrom:" + "'" + wx.getStorageSync('userid') + "'" + ",messageContent:'connect',messageType: '-1'}"
-    wx.connectSocket({
+    app.globalData.localsocket = wx.connectSocket({
       url: app.globalData.g_socket + '/ketuan/websocket'
     })
     wx.onSocketOpen(function(res) {
       sendSocketMessage(msg)
-      console.log("+++++++++++++开始监听+++++++++++++")
+      console.log("+++++++++++++连接打开+++++++++++++")
+      console.log('第一次连接sockettype', app.globalData.localsocke)
     })
 
     function sendSocketMessage(msg) {
@@ -295,12 +296,10 @@ Page({
         data: msg,
       })
     }
-
+    
     wx.onSocketMessage(function(res) {  //监听消息传入
-
-      console.log(res)
-      console.log('this is res.data')
-      console.log(res.data)
+      console.log("+++++++++++++开始监听+++++++++++++")
+      console.log('收到的消息',res.data)
       var tempres = JSON.parse(res.data)
       console.log('this is tempres', tempres)
       console.log(tempres.messageContent)
@@ -348,7 +347,7 @@ Page({
     })
   },
 
-  setmsglist: function(Headimg, Nickname, message, userid) {
+  setmsglist: function(Headimg, Nickname, message, userid) {   //消息列表界面的预览消息
     var temp = {}
     var is_have = false
     temp = {
@@ -425,7 +424,10 @@ Page({
   onUnload: function () {
     console.log('执行onUnload')
   },
+  /**
+  * 生命周期函数--监听页面显示
+  */
   onShow: function () {
-    console.log('执行onshow')
+    util.socketlink()
   },
 })

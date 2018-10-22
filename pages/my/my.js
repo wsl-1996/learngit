@@ -221,45 +221,9 @@ Page({
       sum:sum
     })
     console.log(sum)
-  }
-  // drawcanvas:function(){
-  //   const ctx = wx.createCanvasContext('myCanvas')
-  //   const ctx1 = wx.createCanvasContext("myCanvas1")
-  //   const ctx2 = wx.createCanvasContext('myCanvas2')
-
-  //   ctx2.beginPath()
-  //   ctx2.moveTo(0, 0)
-  //   ctx2.lineTo(0, 10)
-  //   ctx2.quadraticCurveTo(150, 130, 300, 10)
-  //   ctx2.lineTo(300, 0)
-  //   ctx2.closePath()
-  //   ctx2.lineWidth = 3
-  //   ctx2.fillStyle = '#E89688'
-  //   ctx2.fill()
-  //   ctx2.draw()
-
-  //   ctx.beginPath()
-  //   ctx.moveTo(0, 0)
-  //   ctx.lineTo(0, 20)
-  //   ctx.quadraticCurveTo(150, 150, 300, 20)
-  //   ctx.lineTo(300, 0)
-  //   ctx2.closePath()
-  //   ctx.setStrokeStyle('red')
-  //   ctx.setFillStyle('red')
-  //   ctx.fill()
-  //   ctx.draw()
-
-  //   ctx1.beginPath()
-  //   ctx1.arc(150, 70, 30, 0, 2 * Math.PI)
-  //   ctx1.setFillStyle('yellow')
-  //   ctx1.fill()
-  //   ctx1.beginPath()
-  //   ctx1.setFontSize(20)
-  //   ctx1.setFillStyle('#000')
-  //   ctx1.fillText('拆', 140, 75)
-  //   ctx1.fill()
-  //   ctx1.draw()
-
-  //   console.log('绘制！！！！！')
-  // }
+  },
+  
+  onShow: function () {
+    util.socketlink()
+  },
 })
