@@ -260,7 +260,7 @@ page {
 
 .afterSalekey {
 
-   width: 150rpx;
+  width: 150rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

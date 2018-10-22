@@ -14,7 +14,11 @@ Page({
   data: {
     centendata: [],
     scrollTop: '3000rpx',
-    redshow: false
+    redshow: false,
+    isReceive:{
+      redid:'',
+      redstate:false
+    }
   },
 
   /**
@@ -219,16 +223,25 @@ Page({
     this.setData({
       toView: ''
     })
-    console.log(this.data.toView)
+    console.log('toview 值',this.data.toView)
   },
 
   openpac: function(e) {
     var redsum=e.currentTarget.dataset.redsum
-    this.setData({
-      redshow: true,
-      redsum: redsum
-    })
-    console.log('redsum', this.data.redsum)
+    var redid = e.currentTarget.dataset.redid
+    if(this.data.isReceive.redid = redid && this.data.isReceive.redstate == true){
+      wx.showToast({
+        title: '领取过啦~',
+      })
+    }else{
+      this.setData({
+        redshow: true,
+        redsum: redsum,
+        redid: redid
+      })
+      console.log('redsum', this.data.redsum)
+    }
+    
   },
 
 
@@ -241,7 +254,10 @@ Page({
    
   // },
 
-  closemodel: function () {
+  closemodel: function (e) {
+    var that=this
+    var redid=e.currentTarget.dataset.redid
+    var isReceive
     this.setData({
       redshow: false,
       istouched: false
@@ -257,6 +273,13 @@ Page({
       },
       success:function(res){
         console.log('添加余额',res)
+        isReceive={
+          redid:redid,
+          redstate:true
+        }
+        that.setData({
+          isReceive: isReceive
+        })
       }
     })
   },

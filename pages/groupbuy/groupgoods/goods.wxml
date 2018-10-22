@@ -9,7 +9,7 @@
       <image class="goodsbanner" src='{{swiperitem}}' bindtap='previewimg' data-currentimg='{{swiperitem}}' data-list="{{groupSlideImg}}" mode="widthFix"></image>
     </swiper-item>
   </swiper>
-  <view bindtouchstart="touchStart" bindtouchend="touchEnd">
+  <view bindtouchstart="touchStart" bindtouchend="touchEnd" >
     <view class='group-info'>
       <image class='group-img' src='/images/groupbuy1.png'></image>
       <text class='group-info-grouptype'>固定团</text>

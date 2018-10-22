@@ -67,10 +67,10 @@
       <image class='count-img-fans' src='/images/icon/redpacket.svg'></image>
       <view>红包中心</view>
     </view>
-    <view class='sub-count-item' bindtap='clearstorage'>
+    <!-- <view class='sub-count-item' bindtap='clearstorage'>
       <image class='count-img-fans' src='/images/icon/clear.svg'></image>
       <view>清理缓存</view>
-    </view>
+    </view> -->
   </view>
   <view class='logofooter-container'>
     <template is='logofooter-template' />
@@ -80,7 +80,6 @@
     <!-- <canvas canvas-id='myCanvas2'></canvas> -->
     <image src='/images/redbg.svg' class='redbg-img'></image>
     <image src='/images/redpacket3.svg' class="{{istouched==true?'redopen':''}}  redopenimg" bindtap='touchcanvas'></image>
-    <!-- <canvas canvas-id="myCanvas" class="{{istouched==true?'redopen':''}}  myCanvas" animation='{{animationdata}}' bindtap='touchcanvas' animation='{{canvasanimation}}' ></canvas> -->
     <image src='/images/yellow.png' class="{{istouched==true?'yellowcolse':''}}  yellowcloseimg" bindtap='touchcanvas'></image>
     <image src='/images/coin.svg' class="{{istouched==true?'moneyshow':''}}  moneycash"></image>
     <view class="{{istouched==true?'cashshow':'' }} redcash">{{sum}}元</view>

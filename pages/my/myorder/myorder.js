@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    statusType: ["已完成", "待付款","待发货", "待收货", "待评价"],
+    statusType: ["全部", "待支付","待发货", "待收货", "待评价"],
     currentType: '0',
     tabClass: ["", "", "", "", ""],
     myorder:[],
@@ -20,17 +20,17 @@ Page({
       currentType: curType
     });
     this.onShow();
-    this.getorderlist()
+    this.getorderlist(curType)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  getorderlist: function (){
+  getorderlist: function (currentType){
     var that = this
-    console.log(that.data.currentType)
+    console.log('订单状态',currentType)
     wx.request({
-      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?orderstate=' + this.data.currentType,
+      url: app.globalData.g_ip + '/ketuan/applet/orders/getorder?orderstate=' + currentType,
       header: {
         'content-type': 'application/json',
         'sessionid': wx.getStorageSync('sessionid')
@@ -40,8 +40,37 @@ Page({
         that.setData({
           orderlist: res.data.data.searchResult
         })
+        that.handlestate()
         console.log('这是订单列表',that.data.orderlist)
       }
+    })
+  },
+
+  handlestate: function (){
+    for (let i = 0; i < this.data.orderlist.length;i++){
+      switch (this.data.orderlist[i].orderState){
+        case '1':
+          this.data.orderlist[i].orderStateText='待支付'
+          break;
+        case '2':
+          this.data.orderlist[i].orderStateText = '待发货'
+          break;
+        case '3':
+          this.data.orderlist[i].orderStateText = '待收货'
+          break;
+        case '4':
+          this.data.orderlist[i].orderStateText = '待评价'
+          break;
+        case '5':
+          this.data.orderlist[i].orderStateText = '已评价'
+          break;
+        case '6':
+          this.data.orderlist[i].orderStateText = '已取消'
+          break;
+      }
+    }
+    this.setData({
+      orderlist:this.data.orderlist
     })
   },
   onLoad: function (options) {
@@ -50,7 +79,7 @@ Page({
     currentType: options.currentyp
   });
   console.log('this is current type:',this.data.currentType)
-  this.getorderlist()
+    this.getorderlist(this.data.currentType)
   },
 
 
@@ -74,7 +103,7 @@ Page({
             },
             success:function(res){
               console.log("这里是返回订单编号",res)
-              that.getorderlist()
+              that.getorderlist(that.data.currentType)
             }
           })
         } else if (res.cancel) {
@@ -103,17 +132,25 @@ Page({
   },
   toSearch: function () {         //查找订单
     var that=this
+    this.setData({
+      currentType:0
+    })
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/orders/searchorders?sessionid=' + app.globalData.g_sessionid+'&key=%E8%A1%AC%E8%A1%AB',
       data: {
         userid: "01",
         key: this.data.searchInput
       },
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success: function (res) {
         console.log(res.data)
         that.setData({
           orderlist:res.data.data.searchResult
         })
+        that.handlestate()
       }
     })
   },
@@ -131,7 +168,22 @@ Page({
         'sessionid': wx.getStorageSync('sessionid')
       },
       success:function(res){
-        console.log('this is 待支付回调',res)
+        var data = res.data.data
+        wx.requestPayment({
+          'timeStamp': data.timeStamp,
+          'nonceStr': data.nonceStr,
+          'package': data.package,
+          'signType': data.signType,
+          'paySign': data.paySign,
+          'appId': 'wx5733cafea467c980',
+          'success': function (res) {
+            console.log('调用待支付success')
+          },
+          'fail': function (res) {
+            console.log(res)
+            console.log('调用待支付failed' + JSON.stringify(data.nonceStr))
+          }
+        })
       }
     })
   },

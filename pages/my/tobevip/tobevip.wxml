@@ -2,7 +2,7 @@
 <view class='grade-content'>
   <view class='sub-grade-content'>
     <text>当前等级</text>
-    <text class='user-grade-text'>会员用户</text>
+    <text class='user-grade-text'>{{usergrade}}</text>
   </view>
 
   <view class='sub-grade-content' bindtap='toup'>

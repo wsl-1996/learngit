@@ -14,6 +14,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var usergrade = options.usergrade
+    if (usergrade == 0) {
+      usergrade = '会员用户'
+    } else if (usergrade == 1) {
+      usergrade = '合伙人'
+    } else {
+      usergrade = '金牌合伙人'
+    }
+    this.setData({
+      usergrade:usergrade
+    })
     var that=this
     wx.request({
       url: app.globalData.g_ip + '/ketuan/applet/explains/getexplain',

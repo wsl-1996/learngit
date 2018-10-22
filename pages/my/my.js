@@ -152,7 +152,7 @@ Page({
   },
   tobevip: function() {
     wx.navigateTo({
-      url: 'tobevip/tobevip',
+      url: 'tobevip/tobevip?usergrade=' + this.data.userGrade,
     })
   },
   onShow: function() {

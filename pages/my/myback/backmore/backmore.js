@@ -56,6 +56,10 @@ Page({
       data:{
         key:'backrule'
       },
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
       success:function(res){
         that.setData({
           backrule: res.data.data.explain.explainInfo
@@ -120,6 +124,10 @@ Page({
         url: app.globalData.g_ip + '/ketuan/applet/message/sendMessage',
         data: {
           data: tempres
+        },
+        header: {
+          'content-type': 'application/json',
+          'sessionid': wx.getStorageSync('sessionid')
         },
         success: function(res) {
           console.log('提现申请成功', res)

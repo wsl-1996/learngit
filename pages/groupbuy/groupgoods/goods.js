@@ -1,7 +1,8 @@
 var util=require('../../../utils/util.js')
 var app = getApp();
 var time = 0;
-var touchDot = 0;//触摸时的原点
+var touchDotX = 0;//触摸时的原点
+var touchDotY = 0;//触摸时的原点
 var interval = "";
 var flag_hd = true;
 Page({
@@ -16,8 +17,8 @@ Page({
     chosen: '已选：',
     groupprice: "团购价",
     originalprice: "原价",
-    cashback: '返现比例：',
-    cashrule: '返现规则',
+    cashback: '购买商品获得返利：',
+    cashrule: '推荐商品获得返现——规则',
     tmprice: "天猫价",
     jdprice: "京东价",
     shareicon: "../../../images/share.png",
@@ -294,14 +295,7 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    flag_hd = true;    //重新进入页面之后，可以再次执行滑动切换页面代码
-    clearInterval(interval); // 清除setInterval
-    time = 0;
-  },
+
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -504,7 +498,9 @@ Page({
   },
 
   touchStart: function (e) {
-    touchDot = e.touches[0].pageX; // 获取触摸时的原点
+    touchDotX = e.touches[0].pageX; // 获取触摸时的原点
+    touchDotY = e.touches[0].pageY;
+    // console.log('初始点', e.touches[0].pageX, e.touches[0].pageY)
     // 使用js计时器记录时间    
     interval = setInterval(function () {
       time++;
@@ -512,9 +508,13 @@ Page({
   },
   // 触摸结束事件
   touchEnd: function (e) {
-    var touchMove = e.changedTouches[0].pageX;
+    var touchMoveX = e.changedTouches[0].pageX;
+    var touchMoveY = e.changedTouches[0].pageY;
+
+    // var horizen= 
+    // console.log('滑动点', e.changedTouches[0].pageX, e.changedTouches[0].pageY)
     // 向左滑动   
-    if (touchMove - touchDot <= -40 && time < 10 && flag_hd == true) {
+    if (touchMoveX - touchDotX <= -140 &&  time < 10 && flag_hd == true) {
       flag_hd = false;
       //执行切换页面的方法
       console.log("向右滑动");
@@ -522,16 +522,18 @@ Page({
         url: '../groupdetail/detail?productid=' + this.data.productid + '&groupid=' + this.data.groupid,
       })
     }
-    // 向右滑动   
-    if (touchMove - touchDot >= 40 && time < 10 && flag_hd == true) {
-      flag_hd = false;
-      //执行切换页面的方法
-      console.log("向左滑动");
-      wx.navigateTo({
-        url: '../left/left'
-      })
-    }
     clearInterval(interval); // 清除setInterval
     time = 0;
-  }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    flag_hd = true;    //重新进入页面之后，可以再次执行滑动切换页面代码
+    clearInterval(interval); // 清除setInterval
+    time = 0;
+    util.socketlink()
+  },
+
 })

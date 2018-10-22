@@ -35,13 +35,13 @@
     <view class='detail-content'>
       <view class='detail-content-box'>
         <text class='detail-content-text'>订单编号：</text>
-        <text class='detail-content-num'>{{item.payTime}}</text>
+        <text class='detail-content-num'>{{item.orderId}}</text>
       </view>
-      <view class='detail-content-box'>
+      <view class='detail-content-box' hidden='{{payTimehiden}}'>
         <text class='detail-content-text'>付款时间：</text>
         <text class='detail-content-num'>{{item.payTime}}</text>
       </view>
-      <view class='detail-content-box'>
+      <view class='detail-content-box' hidden='{{deliverTimehiden}}'>
         <text class='detail-content-text'>发货时间：</text>
         <text class='detail-content-num'>{{item.deliverTime}}</text>
       </view>

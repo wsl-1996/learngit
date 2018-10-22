@@ -22,7 +22,7 @@
       <block wx:for="{{orderlist}}">
         <view class='seller-info-item'>
           <text class="seller-info-item-name">{{item.shopName}}></text>
-          <text class="seller-info-item-state">{{item.orderState}}</text>
+          <text class="seller-info-item-state">{{item.orderStateText}}</text>
         </view>
         <view class='goods-info-item'  bindtap='orderdetail' data-orderid='{{item.orderId}}'>
           <image class='goods-info-item-img' src='{{item.productImg}}'></image>
@@ -32,13 +32,13 @@
           <text class='goods-info-item-model'>{{item.typeSpecification}}</text>
         </view>
         <view class='pay-info-item'>
-          <text class='pay-info-item-price'>实付：￥{{item.sumPrice}}</text>
+          <text class='pay-info-item-price'>实付：￥{{item.sumPrice-item.deduction}}</text>
         </view>
         <view class='detail-info-item'>
         <view hidden='{{item.orderState!=1?true:false}}' class='detail-info-item-pay' bindtap='gotopay' data-orderid='{{item.orderId}}'>去付款</view>
           <view hidden='{{item.orderState!=2?true:false}}' class='detail-info-item-back' data-orderid='{{item.orderId}}' bindtap='topayback' data-orderid='{{item.orderId}}'>申请退款</view>
-          <view class='detail-info-item-delete' bindtap='deleteorder' data-orderid='{{item.orderId}}'>删除订单</view>
-          <view class='detail-info-item-more' bindtap='gotoexpress' data-orderid='{{item.orderId}}' data-productimg='{{item.productImg}}'  hidden='{{item.orderState==1||item.orderState==2?true:false}}' >查看物流</view>
+          <!-- <view class='detail-info-item-delete' bindtap='deleteorder' data-orderid='{{item.orderId}}'>删除订单</view> -->
+          <view class='detail-info-item-more' bindtap='gotoexpress' data-orderid='{{item.orderId}}' data-productimg='{{item.productImg}}'  hidden='{{item.orderState==1||item.orderState==2||item.orderState==6?true:false}}' >查看物流</view>
           <view hidden='{{item.orderState!=4?true:false}}' bindtap='gotocomment' data-orderid='{{item.orderId}}'>评价</view>
         </view>
       </block>

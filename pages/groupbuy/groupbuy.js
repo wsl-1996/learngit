@@ -11,14 +11,14 @@ Page({
     title: '标题',
     grouplist: [],
     showModel: false,
-    testbanner:[
-      {
-        key:'fdf',
-        imgurl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537246720866&di=ed71bdeedbc46bbbbc5862a0b95f8bf7&imgtype=0&src=http%3A%2F%2Fpic2.52pk.com%2Ffiles%2F160216%2F5329500_160443_1.png',
-        groupid:'53a6d042164d4325a69c7f9b64cc879c',
-        conenttype:true
-      }
-    ]
+    // testbanner:[
+    //   {
+    //     key:'fdf',
+    //     imgurl:'',
+    //     groupid:'53a6d042164d4325a69c7f9b64cc879c',
+    //     conenttype:true
+    //   }
+    // ]
   },
 
   // progress: function (joingroup, maxgroup) {
@@ -27,8 +27,6 @@ Page({
   //   })
   // },
   onLoad: function(event) {
-   
-
     console.log('this is 分享获取参数', event)
     var that = this
     this.getgrouplist()
@@ -63,60 +61,78 @@ Page({
       url: app.globalData.g_ip + '/ketuan/applet/groups/getgroup?page=1&state=1',
       success: function(res) {
         var groups = res.data.data.groups
-
-        for (let i = 0; i < groups.length; i++) {
-          var timestamp = Date.parse(new Date());
-          console.log("当前时间戳为：" + timestamp);  
-          var lasttime = groups[i].last_time
-          var percent = util.tohot(groups[i].offered_count / groups[i].group_count)
-          groups[i].percent = percent
-          groups[i].percentnum = groups[i].offered_count / groups[i].group_count
-          if (groups[i].percentnum < 0.25) { // 把团购情况转换为百分比
-            groups[i].is_showhot = true
-          }
-          console.log(util.countdown(lasttime).d)
-          console.log(groups[i].group_count)
-          console.log(groups[i].percentnum)
-          var weight = that.getweight(groups[i].group_count, util.countdown(lasttime).d, groups[i].percentnum)
-          groups[i].weight = weight
-          console.log('this is weight', weight)
-          if (timestamp > lasttime){
-            groups[i].endtype=true
-          }
-          intervalid1 = setInterval(function() { //时间戳转化为倒计时
-            lasttime = groups[i].last_time
-            groups[i].countDown = {}
-            groups[i].countDown.d = util.countdown(lasttime).d
-            groups[i].countDown.h = util.countdown(lasttime).h
-            groups[i].countDown.m = util.countdown(lasttime).m
-            groups[i].countDown.s = util.countdown(lasttime).s
-          }, 1000)
-        }
-
-        var compare = function(obj1, obj2) { //根据权值排序
-          var val1 = obj1.weight;
-          var val2 = obj2.weight;
-          if (val1 < val2) {
-            return 1;
-          } else if (val1 > val2) {
-            return -1;
-          } else {
-            return 0;
-          }
-        }
-        console.log(groups.sort(compare));
-
-        intervalid2 = setInterval(function() {
-          that.setData({
-            grouplist: groups
-          })
-        }, 1000)
+        var pageShow = 3
+        var pageNow = 1
+        var totalPage = Math.ceil(groups.length / pageShow) 
         that.setData({
-          grouplist: groups
+          groupAll:groups
         })
-        console.log("团购列表", res.data)
+        that.setData({
+          pageShow: pageShow,
+          totalPage: totalPage,
+          pageNow: pageNow
+        })
+        groups=groups.slice(0,pageShow)
+        that.handlegroups(groups)
+
       }
     })
+  },
+
+  handlegroups:function(groups){
+    var that=this
+    for (let i = 0; i < groups.length; i++) {
+      var timestamp = Date.parse(new Date());
+      console.log("当前时间戳为：" + timestamp);
+      var lasttime = groups[i].last_time
+      var percent = util.tohot(groups[i].offered_count / groups[i].group_count)
+      groups[i].percent = percent
+      groups[i].percentnum = groups[i].offered_count / groups[i].group_count
+      if (groups[i].percentnum < 0.25) { // 把团购情况转换为百分比
+        groups[i].is_showhot = true
+      }
+      console.log(util.countdown(lasttime).d)
+      console.log(groups[i].group_count)
+      console.log(groups[i].percentnum)
+      var weight = that.getweight(groups[i].group_count, util.countdown(lasttime).d, groups[i].percentnum)
+      groups[i].weight = weight
+      console.log('that is weight', weight)
+      if (timestamp > lasttime) {
+        groups[i].endtype = true
+      }
+      intervalid1 = setInterval(function () { //时间戳转化为倒计时
+        lasttime = groups[i].last_time
+        groups[i].countDown = {}
+        groups[i].countDown.d = util.countdown(lasttime).d
+        groups[i].countDown.h = util.countdown(lasttime).h
+        groups[i].countDown.m = util.countdown(lasttime).m
+        groups[i].countDown.s = util.countdown(lasttime).s
+      }, 1000)
+    }
+
+    var compare = function (obj1, obj2) { //根据权值排序
+      var val1 = obj1.weight;
+      var val2 = obj2.weight;
+      if (val1 < val2) {
+        return 1;
+      } else if (val1 > val2) {
+        return -1;
+      } else {
+        return 0;
+      }
+    }
+    console.log(groups.sort(compare));
+
+    intervalid2 = setInterval(function () {
+      that.setData({
+        grouplist: groups
+      })
+    }, 1000)
+    that.setData({
+      grouplist: groups
+    })
+    wx.hideLoading()
+    wx.stopPullDownRefresh()
   },
 
   getbanner:function(){
@@ -158,6 +174,9 @@ Page({
       url: app.globalData.g_ip + '/ketuan/applet/groups/search?state=1',
       data: {
         keyword: this.data.text
+      },
+      header: {
+        'sessionid': wx.getStorageSync('sessionid')
       },
       success: function(res) {
         var groups = res.data.data.groups
@@ -280,9 +299,6 @@ Page({
     wx.onSocketMessage(function(res) {  //监听消息传入
 
       console.log(res)
-      // res.data.replace("{\"", "{'");
-      // res.data.replace("\":", "':");
-      // res.data.replace(",\"", ",'");
       console.log('this is res.data')
       console.log(res.data)
       var tempres = JSON.parse(res.data)
@@ -294,6 +310,7 @@ Page({
       }
       var temp = {
         is_show_right: 0,
+        msgid: tempres.id,
         messageContent: tempres.messageType == '4' ? redpacketContent.explain: tempres.messageContent,
         redpacketsum: tempres.messageType == '4' ? redpacketContent.sum :null,
         messageFrom: tempres.messageFrom,
@@ -315,7 +332,19 @@ Page({
         that.setmsglist(temp.headOwner, temp.messageContent, temp.messageContent, temp.messageFrom)
       app.globalData.g_newmsg = true
       console.log('+++++++++++++++您有新的消息了+++++++++++++++')
+      wx.showToast({
+        title: '新消息~！',
+      })
 
+    })
+
+    wx.onSocketClose(function(){
+      console.log('listenlist 监听socket close')
+      app.globalData.socketCloseType=true
+    })
+    
+    wx.onSocketError(function () {
+      console.log('listenlist 监听socket error')
     })
   },
 
@@ -357,5 +386,46 @@ Page({
       })
     }
    
-  }
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    clearInterval(intervalid1) //清除定时器
+    clearInterval(intervalid2)
+    this.getbanner();
+    this.getgrouplist();
+  },
+
+  /**
+ * 页面上拉触底事件的处理函数
+ */
+  onReachBottom: function () {
+    console.log('上啦触底11111')
+    clearInterval(intervalid1) //清除定时器
+    clearInterval(intervalid2)
+    wx.showLoading({
+      title: 'loading~',
+    })
+    var pageNow = this.data.pageNow + 1
+    var groups=this.data.groupAll.slice(0,pageNow * this.data.pageShow)
+    this.handlegroups(groups)
+  },
+  /**
+ * 生命周期函数--监听页面隐藏
+ */
+  onHide: function () {
+    console.log('执行onHide')
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    console.log('执行onUnload')
+  },
+  onShow: function () {
+    console.log('执行onshow')
+  },
 })

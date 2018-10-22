@@ -40,6 +40,24 @@ Page({
       data: {
         data: temp
       },
+
+      header: {
+        'content-type': 'application/json',
+        'sessionid': wx.getStorageSync('sessionid')
+      },
+      success:function(){
+        wx.showToast({
+          title: '等待处理',
+          success:function(){
+            setTimeout(function(){
+              wx.switchTab({
+                url: '/pages/my/my',
+              })
+            },1500)
+            
+          }
+        })
+      }
     })
   },
 

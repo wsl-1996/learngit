@@ -17,7 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log('1111111111111111111111111111onload')
     var that = this
     this.setData({
       num: options.num,
@@ -77,13 +76,14 @@ Page({
         data: {
           productid: this.data.productid,
           groupid: this.data.groupid,
-          totalprice: this.data.totalprice,
-          deduction: this.data.usededuction,
           style: this.data.style,
           meno: this.data.meno,
+          actualPayment: this.data.outcost,
+          totalprice: this.data.totalprice,
           productprice: this.data.pricenow,
           sums: this.data.num,
-          carriageprice: this.data.valueprice
+          carriageprice: this.data.valueprice,
+          deduction: this.data.usededuction,
         },
         header: {
           'content-type': 'application/json',
@@ -101,6 +101,15 @@ Page({
             'appId': 'wx5733cafea467c980',
             'success': function (res) {
               console.log('调用支付success')
+              wx.showToast({
+                title: '支付完成',
+                success:function(){
+                  wx.redirectTo({
+                    url: '../groupbuy/groupbuy',
+                  })
+                }
+              })
+              
             },
             'fail': function (res) {
               console.log(res)
@@ -237,7 +246,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log('222222222222222222222222222onshow')
     this.getdefaultaddress()
     console.log('执行onshow')
   },

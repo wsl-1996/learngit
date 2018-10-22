@@ -4,6 +4,7 @@
   height: auto;
   position: relative;
   border-top: 1px solid #fff;
+  min-height: 1334rpx;
 }
  .topbar{
   width: 750rpx;

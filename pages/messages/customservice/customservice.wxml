@@ -30,13 +30,13 @@
         <view class='notice-container'>
           <view class='notice-text'>消息通知</view>
           <view class='notice-body'>{{item.messageContent}}</view>
-          <view wx:if='{{item.messageType==4}}' class='redpac-btn' bindtap='openpac' data-redsum='{{item.redpacketsum}}'>领取红包</view>
+          <view wx:if='{{item.messageType==4}}' class='redpac-btn' bindtap='openpac' data-redsum='{{item.redpacketsum}}' data-redid='{{item.msgid}}'>领取红包</view>
         </view>
       </block>
     </scroll-view>
   </scroll-view>
-  <view bindtap='itemclick'>
-    <template is='redpacket-template' data='{{istouched,redshow,redsum}}' />
+  <view >
+    <template is='redpacket-template' data='{{istouched,redshow,redsum,redid}}' />
   </view>
 
   <view class="sendmessage">

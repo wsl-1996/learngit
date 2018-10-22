@@ -87,7 +87,7 @@ Page({
   touchEnd: function (e) {
     var touchMove = e.changedTouches[0].pageX;
     // 向右滑动   
-    if (touchMove - touchDot <= -40 && time < 10 && flag_hd == true) {
+    if (touchMove - touchDot <= -140 && time < 10 && flag_hd == true) {
       flag_hd = false;
       //执行切换页面的方法
       console.log("向右滑动");
@@ -96,7 +96,7 @@ Page({
       })
     }
     // 向左滑动   
-    if (touchMove - touchDot >= 40 && time < 10 && flag_hd == true) {
+    if (touchMove - touchDot >= 140 && time < 10 && flag_hd == true) {
       flag_hd = false;
       //执行切换页面的方法
       console.log("向左滑动");
